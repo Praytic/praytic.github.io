@@ -1,7 +1,7 @@
 .opening(class="#{ published === false ? 'post-unpublished' : '' }")
   for image in public.images._contents
     if image === current.path[1] + (".jpg" || ".png" || ".svg" || ".gif")
-      img.opening-image(src="/knowledge-library/images/#{ image }", alt="")
+      img.opening-image(src="/images/#{ image }", alt="")
   header.opening-header
     .container
       a(href="/").opening-return Home
