@@ -14,6 +14,8 @@
 <li><p><strong>Подключение сторонних программ</strong> - веб сервисы могут обмениваться данными с различными программами независимо от
 языка программирования, на котором они написаны.</p>
 </li>
+<li><p>Пример веб сервиса: <a href="http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx">dailyinfo</a> </p>
+</li>
 </ol>
 <h3>2. Основные компоненты</h3><ol>
 <li><p><strong>SOAP (Simple Object Access Protocol)</strong> - основанный на XML язык, описывающий веб сервисы.</p>
@@ -31,7 +33,7 @@
 </li>
 </ol>
 <h3>3. SOAP</h3><ol>
-<li>Пример взаимодействия клиента с Web приложением (регистрация аккаунта и заказ товаров):<pre><code>1. Программа на клиентской стороне конвертирует информацию о регистрации аккаунта в SOAP сообщение.
+<li>Пример взаимодействия клиента с Web приложением (регистрация аккаунта):<pre><code>1. Программа на клиентской стороне конвертирует информацию о регистрации аккаунта в SOAP сообщение.
 2. SOAP сообщение отсылается в веб сервис, как тело HTTP POST запроса.
 3. Веб сервис распаковывает SOAP реквест и конвертирует в комманду, которую понимает приложение на сервере.
 4. Приложение обрабатывает информацию своей логикой и отправляет ответ с новым уникальным номером аккаунта.
@@ -41,28 +43,145 @@
 </code></pre></li>
 </ol>
 <h3>4. XML WSDL</h3><ol>
-<li><strong>WSDL Documents</strong> - WSDL документ описывает веб сервис. Он указывает местоположение сервиса и его методы, 
-используя следующие элементы:<ul>
-<li><code>&lt;types&gt;</code> - определяет типы данных, используемые веб сервисом</li>
-<li><code>&lt;message&gt;</code> - определяет элементы данных для каждой операции</li>
-<li><code>&lt;portType&gt;</code> - описывает операции и сообщение, которые могут встретиться в сервисе</li>
-<li><code>&lt;binding&gt;</code> - определяет протокол и формат данных для каждого типа порта</li>
-<li>Структура WSDL документа выглядит следующим образом:<pre><code class="language-xml">&lt;definitions&gt;
-   &lt;types&gt;
-     data type definitions........
-   &lt;/types&gt;
-   &lt;message&gt;
-     definition of the data being communicated....
-   &lt;/message&gt;
-   &lt;portType&gt;
-     set of operations......
-   &lt;/portType&gt;
-   &lt;binding&gt;
-     protocol and data format specification....
-   &lt;/binding&gt;
-&lt;/definitions&gt;
+<li><p><strong>WSDL Documents</strong> - WSDL документ описывает веб сервис. Он указывает местоположение сервиса и его методы, 
+используя следующие элементы:</p>
+<ul>
+<li><code>&lt;types&gt;</code> - определяет типы данных, используемые веб сервисом.</li>
+<li><code>&lt;message&gt;</code> - определяет элементы данных для каждой операции.</li>
+<li><code>&lt;portType&gt;</code> - описывает операции и сообщение, которые могут встретиться в сервисе.</li>
+<li><code>&lt;binding&gt;</code> - определяет протокол и формат данных для каждого типа порта.</li>
+<li><code>&lt;service&gt;</code> - определяет адрес веб сервиса.</li>
+<li><code>&lt;definition&gt;</code> - корневой элемент каждого WSDL документа.</li>
+<li><code>&lt;operation&gt;</code> - абстрактное определение операции для сообщения.</li>
+<li><code>&lt;documentation&gt;</code> - предоставляет документацию</li>
+<li><code>&lt;import&gt;</code> - импортирует сторонние WSDL документы или XML Schemas.</li>
+</ul>
+</li>
+<li><p><strong>Структура WSDL документа</strong> выглядит следующим образом:</p>
+<pre><code class="language-xml"> &lt;definitions&gt;
+     &lt;types&gt;
+       data type definitions........
+     &lt;/types&gt;
+     &lt;message&gt;
+       definition of the data being communicated....
+     &lt;/message&gt;
+     &lt;portType&gt;
+       set of operations......
+     &lt;/portType&gt;
+     &lt;binding&gt;
+       protocol and data format specification....
+     &lt;/binding&gt;
+ &lt;/definitions&gt;
 </code></pre>
 </li>
+<li><p><code>&lt;portType&gt;</code> - элемент, который определяет веб сервис, операции, приводимые в нем, и задействованные сообщения.</p>
+<ul>
+<li><strong>request-response</strong> - самый распространенный тип операции. Она получает запрос и возвращает ответ.</li>
+<li><strong>one-way</strong> - операция может получать сообщения, но не будет возвращать ответ.</li>
+<li><strong>solicit-response</strong> - операция может отправлять запрос и будет ждать ответа.</li>
+<li><strong>notification</strong> - операция может посылать сообщений, но не будет ждать ответа.</li>
+</ul>
+</li>
+<li><p>Пример Request-Response операции (словарь терминов):</p>
+<pre><code class="language-xml"> &lt;message name=&quot;getTermRequest&quot;&gt;
+   &lt;part name=&quot;term&quot; type=&quot;xs:string&quot;/&gt;
+ &lt;/message&gt;
+ &lt;message name=&quot;getTermResponse&quot;&gt;
+   &lt;part name=&quot;value&quot; type=&quot;xs:string&quot;/&gt;
+ &lt;/message&gt;
+ &lt;portType name=&quot;glossaryTerms&quot;&gt;
+   &lt;operation name=&quot;getTerm&quot;&gt;
+     &lt;input message=&quot;getTermRequest&quot;/&gt;
+     &lt;output message=&quot;getTermResponse&quot;/&gt;
+   &lt;/operation&gt;
+ &lt;/portType&gt;
+</code></pre>
+<ul>
+<li><code>&lt;portType&gt;</code> определяет &quot;glossaryTerms&quot; как имя порта, а <code>getTerm</code> - имя операции</li>
+<li><code>&lt;message&gt;</code> элементы определяют <code>&lt;part&gt;</code> сообщений &quot;getTermRequest&quot; и &quot;getTermResponse&quot;.</li>
+</ul>
+</li>
+<li><p>Пример One-Way операции (словарь терминов):</p>
+<pre><code class="language-xml"> &lt;message name=&quot;newTermValues&quot;&gt;
+   &lt;part name=&quot;term&quot; type=&quot;xs:string&quot;/&gt;
+   &lt;part name=&quot;value&quot; type=&quot;xs:string&quot;/&gt;
+ &lt;/message&gt;
+ &lt;portType name=&quot;glossaryTerms&quot;&gt;
+   &lt;operation name=&quot;setTerm&quot;&gt;
+     &lt;input name=&quot;newTerm&quot; message=&quot;newTermValues&quot;/&gt;
+   &lt;/operation&gt;
+ &lt;/portType &gt;
+</code></pre>
+<ul>
+<li>В этом примере &quot;glossaryTerms&quot; определяет one-way операцию &quot;setTerm&quot;.</li>
+<li>&quot;setTerm&quot; операция позволяет вводить новое сообщение используя &quot;newTermValues&quot;.</li>
+</ul>
+</li>
+<li><p>Пример WSDL файла:</p>
+<pre><code class="language-xml"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ &lt;definitions name=&quot;HelloService&quot;
+              targetNamespace=&quot;http://www.ecerami.com/wsdl/HelloService.wsdl&quot;
+              xmlns=&quot;http://schemas.xmlsoap.org/wsdl/&quot;
+              xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;
+              xmlns:tns=&quot;http://www.ecerami.com/wsdl/HelloService.wsdl&quot;
+              xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+     &lt;types&gt;
+         &lt;xsd:schema&gt;
+             &lt;xsd:import
+                     schemaLocation=&quot;http://localhost:9876/ts?xsd=1&quot;
+                     namespace=&quot;http://ts.ch02/&quot;&gt;
+             &lt;/xsd:import&gt;
+         &lt;/xsd:schema&gt;
+     &lt;/types&gt;
+     &lt;message name=&quot;SayHelloRequest&quot;&gt;
+         &lt;part name=&quot;firstName&quot; type=&quot;xsd:string&quot;/&gt;
+     &lt;/message&gt;
+     &lt;message name=&quot;SayHelloResponse&quot;&gt;
+         &lt;part name=&quot;greeting&quot; type=&quot;xsd:string&quot;/&gt;
+     &lt;/message&gt;
+     &lt;portType name=&quot;Hello_PortType&quot;&gt;
+         &lt;operation name=&quot;sayHello&quot;&gt;
+             &lt;input message=&quot;tns:SayHelloRequest&quot;/&gt;
+             &lt;output message=&quot;tns:SayHelloResponse&quot;/&gt;
+         &lt;/operation&gt;
+     &lt;/portType&gt;
+     &lt;binding name=&quot;Hello_Binding&quot; type=&quot;tns:Hello_PortType&quot;&gt;
+         &lt;soap:binding style=&quot;rpc&quot;
+                       transport=&quot;http://schemas.xmlsoap.org/soap/http&quot;/&gt;
+         &lt;operation name=&quot;sayHello&quot;&gt;
+             &lt;soap:operation soapAction=&quot;sayHello&quot;/&gt;
+             &lt;input&gt;
+             &lt;soap:body
+                     encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+                     namespace=&quot;urn:examples:helloservice&quot;
+                     use=&quot;encoded&quot;/&gt;
+             &lt;/input&gt;
+             &lt;output&gt;
+                 &lt;soap:body
+                         encodingStyle=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+                         namespace=&quot;urn:examples:helloservice&quot;
+                         use=&quot;encoded&quot;/&gt;
+             &lt;/output&gt;
+         &lt;/operation&gt;
+     &lt;/binding&gt;
+     &lt;service name=&quot;Hello_Service&quot;&gt;
+         &lt;documentation&gt;WSDL File for HelloService&lt;/documentation&gt;
+         &lt;port binding=&quot;tns:Hello_Binding&quot; name=&quot;Hello_Port&quot;&gt;
+             &lt;soap:address
+                     location=&quot;http://localhost:8080/soap/rpcrouter&quot;/&gt;
+         &lt;/port&gt;
+     &lt;/service&gt;
+ &lt;/definitions&gt;
+</code></pre>
+<ul>
+<li><code>&lt;service&gt;</code>: HelloService.</li>
+<li><code>&lt;types&gt;</code>: Использование импортированной по локальному адресу XML Schema.</li>
+<li><code>&lt;message&gt;</code>: &quot;sayHelloRequest&quot;: &quot;firstName&quot; параметр, &quot;sayHelloResponse&quot;: &quot;greeting&quot; возвращаемое 
+значение</li>
+<li><code>&lt;portType&gt;</code>: sayHello операция, которая состоит из request-response сервиса.</li>
+<li><code>&lt;binding&gt;</code>: Указание использовать SOAP HTTP протокол.</li>
+<li><code>&lt;service&gt;</code>: сервис доступен по ссылке <a href="http://www.examples.com/SayHello/">http://www.examples.com/SayHello/</a>.</li>
+<li><code>&lt;port&gt;</code>: Связывает <code>&lt;binding&gt;</code> с URI <a href="http://www.examples.com/SayHello/">http://www.examples.com/SayHello/</a>, по которой доступен данный сервис.</li>
 </ul>
 </li>
 </ol></div><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></body></html>
