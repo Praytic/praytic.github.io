@@ -2,10 +2,21 @@ doctype
 html(lang="en")
   head
     != partial("_shared/head")
-  body.markdown-body
-    .container.container--articles(role="main")
-      != yield
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js")
-    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js")
-    script(type="text/javascript").
-      hljs.initHighlightingOnLoad();
+  body.wrapper
+    header
+      div.container
+        h2.lone-header Knowledge Library 1.0
+    section
+      div.container
+        ul.docs-nav
+          != partial("_shared/nav")
+        div.docs-content.markdown-body
+          != yield
+    section.vibrant.centered
+      div
+        h4 This documentation provided by <a href="https://github.com/Praytic">Chernogorov Vladislav</a>.
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js")
+  script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js")
+  script(src="js/layout.js")
+  script(type="text/javascript").
+    hljs.initHighlightingOnLoad();
