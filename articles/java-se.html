@@ -48,10 +48,27 @@
 <li><p><strong>Импортирование имен</strong> - способ ссылки на классы из другого пакета. При импортировании простое имя типа погружается в текущую область видимости имён, и его можно использовать непосредственно, без указания имени пакета.</p>
 </li>
 <li><p><strong>Класс</strong> — это описания структуры и поведения объектов. Классы записываются программистом в виде исходного кода и компилируются в байт-код. Имея байт-код классов, виртуальная машина способна создавать объекты и обеспечивать вызов их методов.</p>
+<ul>
+<li>Шаблон определения класса:<pre><code class="language-Java">[public] [final|abstract] class ClassName 
+[extends OtherClass] 
+[implements Interface1, Interface2] {}
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong>Объекты</strong> — это участки памяти виртуальной машины, содержащие своё состояние в виде полей.</p>
+<ul>
+<li>Шаблон определения поля объекта:<pre><code class="language-Java">[public|protected|private] [static] [final] Type field;
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong>Метод</strong> — это просто функция, которая неявным параметром принимает объект, на котором она вызывается. Таким образом, отправка сообщения сводится к вызову функции.</p>
+<ul>
+<li>Шаблон определения поля объекта:<pre><code class="language-Java">[public|protected|private] [static|abstract|final] Type method(Type param) {}
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong>Абстрактный класс</strong> — это такой класс, часть функционала которого не реализована, но задекларирована.</p>
 </li>
@@ -68,20 +85,40 @@
 <ul>
 <li>Существует несколько типов вложенных классов: вложенные статические, внутренние, анонимные, локальные. </li>
 <li>Вложенными могут быть также интерфейсы, перечисления и аннотации.</li>
+<li>Шаблон определения вложенного класса:<pre><code class="language-Java">[public|protected|private] [static] [abstract|final] class NestedClass {}
+</code></pre>
+</li>
 </ul>
 </li>
 <li><p><strong>Лямбда-выражение</strong> — часть парадигмы функционального программирования. Предназначены для замены слишком многословного синтаксиса анонимных классов.</p>
+<ul>
+<li>Шаблон определения лямбда-выражения:<pre><code class="language-Java">(Type param) -&gt; { /* body */ }
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong>Перечисление</strong> — специальный тип данных, предусмотренный для ограничения множества допустимых значений для некоторого типа данных.</p>
+<ul>
+<li>Шаблон определения перечисления:<pre><code class="language-Java">[public] enum EnumName [implements Interface1, Interface2] {}
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong>Конструктор</strong> — это специальный метод, который автоматически вызывается при создании объекта и инициализирует его состояние. </p>
 <ul>
 <li>Конструктор по умолчанию не создаётся, если в классе объявлен явно другой конструктор.</li>
+<li>Шаблон определения конструктора:<pre><code class="language-Java">[public|protected|private] ClassName(Type param) {}
+</code></pre>
+</li>
 </ul>
 </li>
 <li><p><strong>Дженерики</strong> — реализация обобщенного программирования, включающая в себя поддержку обобщенных классов и обобщенных методов. </p>
 <ul>
 <li>В первую очередь дженерики были нужны для создания типобезопасной библиотеки коллекций, т.е. с проверкой типов на этапе компиляции, а не в рантайме.</li>
+<li>Пример определения дженериков:<pre><code class="language-Java">public class SomeClass&lt;T1, T2, ...&gt; {}
+&lt;T1, T2, ..., E [extends|super] ClassName&gt; R method(T1 p1, T2 p2, ...) throws E {}
+</code></pre>
+</li>
 </ul>
 </li>
 <li><p><strong>Итератор</strong> - объект, предоставляющий доступ к элементам коллекции и навигацию по ним. </p>
@@ -136,19 +173,20 @@ public class StandartTest extends Test {
 </li>
 </ul>
 </li>
-<li><p><strong>Исключение</strong> - ошибка, возникающая во время выполнения программы.</p>
+<li><p><strong>Исключение</strong> - ошибка, возникающая во время выполнения программы. Исключения сигнализируют о возникновении ошибочной ситуации, из-за которой программа не может выполняться дальше. Поэтому исключения вызывают раскрутку стека вызовов. Когда какой-либо метод выбрасывает исключение, виртуальная машина начинает выталкивать элементы из стека вызовов (как будто произошёл возврат из каждого метода) до тех пор, пока не найдёт обработчик, который сможет обработать это исключение. Если такой обработчик нашёлся, то управление передаётся в него, и код внутри этого обработчика может либо продолжить выполнение программы, либо выбросить ещё одно исключение.</p>
 <ul>
 <li>Исключения в Java разделяются на checked, unchecked и errors.</li>
-<li>Пример метода, который выбрасывает исключение.<pre><code class="language-Java">public class App {
-  public static void main(String[] args) throws Throwable {}
-}
+<li>Checked-исключения - наследники класса <code>Exception</code>. Метод обязан либо обработать эти исключения, либо явно объявить (с помощью декларации <code>throws</code>), что он их выбрасывает.</li>
+<li>Uncheked-исключения - наследники класса <code>RuntimeException</code>. Их объявлять и отлавливать необязательно.</li>
+<li>Специальные исключения (errors) - наследники класса <code>Error</code>, выбрасываемые виртуальной машиной в случае серьёзной ошибки (кончилась память, не удалось загрузить класс и т.д.). Обычный код не должен обрабатывать эти исключения.</li>
+<li><code>try-with-resources</code>. В Java 7 была введена специальная конструкция, позволяющая безопасно открывать и закрывать ресурсы (классы, реализующие интерфейс <code>AutoCloseable</code>). </li>
+<li>Пример метода, который выбрасывает исключение:<pre><code class="language-Java">public static void main(String[] args) throws Throwable {}
 </code></pre>
 </li>
-<li>Пример метода, который обрабатывает исключение.<pre><code class="language-Java">public class App {
-  public static void main(String[] args) {
-      try {
-      } catch (Throwable t) {}
-  }
+<li>Пример метода, который обрабатывает исключение:<pre><code class="language-Java">public static void main(String[] args) {
+  try {} 
+  catch (Throwable t) {}
+  finally {}
 }
 </code></pre>
 </li>
@@ -161,7 +199,7 @@ public class StandartTest extends Test {
 </li>
 <li><p><strong>Инкапсуляция</strong> - сокрытие реализации.</p>
 <ul>
-<li>Реализуется с помощью модификаторов видимости: default, public, protected, private.</li>
+<li>Реализуется с помощью модификаторов видимости: <code>default</code>, <code>public</code>, <code>protected,</code> <code>private</code>.</li>
 </ul>
 </li>
 <li><p><strong>Полиморфизм</strong> - парадигма ООП. Существует несколько его разновидностей:</p>
@@ -208,8 +246,14 @@ public class StandartTest extends Test {
 </li>
 <li><p><strong>Строка</strong> - последовательность символов, в Java строки являются объектами.</p>
 <ul>
-<li>Строки в Java неизменяемы (immutable), для таких целей используется StringBuilder.</li>
-<li>Форматированная строка выглядит следующим образом: <code>&quot;Variable field: %s&quot;</code> За место <code>%s</code> в строку вставляется переменная определенного типа.</li>
+<li>Строки реализованы с помощью класса <code>String</code>.</li>
+<li>Строки в Java неизменяемы (immutable) в целях безопасности, поэтому строки могут кэшировать свой хэшкод, что делает ее очень быстрой как ключ для <code>HashMap</code>. При том, строки могут свободно использоваться различными потоками, не боясь, что кто-то их изменит, таким образом отпадает необходимость в синхронизации.</li>
+<li>Если строку нужно изменять, то следует использовать <code>StringBuilder</code> или <code>StringBuffer</code>.</li>
+<li><code>StringTokenizer</code> - позволяет разбивать текст на лексемы, отделяемые разделителями. Парсит данные. Быстрый. Не поддерживает регулярные выражения. Устаревший.</li>
+<li><code>String.split</code> - позволяет разбивать текст на лексемы, отделяемые разделителями. Поддерживает регулярные выражения. Возвращаемым значением является массив строк. Работает медленее, чем <code>StringTokenizer</code>.</li>
+<li><code>Formatter</code> - обеспечивает преобразование формата, позволяющее выводить числа, строки, время и даты в любом необходимом разработчику виде.</li>
+<li><code>Pattern</code> - применяется для определения регулярных выражений (шаблонов), для которых ищется соответствие в строке, файле или другом объекте, представляющем последовательность символов.</li>
+<li><code>Matcher</code> - если необходимо найти соответствия внутри строки, необходимо использовать этот класс.</li>
 </ul>
 </li>
 <li><p><strong>Массив</strong> - фиксированная структура данных.</p>
@@ -305,4 +349,241 @@ public interface ThrowingProvider&lt;T, E extends Throwable&gt; {
 </li>
 </ul>
 </li>
-</ol></div></div></section><section class="vibrant centered"><div><h4>This documentation provided by <a href="https://github.com/Praytic">Chernogorov Vladislav</a>.</h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
+<li><p><strong>Обобщенные методы</strong> - обобщенные (параметризованные) методы могут использоваться для следующих целей:</p>
+<ul>
+<li>Обобщенные фабричные методы:<pre><code class="language-Java">public static &lt;T extends Enum&lt;T&gt;&gt; EnumSet&lt;T&gt; allOf(Class&lt;T&gt; clazz);
+public static &lt;T&gt; ImmutableList&lt;T&gt; of(T pɴ, T pɵ, T... other);
+public &lt;T&gt; T getInstance(Key&lt;T&gt; key);
+</code></pre>
+</li>
+<li>Методы-преобразователи<pre><code class="language-Java">public static &lt;T&gt; Iterable&lt;T&gt; skip(Iterable&lt;T&gt; iterable, int n);
+public static &lt;F, T&gt; Iterable&lt;T&gt; transform(Iterable&lt;F&gt; iterable, Function&lt;F, T&gt; function);
+</code></pre>
+</li>
+<li>Обобщенные утилитные методы<pre><code class="language-Java">public static &lt;T extends Comparable&lt;T&gt;&gt; T max(Iterable&lt;T&gt; xs);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Wildcards</strong> - wildcards существуют трех типов:</p>
+<ul>
+<li>Wildcards with upper bound:<pre><code class="language-Java">public static double sumOfList(List&lt;? extends Number&gt; list);
+</code></pre>
+</li>
+<li>Unbounded wildcard<pre><code class="language-Java">void printCollection(Collection&lt;?&gt; c);
+</code></pre>
+</li>
+<li>Wildcards with lower bound<pre><code class="language-Java">public static void addNumbers(List&lt;? super Integer&gt; list);
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>7. Многопоточность</h3><ol>
+<li><p><strong>Многопоточность</strong> - это когда множество процессов делят общие вычислительные ресурсы, такие как CPU, между собой.</p>
+<ul>
+<li>Многопотчная программа содержит 2 или более частей, который могут работать одновременно, и каждая часть может выполнять свое действие, тем самым создавая оптимальные условия для использования доступных ресурсов.</li>
+<li>Многопоточность расширяет идею многозадачности в приложениях, где можно разделить определенные операции в индивидуальные потоки.</li>
+<li>Операционная система разделяет вычислительное время не только между различными программами, но и между потоками этих приложений.</li>
+</ul>
+</li>
+<li><p><strong>Поток</strong> в Java представлен классом <code>java.lang.Thread</code>, объекты которого являются потоками, работающими внутри текущей JVM. </p>
+<ul>
+<li>Каждый поток может работать параллельно.</li>
+<li>Начиная с версии 1.5 в состав стандартной библиотеки Java входит пакет <code>java.util.concurrent</code>, в котором содержится большое количество различных классов, помогающих при разработке многопоточных программ.</li>
+</ul>
+</li>
+<li><p><strong>Создание потока</strong>. Для того, чтобы выполнить какую-либо задачу в отдельном потоке, можно создать новый поток с помощью конструктора класса <code>Thread</code>, передать ему <code>Runnable</code> и запустить его.</p>
+<ul>
+<li>Пример создания потока:<pre><code class="language-Java">new Thread(new Runnable() {
+  @Override public void run() { /* ... */ }
+}).start();
+new Thread(() -&gt; { /* ... */ }).start();
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Создание сервисного потока</strong>. Выполнение Java-машины завершается, когда завершатся все потоки, не являющиеся сервисными, т.е. те, у которых не установлен флаг daemon.</p>
+<ul>
+<li>Пример создания сервисного потока:<pre><code class="language-Java">Thread t = new Thread(() -&gt; { ... });
+t.setDaemon(true);
+t.start();
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Критические секции</strong>. При работе потоков с общей изменяемой памятью неизбежно возникает проблема синхронизации действий этих потоков. </p>
+<ul>
+<li>Самым простым способом упорядочить работу потоков с общими данными являются <code>synchronized-блоки</code>.</li>
+</ul>
+</li>
+<li><p><strong>synchronized-блоками</strong>  обозначаются критические секции — участки кода, которые в каждый момент времени могут выполняться только одним потоком. </p>
+<ul>
+<li>Синхронизация потоков всегда происходит с использованием какого-либо объекта. </li>
+<li>Поток, входящий в synchronized-блок, захватывает монитор, связанный с объектом этого блока.</li>
+<li>Пример создания synchronized-блока:<pre><code class="language-Java">private static final Object lock = new Object();
+private static void transfer(int amount) {
+  synchronized (lock) {
+      account1 = account1 - amount;
+      account2 = account2 + amount;
+  }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Замки</strong> - являются более мощной версией synchronized-блока. Основные интерфейсы замков — <code>java.util.concurrent.locks.Lock</code> и <code>ReadWriteLock</code>, а наиболее полезные классы — <code>ReentrantLock</code> и <code>ReentrantReadWriteLock</code>.</p>
+<ul>
+<li>Пример создания замка:<pre><code class="language-Java">private static final Lock lock = new ReentrantLock();
+lock.lock();
+try {
+  // критическая секция
+} 
+finally { 
+  lock.unlock(); 
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Пулы потоков</strong> - это набор потоков, которым можно передавать какие-либо задачи (например, Runnable) на выполнение. </p>
+<ul>
+<li>Создание потока — дорогая операция, и часто большинство задач выполняются недолго. Поэтому имеет смысл переиспользовать уже созданные потоки для  различных задач. </li>
+<li>Пример создания пула потоков:<pre><code class="language-Java">Executor executor = Executors.newFixedThreadPool(4);
+executor.execute(() -&gt; /* ... */ );
+executor.execute(new Runnable() {
+  @Override public void run() { /* ... */ } 
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Жизненный цикл потока</strong>. Поток проходит через несколько стадий своего жизненного цикла:</p>
+<ul>
+<li>New - новый поток начинает свой жизненный цикл с изначального состояния. Он остается в нем до тех пор, пока программа не запустит его.</li>
+<li>Runnable - после того, как поток создался, его надо запустить, в связи с чем, он перейдет в данное состояние. Поток в таком состоянии уже выполняет свои функции.</li>
+<li>Waiting - иногда переходы между потоками занимают некоторое время, во время которого поток находится в таком состоянии, до тех пор, пока другой поток не переведет его в состояние runnable.</li>
+<li>Timed waiting - runnable поток может установить время ожидания для какого-то события, после чего перейдет в данное состояние. Он перейдет обратно в runnable только после того, как истечет указанное время, или если событие, которого он ждет, произойдет.</li>
+<li>Terminated - runnable поток завершается после выполнения своих функций (или его завершают) и переходит в данное состояние.</li>
+<li>Диаграмма жизненого цикла потока:
+<img src="http://www.tutorialspoint.com/java/images/Thread_Life_Cycle.jpg" alt="Диаграмма жизненого цикла потока"></li>
+</ul>
+</li>
+<li><p><strong>Приоритет</strong> - каждый поток имеет приоритет, который помогает операционной системе распознавать порядок в котором потоки будут работать: <code>MIN_PRIORITY</code>, <code>NORM_PRIORITY</code>, <code>MAX_PRIORITY</code>.</p>
+</li>
+</ol>
+<hr>
+<h3>8. Коллекции</h3><ol>
+<li><p><strong>Массив</strong>. Массивы встроены в язык и довольно производительны; они часто служат основой других коллекций.</p>
+</li>
+<li><p><strong>Интерфейс <code>Collection&lt;T&gt;</code></strong> является базовым интерфейсом для линейных коллекций. Он предоставляет основные операции, общие для всех коллекций.</p>
+<ul>
+<li>Данный интерфейс предоставляет следующие методы: <code>add()</code>, <code>addAll()</code>, <code>clear()</code>, <code>contains()</code>, <code>containsAll()</code>, <code>equals()</code>, <code>hashCode()</code>, <code>isEmpty()</code>, <code>iterator()</code>, <code>remove()</code>, <code>removeAll()</code>, <code>size()</code>, <code>toArray()</code>.</li>
+<li>Абстрактный класс <code>AbstractCollection</code> реализует большинство методов этого интерфейса.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>List&lt;T&gt;</code></strong> является одним из наиболее часто используемых интерфейсов коллекций, который обозначает упорядоченную коллекцию. Каждый элемент списка имеет целочисленный индекс; возможно добавление и удаление элементов по индексу. Дополнительно этот интерфейс предоставляет специальный итератор <code>ListIterator&lt;T&gt;</code>, который позволяет перемещаться по списку в обе стороны и вставлять новые элементы.</p>
+<ul>
+<li>Данный интерфейс предоставляет следующие методы: <code>get()</code>, <code>indexOf()</code>, <code>lastIndexOf()</code>, <code>listIterator()</code>, <code>set()</code>, <code>subList()</code>.</li>
+<li>Абстрактный класс <code>AbstractList</code> наследуется от <code>AbstractCollection</code> и реализует большинство методов <code>List</code> интерфейса.</li>
+<li>Абстрактный класс <code>AbstractSequentialList</code> наследуется от <code>AbstractList</code> и реализует большинство методов <code>List</code> интерфейса с упором на последовательный, чем на случайный доступ к элементам.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>ArrayList&lt;T&gt;</code></strong> используется чаще всего в интерфейсе <code>List</code>. По сути является реализацией списка на основе массива. Кроме того, <code>ArrayList</code> очень эффективно использует память, и операции, основанные на доступе по индексу (сортировка, перемешивание, бинарный поиск и т.д.), выполняются быстро.</p>
+<ul>
+<li>Данная реализация предоставляет следующие методы: <code>ensureCapacity()</code>, <code>removeRange()</code>, <code>trimToSize()</code>, <code>clone()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>LinkedList&lt;T&gt;</code></strong> используется гораздо реже. Является реализацией списка на основе двусвязного списка. <code>LinkedList</code> эффективнее при вставке/удалении элементов в начале или конце и при вставке/удалении в середине после итерации до нужного места. Также <code>LinkedList</code> потребляет значительно больше памяти, чем <code>ArrayList</code>.</p>
+<ul>
+<li>Данная реализация предоставляет следующие методы: <code>addFirst()</code>, <code>addLast()</code>, <code>clone()</code>, <code>getFirst()</code>, <code>getLast()</code>, <code>removeFirst()</code>, <code>removeLast()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>Set&lt;T&gt;</code></strong> предоставляет абстракцию математического множества, т.е. неупорядоченную коллекцию, не содержащую одинаковых элементов. Из-за неупорядоченности элементы множества нельзя получить по их индексу, поэтому для множеств не имеет смысла сортировка и перемешивание элементов. Однако при этом операции проверки на наличие элемента во множестве эффективнее, чем в списке.</p>
+<ul>
+<li>Данный интерфейс предоставляет следующие методы: <code>isEmpty()</code>.</li>
+<li>Абстрактный класс <code>AbstractSet</code> наследуется от <code>AbstractCollection</code> и реализует большинство методов <code>Set</code> интерфейса.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>SortedSet&lt;T&gt;</code></strong> является расширением <code>Set&lt;T&gt;</code>. Он предполагает наличие отношения порядка на своих элементах. Из-за этого <code>SortedSet</code> предоставляет дополнительные операции.</p>
+<ul>
+<li>Данный интерфейс предоставляет следующие методы: <code>clone()</code>, <code>comparator()</code>, <code>first()</code>, <code>headSet()</code>, <code>last()</code>, <code>subSet()</code>, <code>tailSet()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>HashSet&lt;T&gt;</code></strong> — это наиболее часто используемая реализация множества, потому что основные задачи множества она выполняет наиболее эффективно. HashSet основан на <code>HashMap</code>. Поэтому, в частности, для использования <code>HashSet</code> необходима правильная реализация методов <code>equals()</code> и <code>hashCode()</code>.</p>
+<ul>
+<li>Данная реализация наследуется от <code>AbstractSet</code>.</li>
+<li>Данная реализация предоставляет следующие методы: <code>clone()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>LinkedHashSet&lt;T&gt;</code></strong> объединяет множество на основе хеш-таблицы и связный список. Эффективность всех операций на нём та же, что и у <code>HashSet</code>, но порядок итерации по нему не псевдослучаен, а соответствует порядку добавления элементов в это множество. <code>LinkedHashSet</code> основан на <code>LinkedHashMap</code> и наследует <code>HashSet</code>, поэтому для него также справедливы условия на методы <code>equals()</code> и <code>hashCode()</code> у элементов.</p>
+<ul>
+<li>Данная реализация наследуется от <code>HashSet</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>TreeSet&lt;T&gt;</code></strong> — это множество, основанное на <code>TreeMap</code>. Оно реализует интерфейс <code>SortedSet&lt;T&gt;</code>, и в нём могут храниться только элементы, на которых задано отношение порядка. Класс <code>TreeSet</code> основан на <code>TreeMap</code>, и поэтому все операции над элементами имеют логарифмическую сложность. Это хуже, чем у <code>HashSet</code>, поэтому TreeSet используется только тогда, когда необходимо так или иначе сортировать элементы множества.</p>
+<ul>
+<li>Данная реализация наследуется от <code>AbstractSet</code>.</li>
+<li>Данная реализация предоставляет следующие методы: <code>clone()</code>, <code>comparator()</code>, <code>first()</code>, <code>last()</code>, <code>headSet()</code>, <code>subSet()</code>, <code>tailSet()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>Queue&lt;T&gt;</code></strong> представляет собой контейнер, в который можно добавлять элементы и доставать их оттуда. Релизации <code>Queue&lt;T&gt;</code> могут ограничивать максимальное количество элементов в коллекции. Поэтому <code>Queue&lt;T&gt;</code> предоставляет два набора методов для указанных операций. Первый набор в граничных ситуациях выбрасывает исключение, а второй — возвращает специальное значение (null или boolean).</p>
+<ul>
+<li>Абстрактный класс <code>AbstractQueue</code> наследуется от <code>AbstractCollection</code> и реализует большинство методов <code>Queue</code> интерфейса.</li>
+<li>Данный интерфейс предоставляет следующие методы: <code>offer()</code>, <code>peek()</code>, <code>poll()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>Deque&lt;T&gt;</code></strong> обозначает дек, структуру данных, являющуюся одновременно стеком и очередью. В дек можно добавлять и удалять элементы с двух сторон.</p>
+<ul>
+<li>Данный интерфейс предоставляет следующие методы: <code>offer()</code>, <code>peek()</code>, <code>poll()</code>, <code>addFirst()</code>, <code>addLast()</code>, <code>descendingIterator()</code>, <code>element()</code>, <code>getFirst()</code>, <code>getLast()</code>, <code>offerFirst()</code>, <code>offerLast()</code>, <code>peekFirst()</code>, <code>peekLast()</code>, <code>pollFirst()</code>, <code>pollLast()</code>, <code>pop()</code>, <code>push()</code>, <code>removeFirst()</code>, <code>removeFirstOccurrence()</code>, <code>removeLast()</code>, <code>removeLastOccurrence()</code>, <code>size()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>ArrayDeque&lt;T&gt;</code></strong> с помощью массива - наиболее удобная и эффективная.</p>
+<ul>
+<li>Данная реализация наследуется от <code>AbstractCollection</code> и реализует интерфейс <code>Deque</code>.</li>
+<li>Данный интерфейс предоставляет следующие методы: <code>isEmpty()</code>, <code>clone()</code>, <code>toArray()</code>.</li>
+</ul>
+</li>
+<li><p><strong><code>java.util.Arrays</code></strong> предоставляет статические методы для манипуляций с массивами, такие как: <code>binarySearch()</code>, <code>equals()</code>, <code>fill()</code>, <code>sort()</code>.</p>
+</li>
+<li><p><strong><code>java.util.Collections</code></strong> предоставляет статические методы для манипуляций с массивами, такие как: <code>binarySearch()</code>, <code>fill()</code>, <code>sort()</code>, <code>copy()</code>, <code>enumeration()</code>, <code>indexOfSubList()</code>, <code>lastIndexOfSubList()</code>, <code>list()</code>, <code>max()</code>, <code>min()</code>, <code>nCopies()</code>, <code>replaceAll()</code>, <code>reverse()</code>, <code>reverseOrder()</code>, <code>rotate()</code>, <code>shuffle()</code>, <code>singleton()</code>, <code>singletonList()</code>, <code>singletonMap()</code>, <code>swap()</code>, <code>synchronizedCollection()</code>, <code>synchronizedList()</code>, <code>synchronizedMap()</code>, <code>synchronizedSet()</code>, <code>synchronizedSortedMap()</code>, <code>synchronizedSortedSet()</code>, <code>unmodifiableCollection()</code>, <code>unmodifiableList()</code>, <code>unmodifiableMap()</code>, <code>unmodifiableSet()</code>, <code>unmodifiableSortedMap()</code>, <code>unmodifiableSortedSet()</code>.</p>
+</li>
+<li><p>Иерархия коллекций<br><img src="https://i.gyazo.com/c728629e97972ba7d715d23c2f3e7b51.png" alt="Иерархия коллекций"></p>
+</li>
+</ol>
+<hr>
+<h3>9. Мапы</h3><ol>
+<li><p><strong>Интерфейс <code>Map&lt;K, V&gt;</code></strong> представляет абстракцию ассоциативного массива (словаря, отображения). Он хранит пары (ключ, значчение) и поддерживает три основные операции: <code>put</code>, <code>get</code>, <code>remove</code>. При этом предполагается, что ключи уникальны. Если операция <code>put</code> вызывается с ключом, который уже есть в ассоциативном массиве, соответствующее значение будет заменено.</p>
+<ul>
+<li>Абстрактный класс <code>AbstractMap</code> реализует большинство методов <code>Map</code> интерфейса.</li>
+<li>Данный интерфейс предоставляет следующие методы: <code>clear()</code>, <code>containsKey()</code>, <code>containsValue()</code>, <code>entrySet()</code>, <code>equals()</code>, <code>get()</code>, <code>hashCode()</code>, <code>isEmpty()</code>, <code>keySet()</code>, <code>put()</code>, <code>putAll()</code>, <code>remove()</code>, <code>size()</code>, <code>values()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Интерфейс <code>SortedMap&lt;K, V&gt;</code></strong> обозначает словарь, в котором на ключах задано отношение порядка. Аналогично <code>SortedSet&lt;T&gt;</code>, <code>SortedMap&lt;K, V&gt;</code> предоставляет дополнительные операции. Предполагается, что эти операции словарь способен выполнять эффективно.</p>
+<ul>
+<li>Данный интерфейс наследуется от <code>Map</code> интерфейса.</li>
+<li>Данный интерфейс предоставляет следующие методы: <code>comparator()</code>, <code>firstKey()</code>, <code>headMap()</code>, <code>lastKey()</code>, <code>subMap()</code>, <code>tailMap()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>HashMap&lt;K, V&gt;</code></strong> - словарь на основе хеш-таблицы. Из-за этого все операции над <code>HashMap</code> очень эффективны. HashMap реализован как хеш-таблица на основе цепочек. Внутри он содержит массив «корзин», каждая из которых является односвязным списком. Поэтому элементы словаря должны корректно реализовывать методы <code>equals()</code> и <code>hashCode()</code>. Для идеальной хеш-функции эффективность операций константная.</p>
+<ul>
+<li>Данная реализация наследуется от <code>AbstractMap</code> и реализует <code>Map</code> интерфейс.</li>
+<li>Данная реализация предоставляет следующие методы: <code>clone()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>LinkedHashMap&lt;K, V&gt;</code></strong> объединяет хеш-таблицу и связный список. Используется, когда необходимо сохранять порядок добавления элементов в словарь. Помимо структуры хеш-таблицы, <code>LinkedHashMap</code> добавляет новые записи в связный список. С помощью этого можно восстановить порядок добавления элементов. Эффективность операций у <code>LinkedHashMap</code> та же, что и у обычного <code>HashMap</code>, но из-за дополнительной структуры на элементах потребление памяти выше.</p>
+<ul>
+<li>Данная реализация наследуется от <code>HashMap</code> и реализует <code>Map</code> интерфейс.</li>
+<li>Данная реализация предоставляет следующие методы: <code>removeEldestEntry()</code>.</li>
+</ul>
+</li>
+<li><p><strong>Реализация <code>TreeMap&lt;K, V&gt;</code></strong> — это реализация словаря на основе красно-чёрного бинарного дерева поиска (дерево образуют ключи). Эта структура требует отношения порядка на элементах, поэтому <code>TreeMap</code> реализует интерфейс <code>SortedMap</code>. Поскольку внутри <code>TreeMap</code> используется бинарное дерево, то все операции имеют логарифмическую эффективность.</p>
+<ul>
+<li>Данная реализация наследуется от <code>AbstractMap</code> и реализует <code>SortedMap</code> интерфейс.</li>
+<li>Данная реализация предоставляет следующие методы: <code>clone()</code>.</li>
+</ul>
+</li>
+<li><p>Иерархия мапов<br> <img src="https://i.gyazo.com/edfb3a3797946a21747880fcac1507ba.png" alt="Иерархия мапов"></p>
+</li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
