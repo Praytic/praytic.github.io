@@ -277,4 +277,35 @@
         }
     }
     ```
+
+3. **Обобщенные методы** - обобщенные (параметризованные) методы могут использоваться для следующих целей:
+    - Обобщенные фабричные методы:
+    ```Java
+    public static <T extends Enum<T>> EnumSet<T> allOf(Class<T> clazz);
+    public static <T> ImmutableList<T> of(T pɴ, T pɵ, T... other);
+    public <T> T getInstance(Key<T> key);
+    ```
+    - Методы-преобразователи
+    ```Java
+    public static <T> Iterable<T> skip(Iterable<T> iterable, int n);
+    public static <F, T> Iterable<T> transform(Iterable<F> iterable, Function<F, T> function);
+    ```
+    - Обобщенные утилитные методы
+    ```Java
+    public static <T extends Comparable<T>> T max(Iterable<T> xs);
+    ```
+    
+4. **Wildcards** - обобщенные (параметризованные) методы могут использоваться для следующих целей:
+    - Wildcards with upper bound:
+    ```Java
+    public static double sumOfList(List<? extends Number> list);
+    ```
+    - Unbounded wildcard
+    ```Java
+    void printCollection(Collection<?> c);
+    ```
+    - Wildcards with lower bound
+    ```Java
+    public static void addNumbers(List<? super Integer> list);
+    ```
     
