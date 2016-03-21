@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство теории переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/spring">Spring</a></li></ul><div class="docs-content markdown-body"><h1>Spring</h1><h3>1. Spring Projects</h3><ol>
+<li><p><strong>Spring IO</strong> - платформа для построения приложений, предоставляющая набор зависимостей, при этом давая разработчикам полный контроль над деплоем только тех из них, которые им нужны. <sup><a href="http://platform.spring.io/platform/">[1.1]</a></sup></p>
+<ul>
+<li>Проект является 100% с открытым кодом.</li>
+<li>Одна платформа, множество возможностей: веб, интеграционные, серийные, реактивные, big data приложения.</li>
+<li>Упрощенная разработка в связке с Spring Boot.</li>
+<li>Готовые к продакшену решения &quot;из коробки&quot;.</li>
+<li>Зависим только от Java SE, поддерживает Groovy, Grails и немного Java EE.</li>
+<li>Работает с существующими инструментами управления зависимостями, такими как Maven или Gradle.</li>
+<li>Работает на Java 1.7+</li>
+</ul>
+</li>
+<li><p><strong>Spring Boot</strong> - генерация средств упрощения процесса конфигурации Spring приложений. Он не является средством автоматической генерации кода, а представляет собой плагин для системы автоматизации сборки проектов. <sup><a href="http://projects.spring.io/spring-boot/">[1.2]</a></sup></p>
+<ul>
+<li>Плагин предоставляет возможности для тестирования и разворачивания Spring приложения.</li>
+<li>Предоставляет встроенный Tomcat, Jetty или Undertow (на выбор), отпадает необходимость в деполе WAR файлов.</li>
+<li>Работает с существующими инструментами управления зависимостями, такими как Maven или Gradle.</li>
+<li>Предоставляет готовый pom.xml файл для Maven.</li>
+<li>Конфигурирование ресурсов исходя из содержания classpath.</li>
+<li>Отпадает необходимость в настройке конфигураций в коде или через .xml файлы.</li>
+</ul>
+</li>
+<li><p><strong>Spring Framework</strong> - обеспечивает базовую поддержку управления зависимостями, управление транзакциями веб-приложений, доступ к данным, обмен сообщениями и многое другое. <sup><a href="http://projects.spring.io/spring-framework/">[1.3]</a></sup></p>
+<ul>
+<li>DI.</li>
+<li>AOP, включая декларативное управления транзакциями.</li>
+<li>Создание Spring MVC веб-приложений и RESTful веб-сервисов.</li>
+<li>Начальная поддержка JDBC, JPA, JMS.</li>
+<li>Работает на Java 1.5+ (3.х), Java 1.6+ (4.x).</li>
+</ul>
+</li>
+<li><p><strong>Spring Web Services</strong> - нацелен на облегчения разработки SOAP-сервиса методом contract-airst, позволяя создавать легкоизменяемые веб-сервисы путем конфигурации XML-настроек. <sup><a href="http://projects.spring.io/spring-ws/">[1.4]</a></sup></p>
+<ul>
+<li>Основан на Spring Framework, а значит поддерживает DI.</li>
+<li>Включает в себя такие методологии, как WS-I basic profile, contract-airst, имеет слабую связь между контрактом и реализацией.</li>
+<li>Мощный маппинг: распределение XML-запросов по объектам в зависимости от сообщения, SOAP Action заголовка или XPath выражения.</li>
+<li>Поддержка XML API: входящие XML-сообщения могут быть обработаны стандартным JAXP API, например, DOM, SAX, StAX, а также JDOM, dom4j, XOM или другими подобными инструментами.</li>
+<li>Гибкое XML размещение: Object/XML маппинг модуль поддерживает JAXB 1, 2, Castor, XML Beans, JiBX и XStream. И так как это отдельный модуль, то вы можете использовать его и не в веб-сервисах.</li>
+<li>Поддержка WS-Security.</li>
+<li>Сборка с помощью Maven.</li>
+</ul>
+</li>
+<li><p><strong>Spring Data</strong> - упрощает использование таких технологий доступа к данным, как реляционные и нереляционные СУБД, map-reduce фреймворки и облачные сервисы. Spring Data состоит из подпроектов для конкретной СУБД. Эти проекты разработаны множеством компаниями и разработчиками, которые стоят за этими технологиями. <sup><a href="http://projects.spring.io/spring-data/">[1.5]</a></sup></p>
+<ul>
+<li><strong>Spring Data JPA</strong> упрощает разработку JPA-приложений. Этот модуль расширяет поддержку JPA-слоя доступа к данным, а также облегчает разработку Spring-приложений, использующих технологии доступа к данным. <sup><a href="http://projects.spring.io/spring-data-jpa/">[1.6]</a></sup></li>
+<li><strong>Spring Data MongoDB</strong> - предоставление совместимой и похожей на Spring модели программирования для данной СУБД, сохраняя её возможности и функциональность. <sup><a href="http://projects.spring.io/spring-data-mongodb/">[1.7]</a></sup></li>
+<li><strong>Spring Data Redis</strong> - предоставляет простое кофигурирование и доступ к Redis из Spring-приложений, а также предлагает низко и высокоуровневые абстракции для взаимодействия с СУБД избавление пользователя от инфраструктурных проблем. <sup><a href="http://projects.spring.io/spring-data-redis/">[1.8]</a></sup></li>
+<li><strong>Spring for Apache Hadoop</strong> - упрощает использование Apache Hadoop, предоставляя унифицированную модель конфигурирования и простое в использование API для HDFS, MapReduce, Pig и Hive. <sup><a href="http://projects.spring.io/spring-hadoop/">[1.9]</a></sup></li>
+<li><strong>Spring Data GemFire</strong> - облегчение создания высокомасштабируемых Spring-приложений, используя Pivotal GemFire как платформу распределения данных. <sup><a href="http://projects.spring.io/spring-data-gemfire/">[1.10]</a></sup></li>
+<li><strong>Spring Data REST</strong> позволяет обращаться к JPA-репозиториям как к REST-сервисам. <sup><a href="http://projects.spring.io/spring-data-rest/">[1.11]</a></sup></li>
+<li><strong>Spring Data JDBC Extensions</strong> - это часть проекта Spring Data. Поддержка JDBC в Spring Framework обширна и охватывает наиболее часто используемые функции. Это расширение проекта предоставляет поддержку для работы с некоторыми возможностями СУБД Oracle, а также с новыми случаями использования, такими как типобезопасные запросы с использованием Querydsl. <sup><a href="http://projects.spring.io/spring-data-jdbc-ext/">[1.12]</a></sup></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>2. Spring Framework</h3><ol>
+<li><p><strong>Spring Framework</strong> — обесепечивает решения многих задач, с которыми сталкиваются java-разработчики и организации, которые хотят создать информационную систему, основанную на платформе Java. Наиболее известен как источник расширений, нужных для эффективной разработки сложных бизнес-приложений вне тяжеловесных программных моделей, которые исторически были доминирующими в промышленности.</p>
+</li>
+<li><p><strong>IoC (Inversion of Control)</strong> — паттерн для передачи контроля за создание объектов контейнеру.</p>
+</li>
+<li><p><strong>Dependency Injection (DI)</strong> — процесс предоставления внешней зависимости программному компоненту. Является одним из примеров IoC.</p>
+</li>
+<li><p><strong>IoC Container</strong> отвечает за инстанцирование, конфигурирование и сборку объектов. IoC контейнер получает информацию из XML файла и с ним же работает. Существует два типа IoC конейнеров: <code>BeanFactory</code> и <code>ApplicationContext</code>.</p>
+</li>
+<li><p><strong>BeanFactory Container</strong> - простейший контейнер, предоставляющий базовую поддержку для DI.</p>
+<ul>
+<li>Пример инициализации:<pre><code class="language-Java">Resource resource = new ClassPathResource(&quot;applicationContext.xml&quot;);  
+BeanFactory factory = new XmlBeanFactory(resource);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>ApplicationContext Container</strong> - этот контейнер добавляет интерпрайз функциональность поверх BeanFactory контейнера..</p>
+<ul>
+<li>Пример инициализации:<pre><code class="language-Java">ApplicationContext context = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>AOP (Aspect Oriented Programmin)</strong> - парадигма программирования, основанная на идее разделения функциональности для улучшения разбиения программы на модули.</p>
+</li>
+<li><p><strong>SpEL (Spring Expression Language)</strong> - мощный язык для выполнения запросов и манипуляций с графом объектов во время рантайма. </p>
+</li>
+<li><p><strong>Spring Framework Runtime</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-modules">[2.1]</a></sup>
+<img src="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/images/spring-overview.png" alt="Spring Framweork Runtime"></p>
+</li>
+<li><p><strong>Core Container</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-core-container">[2.2]</a></sup></p>
+<ul>
+<li><code>spring-core</code> - модуль, предоставляющий основные части фреймворка, включая IoC и DI особенности.</li>
+<li><code>spring-bean</code> - модуль, предоставляющий <code>BeanFactory</code> контейнер, который представляет собой реализацию паттерна фабрики.</li>
+<li><code>spring-context</code> - модуль, предоставляющий <code>ApplicationContext</code> контейнер, построенный на основе Core и Beans модулей, который является посредником при получении доступа к любому объекту.</li>
+<li><code>spring-expression</code> - модуль, предоставляющий мощный язык Expression Language для выполнения запросов и манипуляций с графом объектов во время рантайма.</li>
+</ul>
+</li>
+<li><p><strong>AOP and Instrumentation</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-aop-instrumentation">[2.3]</a></sup></p>
+<ul>
+<li><code>spring-instrument</code> - обеспечивает поддержку инструментария классов и реализации classloader, которые могут использоваться в некоторых серверных приложениях.</li>
+<li><code>spring-aop</code> - предоставляет реализацию аспектно-ориентированного программирования, позволяющую вам определять, например, перехватчиков методов и pointcuts, чтобы чистенько разъединить код, который реализует различную функциональность.</li>
+<li><code>spring-aspects</code> - модуль, предоставляющий интеграцию с AspectJ, который является мощным AOP фреймворком.</li>
+<li><code>spring-instrument-tomcat</code> - модуль, содержащий спринговский инструментарий для Tomcat.</li>
+</ul>
+</li>
+<li><p><strong>Messaging</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-messaging">[2.4]</a></sup></p>
+<ul>
+<li><code>spring-messaging</code> - модуль, предоставляющий абстракции из Spring Integration проекта, такие как <code>Message</code>, <code>MessageChannel</code>, <code>MessageHandler</code> и другие. Они служат основой для messaging-based приложений. Он также включает в себя набор аннотаций для маппинга сообщений в методы.</li>
+</ul>
+</li>
+<li><p><strong>Data Access/Integration</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-data-access">[2.5]</a></sup></p>
+<ul>
+<li><code>spring-jdbc</code> - модуль, предоставляющий уровень JDBC-абстракции, который освобождает от утомительного кодинга JDBC аспектов.</li>
+<li><code>spring-orm</code> - модуль, предоставляющий интеграционные уровни для популярных объекто-ориентированных mapping API, включая JPA, JDO, Hibernate, iBatis.</li>
+<li><code>spring-oxm</code> -  модуль, предоставляющий уровень абстракции, который поддерживает Object/XML mapping реализации для JAXB, Castor, XMLBeans, JiBX и XStream. </li>
+<li><code>spring-jms</code> - модуль, содержащий фичи для создания и использования сообщений. Начиная с 4.1 версии фреймворка, он предоставляет интеграцию с <code>spring-messaging</code> модулем.</li>
+<li><code>spring-tx</code> - модуль, поддерживающий программное и декларативное транзакционное управления для всех POJO и классов, которые реализуют специальные интерфейсы.</li>
+</ul>
+</li>
+<li><p><strong>Web</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-web">[2.6]</a></sup></p>
+<ul>
+<li><code>spring-web</code> - модуль, предоставляющий базовые web-ориентированые интеграционные фичи, такие как multipart file-upload функциональность и инициализация IoC контейнера используя листнеры и web-ориентированные context модули приложения.</li>
+<li><code>spring-webmvc</code> - модуль (также известный, как Web-Servlet модуль), содержащий Spring MVC и REST Web Services реализацию для веб приложений.</li>
+<li><code>spring-websocket</code> - модуль , предоставляющий поддержку для WebSocket-based приложений, для двусторонних коммуникаций между клиентами и для серверов в веб приложениях.</li>
+<li><code>spring-webmvc-portlet</code> - модуль (также известный, как Web-Portlet модуль), предоставляющий функциональность Web-Servlet модуля, а также MVC реализацию для использования в Portlet среде. Отражает функциональность <code>spring-webmvc</code> модуля.</li>
+</ul>
+</li>
+<li><p><strong>Test</strong> <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-testing">[2.7]</a></sup></p>
+<ul>
+<li><code>spring-test</code> - модуль, поддерживающий тестирование Spring компонентов с использованием JUnit или TestNG фреймворков.</li>
+</ul>
+</li>
+<li><p><strong>Dependency Management</strong> - процесс, включающий в себя распределение в проекте всех библиотек завимимостей в виде jar файлов, их хранение и добавление в classpaths. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#dependency-management">[2.8]</a></sup></p>
+<ul>
+<li>Зависимости могут быть прямыми (например приложение зависит напрямую от Spring runtime) или косвенными (например приложение зависит от <code>common-dbcp</code>, который зависит от <code>commons-pool</code>).</li>
+<li>Косвенные зависимости также известны как &quot;транзитивные&quot;, и они являются наиболее сложными для идентификации и управления.</li>
+</ul>
+</li>
+<li><p><strong>Maven &quot;Bill Of Materials&quot; Dependency</strong> - чтобы не произошло путанницы или ошибок с версиями спринговских jar зависимостей при использовании мавена, существует концепция - &quot;bill of materials&quot; (BOM) зависимость. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-maven-bom">[2.9]</a></sup></p>
+<ul>
+<li>Для того, чтобы убедиться, что все спринговские зависимости одинаковой версии, стоит импортировать <code>spring-framework-bom</code> зависимость. После этого отпадает необходимость писать <code>&lt;version&gt;</code> в зависимостях спринга.</li>
+</ul>
+</li>
+<li><p><strong>JCL (Jakarta Commons Logging) API</strong> - обязательная зависимость логгирования в спринге.</p>
+<ul>
+<li><code>commons-logging</code> - модуль, зависимый от <code>spring-core</code> модуля, реализует JCL <code>Log</code> объекты. Он заставляет все прочие модули зависить от себя во время компиляции. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-logging">[2.10]</a></sup></li>
+<li>Этот модуль обладает runtime алгоритмом обнаружения в classpath других фрейморков логгирования и используется один из них, который считает наиболее подходящим (хотя можно настроить, чтобы выбирать самому).</li>
+<li>Т.к. этот модуль уже устарел, но заменить его возможности не представляется, то единственным способом исключить этот API из фреймворка, это исключить его из <code>spring-core</code> модуля. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-not-using-commons-logging">[2.11]</a></sup></li>
+</ul>
+</li>
+<li><p><strong>SLF4J (Simple Logging Facade for Java)</strong> - лучше, чем <code>commons-logging</code> и эффективнее в рантайме, потому что использует время компиляции для привязок, вместо того, чтобы юзать runtime поиск. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-logging-slf4j">[2.12]</a></sup></p>
+<ul>
+<li>SLF4J предоставляет привязки для многих стандартных фреймворков логгирования, включая JCL.</li>
+<li>Обычно к SLF4J присоединяют Spring, а затем предоставляют явное связывание из SLF4J в Log4J.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>3. IoC container</h3><hr>
+<h3>4. Resources</h3><ol>
+<li><p><strong><code>Resource</code></strong> - интерфейс, предназначенный для абстракции доступа к низкоуровневым ресурсам. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resource">[4.1]</a></sup></p>
+<pre><code class="language-Java">public interface InputStreamSource {
+ InputStream getInputStream() throws IOException;
+}
+
+public interface Resource extends InputStreamSource {
+ boolean exists();
+ boolean isOpen();
+ URL getURL() throws IOException;
+ File getFile() throws IOException;
+ Resource createRelative(String relativePath) throws IOException;
+ String getFilename();
+ String getDescription();
+}
+</code></pre>
+<ul>
+<li><code>getInputStream()</code> - находит и открывает ресурс, возвращая <code>InputStream</code> для чтения из ресурса.</li>
+<li><code>exists()</code> - проверяет, если ресурс существует физически или нет.</li>
+<li><code>isOpen()</code> - проверяет, если ресурс представляет хендл с открытым стримом.</li>
+<li><code>getDescription()</code> - возвращает описание для данного ресурса. Используется для вывода ошибок при работе с ресурсом.</li>
+</ul>
+</li>
+<li><p><strong><code>UrlResource</code></strong> служит оберткой для <code>java.net.URL</code>, и может быть использован для доступа к любому объекту, который доступен по URL, например файлы, HTTP ссылка, FTP ссылка и т.д. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-urlresource">[4.2]</a></sup></p>
+</li>
+<li><strong><code>ClassPathResource</code></strong> - реализация <code>Resource</code>, которая поддерживает разрешения <code>java.io.File</code>. Ресурс был создан Java кодом явно используя конструктор, но постоянно будет создаваться неявно, когда вы будете вызывать API метод, который принимает путь аргументом в виде строки. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-classpathresource">[4.3]</a></sup></li>
+<li><strong><code>FileSystemResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-filesystemresource">[4.4]</a></sup></li>
+<li><strong><code>ServletContextResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-servletcontextresource">[4.5]</a></sup></li>
+<li><strong><code>InputStreamResource</code></strong> - реализация <code>Resource</code> для заданного <code>InputStream</code>. Она должна быть использована только в случае, если нет подходящей реализации для <code>Resource</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-inputstreamresource">[4.6]</a></sup><ul>
+<li>В отличии от других реализаций <code>Resource</code>, эта является дескрипторои для уже открытого ресурса, поэтому всегда метод <code>isOpen()</code> этого класса возвращает true.</li>
+</ul>
+</li>
+<li><strong><code>ByteArrayResource</code></strong> - реализация <code>Resource</code> для заданного массива байт. Она создает <code>ByteArrayInputStream</code> для этого массива. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-bytearrayresource">[4.7]</a></sup><ul>
+<li>Эффективна для загрузки содержимого из любого массива байтов, не прибегая к использованию одноразового <code>InputStreamResource</code>.</li>
+</ul>
+</li>
+<li><p><strong><code>ResourceLoader</code></strong> - интерфейс, предназначенный для объектов, которые могут возвращать (т.е. загружать) <code>Resource</code> инстансы. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resourceloader">[4.8]</a></sup></p>
+<pre><code class="language-Java">public interface ResourceLoader {
+ Resource getResource(String location);
+}
+</code></pre>
+<ul>
+<li>Все контексты приложений реализуют этот интерфейс, следовательно все контексты приложений могут получать <code>Resource</code> инстансы.</li>
+<li>Примеры загрузки ресурсов:<pre><code class="language-Java">Resource template = ctx.getResource(&quot;some/resource/path/myTemplate.txt&quot;);
+Resource template = ctx.getResource(&quot;classpath:some/resource/path/myTemplate.txt&quot;);
+Resource template = ctx.getResource(&quot;file:///some/resource/path/myTemplate.txt&quot;);
+Resource template = ctx.getResource(&quot;http://myhost.com/resource/path/myTemplate.txt&quot;);
+</code></pre>
+</li>
+<li>Первый ресурс загружается из classpath, второй через URL из файловой системы, третий через URL, четвертый зависит от <code>AppliacationContext</code> реализации.</li>
+</ul>
+</li>
+<li><p><strong><code>ResourceLoaderAware</code></strong> - специальный указательный интерфейс, иденцифицирующий объекты, которые ожидают реализации <code>ResourceLoader</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resourceloaderaware">[4.9]</a></sup></p>
+<pre><code class="language-Java">public interface ResourceLoaderAware {
+ void setResourceLoader(ResourceLoader resourceLoader);
+}
+</code></pre>
+<ul>
+<li>Когда класс реализует этот интерфейс и деплоится в контекст приложения (как спринговский бин), он распознается им, как <code>ResourceLoaderAware</code>. Этот контекст затем вызовет <code>setResourceLoader(ResourceLoader)</code>, предоставляя методу себя, как аргумент.</li>
+</ul>
+</li>
+<li><p><strong>Resources as dependencies</strong> - если бин обладает свойством типа <code>Resource</code>, он может быть сконфигурирован с помощью простой строки для этого ресурса. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-as-dependencies">[4.10]</a></sup> Например: </p>
+<pre><code class="language-Xml">&lt;bean id=&quot;myBean&quot; class=&quot;...&quot;&gt;
+&lt;property name=&quot;template&quot; value=&quot;some/resource/path/myTemplate.txt&quot;/&gt;
+&lt;property name=&quot;template&quot; value=&quot;classpath:some/resource/path/myTemplate.txt&quot;&gt;
+&lt;property name=&quot;template&quot; value=&quot;file:///some/resource/path/myTemplate.txt&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+<ul>
+<li>Важно заметить, что путь к первому ресурсу не обладает префиксом, поэтому каким способом будет загружен ресурс зависит от типа контекста (<code>ClassPathResource</code>, <code>FileSystemResource</code> или <code>ServletContextResource</code>).</li>
+</ul>
+</li>
+<li><p><strong>Constructing application contexts</strong> - конструктор контекста приложения обычно принимает строку или массив строк в качестве пути к ресурсу, как например к XML файлу, который составляет определение конекста. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-app-ctx-construction">[4.11]</a></sup></p>
+<ul>
+<li>Ниже представлены примеры создания контекста приложения:<pre><code class="language-Java">ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;conf/appContext.xml&quot;);
+</code></pre>
+</li>
+<li>Определения бина будут загружены из classpath, так как будет использован <code>ClassPathResource</code>. Но если создать <code>FileSystemXmlApplicationContext</code> следующим образом:<pre><code class="language-Java">ApplicationContext ctx = new FileSystemXmlApplicationContext(&quot;conf/appContext.xml&quot;);
+</code></pre>
+</li>
+<li>Определение бина будет загружено из файловой системы, в данном случае относительно текущей рабочей директории.<pre><code class="language-Java">ApplicationContext ctx = new FileSystemXmlApplicationContext(&quot;classpath:conf/appContext.xml&quot;);
+</code></pre>
+</li>
+<li>В этом случае контекст загрузит определение бина из classpath, однако он останется <code>FileSystemXmlApplicationContext</code>, хотя и перезапишет дефолтный тип <code>Resource</code>, созданного для загрузки бина.<pre><code class="language-Java">ApplicationContext ctx = new ClassPathXmlApplicationContext(
+new String[] {&quot;services.xml&quot;, &quot;daos.xml&quot;}, MessengerService.class);
+</code></pre>
+</li>
+<li>Здесь <code>ClassPathXmlApplicationContext</code> инстанс состоит из нескольких определений бинов, указанный в service.xml и daos.xml. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-app-ctx-classpathxml">[4.12]</a></sup><pre><code class="language-Java">ApplicationContext ctx =
+new ClassPathXmlApplicationContext(&quot;classpath*:conf/appContext.xml&quot;);
+</code></pre>
+</li>
+<li>В данном примере демонстрируется использование вайлдкардов, для загрузки нескольких classpath ресурсов и слияния их всех в один контекст приложения. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-classpath-wildcards">[4.13]</a></sup><pre><code class="language-Java">ApplicationContext ctx =
+new FileSystemXmlApplicationContext(&quot;file:///conf/context.xml&quot;);
+</code></pre>
+</li>
+<li>Так как любой путь восприниматься как относительный (<code>FileSystemApplicationContext</code> заставляет все привязанные к <code>FileSystemResource</code> инстансы воспринимать пути как относитенльные, не важно со слешем они или без), то настоящий абсолютный путь будет записываться с помощью префикса <code>file</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-filesystemresource-caveats">[4.14]</a></sup></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>5. Validation, Data Binding, and Type Conversion</h3><hr>
+<h3>6. SpEL</h3><hr>
+<h3>7. AOP</h3><hr>
+<h3>8. Spring AOP APIs</h3><hr>
+<h3>9. Unit Testing</h3><hr>
+<h3>10. Integration Testing</h3><hr>
+<h3>11. Transaction Management</h3><hr>
+<h3>12. DAO</h3><hr>
+<h3>13. JDBC</h3><hr>
+<h3>14. ORM</h3><hr>
+<h3>15. O/X Mappers</h3><hr>
+<h3>16. Web MVC</h3><hr>
+<h3>17. View technologies</h3><hr>
+<h3>18. Integrating with other web frameworks</h3><hr>
+<h3>19. Portlet MVC</h3><hr>
+<h3>20. WebSocket</h3><hr>
+<h3>21. CORS</h3><hr>
+<h3>22. Web Services</h3><hr>
+<h3>23. EJB</h3><hr>
+<h3>24. JMS</h3><hr>
+<h3>25. JCA CCI</h3><hr>
+<h3>26. Email</h3><hr>
+<h3>27. Task Execution and Scheduling</h3><hr>
+<h3>28. Dynamic language support</h3><hr>
+<h3>29. Cache Abstraction</h3><hr>
+<h3>30. Classic Spring Usage</h3><hr>
+<h3>31. Classic Spring AOP Usage</h3><hr>
+<h3>32. XML Schema-based configuration</h3><hr>
+<h3>33. Extensible XML authoring</h3><hr>
+<h3>34. Spring REST</h3></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
