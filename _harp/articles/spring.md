@@ -125,12 +125,105 @@
 
 ***
 
-### 3. Core Techologies
+### 3. IoC container
 
 ***
 
 ### 4. Resources
 
+1. **`Resource`** - интерфейс, предназначенный для абстракции доступа к низкоуровневым ресурсам. <sup>[\[4.1\]][4.1]</sup>
+  ```Java
+  public interface InputStreamSource {
+    InputStream getInputStream() throws IOException;
+  }
+
+  public interface Resource extends InputStreamSource {
+    boolean exists();
+    boolean isOpen();
+    URL getURL() throws IOException;
+    File getFile() throws IOException;
+    Resource createRelative(String relativePath) throws IOException;
+    String getFilename();
+    String getDescription();
+  }
+  ```
+  - `getInputStream()` - находит и открывает ресурс, возвращая `InputStream` для чтения из ресурса.
+  - `exists()` - проверяет, если ресурс существует физически или нет.
+  - `isOpen()` - проверяет, если ресурс представляет хендл с открытым стримом.
+  - `getDescription()` - возвращает описание для данного ресурса. Используется для вывода ошибок при работе с ресурсом.
+
+2. **`UrlResource`** служит оберткой для `java.net.URL`, и может быть использован для доступа к любому объекту, который доступен по URL, например файлы, HTTP ссылка, FTP ссылка и т.д. <sup>[\[4.2\]][4.2]</sup>
+3. **`ClassPathResource`** - реализация `Resource`, которая поддерживает разрешения `java.io.File`. Ресурс был создан Java кодом явно используя конструктор, но постоянно будет создаваться неявно, когда вы будете вызывать API метод, который принимает путь аргументом в виде строки. <sup>[\[4.3\]][4.3]</sup>
+4. **`FileSystemResource`** - реализация `Resource` для `java.io.File` хэндлеров. Поддерживает разрешения из `File` и из `URL`. <sup>[\[4.4\]][4.4]</sup>
+5. **`ServletContextResource`** - реализация `Resource` для `java.io.File` хэндлеров. Поддерживает разрешения из `File` и из `URL`. <sup>[\[4.5\]][4.5]</sup>
+6. **`InputStreamResource`** - реализация `Resource` для заданного `InputStream`. Она должна быть использована только в случае, если нет подходящей реализации для `Resource`. <sup>[\[4.6\]][4.6]</sup>
+  - В отличии от других реализаций `Resource`, эта является дескрипторои для уже открытого ресурса, поэтому всегда метод `isOpen()` этого класса возвращает true.
+7. **`ByteArrayResource`** - реализация `Resource` для заданного массива байт. Она создает `ByteArrayInputStream` для этого массива. <sup>[\[4.7\]][4.7]</sup>
+  - Эффективна для загрузки содержимого из любого массива байтов, не прибегая к использованию одноразового `InputStreamResource`.
+8. **`ResourceLoader`** - интерфейс, предназначенный для объектов, которые могут возвращать (т.е. загружать) `Resource` инстансы. <sup>[\[4.8\]][4.8]</sup>
+  ```Java
+  public interface ResourceLoader {
+    Resource getResource(String location);
+  }
+  ```
+  - Все контексты приложений реализуют этот интерфейс, следовательно все контексты приложений могут получать `Resource` инстансы.
+  - Примеры загрузки ресурсов:
+  ```Java
+  Resource template = ctx.getResource("some/resource/path/myTemplate.txt");
+  Resource template = ctx.getResource("classpath:some/resource/path/myTemplate.txt");
+  Resource template = ctx.getResource("file:///some/resource/path/myTemplate.txt");
+  Resource template = ctx.getResource("http://myhost.com/resource/path/myTemplate.txt");
+  ```
+  - Первый ресурс загружается из classpath, второй через URL из файловой системы, третий через URL, четвертый зависит от `AppliacationContext` реализации.
+  
+9. **`ResourceLoaderAware`** - специальный указательный интерфейс, иденцифицирующий объекты, которые ожидают реализации `ResourceLoader`. <sup>[\[4.9\]][4.9]</sup>
+  ```Java
+  public interface ResourceLoaderAware {
+    void setResourceLoader(ResourceLoader resourceLoader);
+  }
+  ```
+  - Когда класс реализует этот интерфейс и деплоится в контекст приложения (как спринговский бин), он распознается им, как `ResourceLoaderAware`. Этот контекст затем вызовет `setResourceLoader(ResourceLoader)`, предоставляя методу себя, как аргумент.
+
+10. **Resources as dependencies** - если бин обладает свойством типа `Resource`, он может быть сконфигурирован с помощью простой строки для этого ресурса. <sup>[\[4.10\]][4.10]</sup> Например: 
+  ```Xml
+  <bean id="myBean" class="...">
+    <property name="template" value="some/resource/path/myTemplate.txt"/>
+    <property name="template" value="classpath:some/resource/path/myTemplate.txt">
+    <property name="template" value="file:///some/resource/path/myTemplate.txt"/>
+  </bean>
+  ```
+  - Важно заметить, что путь к первому ресурсу не обладает префиксом, поэтому каким способом будет загружен ресурс зависит от типа контекста (`ClassPathResource`, `FileSystemResource` или `ServletContextResource`).
+
+11. **Constructing application contexts** - конструктор контекста приложения обычно принимает строку или массив строк в качестве пути к ресурсу, как например к XML файлу, который составляет определение конекста. <sup>[\[4.11\]][4.11]</sup>
+  - Ниже представлены примеры создания контекста приложения:
+  ```Java
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("conf/appContext.xml");
+  ```
+  - Определения бина будут загружены из classpath, так как будет использован `ClassPathResource`. Но если создать `FileSystemXmlApplicationContext` следующим образом:
+  ```Java
+  ApplicationContext ctx = new FileSystemXmlApplicationContext("conf/appContext.xml");
+  ```
+  - Определение бина будет загружено из файловой системы, в данном случае относительно текущей рабочей директории.
+  ```Java
+  ApplicationContext ctx = new FileSystemXmlApplicationContext("classpath:conf/appContext.xml");
+  ```
+  - В этом случае контекст загрузит определение бина из classpath, однако он останется `FileSystemXmlApplicationContext`, хотя и перезапишет дефолтный тип `Resource`, созданного для загрузки бина.
+  ```Java
+  ApplicationContext ctx = new ClassPathXmlApplicationContext(
+    new String[] {"services.xml", "daos.xml"}, MessengerService.class);
+  ```
+  - Здесь `ClassPathXmlApplicationContext` инстанс состоит из нескольких определений бинов, указанный в service.xml и daos.xml. <sup>[\[4.12\]][4.12]</sup>
+  ```Java
+  ApplicationContext ctx =
+    new ClassPathXmlApplicationContext("classpath*:conf/appContext.xml");
+  ```
+  - В данном примере демонстрируется использование вайлдкардов, для загрузки нескольких classpath ресурсов и слияния их всех в один контекст приложения. <sup>[\[4.13\]][4.13]</sup>
+  ```Java
+  ApplicationContext ctx =
+    new FileSystemXmlApplicationContext("file:///conf/context.xml");
+  ```
+  - Так как любой путь восприниматься как относительный (`FileSystemApplicationContext` заставляет все привязанные к `FileSystemResource` инстансы воспринимать пути как относитенльные, не важно со слешем они или без), то настоящий абсолютный путь будет записываться с помощью префикса `file`. <sup>[\[4.14\]][4.14]</sup>
+  
 ***
 
 ### 5. Validation, Data Binding, and Type Conversion
@@ -278,3 +371,19 @@
 [2.10]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-logging
 [2.11]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-not-using-commons-logging
 [2.12]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#overview-logging-slf4j
+
+[4.1]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resource
+[4.2]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-urlresource
+[4.3]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-classpathresource
+[4.4]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-filesystemresource
+[4.5]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-servletcontextresource
+[4.6]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-inputstreamresource
+[4.7]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-bytearrayresource
+[4.8]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resourceloader
+[4.9]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resourceloaderaware
+[4.10]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-as-dependencies
+[4.11]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-app-ctx-construction
+[4.12]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-app-ctx-classpathxml
+[4.13]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-classpath-wildcards
+[4.14]: http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-filesystemresource-caveats
+
