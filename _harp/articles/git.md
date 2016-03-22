@@ -30,10 +30,12 @@
   - Данная особенность позволяет спокойно делать коммиты, а затем отправить их, как только станет доступна сеть (в некоторых других VCS это невозможно или же крайне неудобно).
   - Поскольку вся история проекта хранится локально у вас на диске, большинство операций кажутся практически мгновенными.
 
-3. **Состояние файла** - в Git'е файлы могут находиться в одном из трёх состояний: fixed, changed и staged. <sup>[\[2.3\]][2.3]</sup>
-  - fixed - файл уже сохранен в локальной базе.
-  - changed - файл изменен, но изменение не зафиксировано (`git add`).
-  - staged - файл изменен, и изменение было зафиксирвано (`git add`).
+3. **Состояние файла** - в Git'е файлы могут находиться в следующих состояниях: fixed, changed, stagedm untracked, ignored. <sup>[\[2.3\]][2.3]</sup>
+  - fixed - файл уже сохранен в локальной базе. Если fixed файл модифицировать, то он переходит в changed.
+  - changed - файл изменен, но изменение не зафиксировано. Если changed файл проиндексировать (`git add`), то он переходит в staged.
+  - staged - файл изменен, и изменение было зафиксирвано. Если staged файл добавить в коммит (`git commit`), то он переходит в fixed.
+  - untracked - файл не индексирован. Если файл был недавно создан, то он является untracked.
+  - ignored - файл игнорируется .gitignore'ом. Если файл находится в .gitignore (или попадает под шаблон), то он является ignored.
   
 4. **Repository** - это место, где Git хранит метаданные и базу данных объектов вашего проекта.
   - Это наиболее важная часть Git'а, и именно она копируется, когда вы клонируете репозиторий с другого компьютера.
@@ -85,6 +87,40 @@
 11. **URL** - место, где находится репозиторий.
   - Хранится в файле конфигураций (`git config`).
 
+***
+
+### 4. Операции
+
+1. **`git config`** - считывание или запись глобальных или локальных конфигураций.
+  - **`git config --global user.name "[name]"`** - указывает символическое имя, которое будет привязываться к каждому комиту. 
+    * `git config --global user.name "CustomName"` - добавление имени CustomName в конфиг.
+  - **`git config --global user.email "[email address]"`** - указывает почту, которая будет привязываться к каждому комиту. 
+    * `git config --global user.name "CustomName@email.com"` - добавление почты CustomName@email.com в конфиг.
+  - **`git config --global alias.[name] [alias]|"[composit alias]"`** - добавляет глобальный алиас (сокращение). 
+    * `git config --global alias.cf config` - добавление алиаса, который делает сокращение `git cf` для команды `git config` добавления конфигурации.
+    * `git config --global alias.cfg "config --global"` - добавление составного алиаса, который делает сокращение `git cfg` для команды `git config --global` добавления глобальной конфигурации.
+  - **`git config --list`** - перечисляет все ключи конфигураций и их значения.
+  - **`git config --unset --global [config]`** - удаляет указанный ключ из конфигураций.
+    * `git config --unset alias.cf` - удаление алиаса `git cf`.
+
+6. **`git init`** - создание пустого репозитория или переинициализация существующего.
+  - **`git init`** - создает репозиторий в текущей папке.
+  - **`git init [directory]`** - создает директорию "directory" с репозиторием.
+
+6. **`git clone`** - операция клонирования репозитория.
+  - **`git clone [repository]`** - клонирование репозитория, который находится по пути "repository".
+    * `git clone git@github.com:[username]/[repository].git` - клонирование репозитория по ssh ключу.
+    * `git clone https://github.com/[username]/[repository].git` - клонирование репозитория через https протокол.
+  - **`git clone [repository] [directory]`** - клонирование репозитория, который находится по пути "repository", в указанную директорию "directory".
+    * `git clone https://github.com/[username]/[repository].git /home/name/projects/project` - клонирование репозитория в директорию /home/name/projects/project/.
+  - **`git clone -b [branch] [repository]`** - клонирование определенной ветки репозитория.
+    * `git clone -b master git@github.com:[username]/[repository].git` - клонирование ветки master.
+  - **`git clone -l [repository]`** - клонирование локального репозитория.
+    * `git clone -l /home/name/projects/project/ /home/name/projects/project2/` - клонирование локального репозитория из директории project в директорию project2.
+
+***
+
+### 5. Алиасы
 
 [1.1]: https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%B5-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9
 [1.2]: https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%B5-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9#%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9
