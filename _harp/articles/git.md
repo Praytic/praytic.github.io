@@ -80,6 +80,7 @@
 9. **HEAD** - указатель, который обычно указывает на последний комит в ветке.
   - Когда вы делаете комит, то голова перемещается на него.
   - Голову можно переместить на любой другой объект кроме комита.
+  - **ORIG_HEAD** - предыдущее состояние HEAD.
 
 10. **Revision** - представляет собой версию исходников
    - В Git ревизии представлена коммитами.
@@ -103,11 +104,11 @@
   - **`git config --unset --global [config]`** - удаляет указанный ключ из конфигураций.
     * `git config --unset alias.cf` - удаление алиаса `git cf`.
 
-6. **`git init`** - создание пустого репозитория или переинициализация существующего.
+2. **`git init`** - создание пустого репозитория или переинициализация существующего.
   - **`git init`** - создает репозиторий в текущей папке.
   - **`git init [directory]`** - создает директорию "directory" с репозиторием.
 
-6. **`git clone`** - операция клонирования репозитория.
+3. **`git clone`** - операция клонирования репозитория.
   - **`git clone [repository]`** - клонирование репозитория, который находится по пути "repository".
     * `git clone git@github.com:[username]/[repository].git` - клонирование репозитория по ssh ключу.
     * `git clone https://github.com/[username]/[repository].git` - клонирование репозитория через https протокол.
@@ -117,6 +118,60 @@
     * `git clone -b master git@github.com:[username]/[repository].git` - клонирование ветки master.
   - **`git clone -l [repository]`** - клонирование локального репозитория.
     * `git clone -l /home/name/projects/project/ /home/name/projects/project2/` - клонирование локального репозитория из директории project в директорию project2.
+
+4. **`git add`** - операция индексирования файла.
+  - **`git add [modified]`** - индексирование одного файла "modified", или дирректории "modified", или всех объектов, удовлетворяющих паттерну "modified".
+    + `git add .` - добавляет все файлы в текущей директории и ее поддиректориях.
+    + `git add .gitignore` - добавляет в индекс файл .gitignore.
+    + `git add project/` - добавляет в индекс файлы из директории project/.
+    + `git add Documentation/\*.txt` - добавляет в индекс все .txt файлы в директории Documentation/.
+  - **`git add -A`** - добавление в индекс всех modified файлов в проекте.
+
+5. **`git status`** - операция вывода статуса текущего working tree.
+  - **`git status [name]`** - выводит статус по текущему файлу "name", или директории "name", или всем объектам, удовлетворяющим паттерну "name".
+    + `git status` - показывает статус всех modified и staged файлов.
+    + `git status .gitignore` - показывает статус файла .gitignore.
+    + `git status project/` -  показывает статус папки project/.
+    + `git status Documentation/\*.txt` - показывает статус всех .txt файлов в директории Documentation/.
+  - **`git status --ignored`** - выводит статус также и ignored файлов.
+
+6. **`git diff`** - показывает изменения между элементами.
+  - **`git diff [file|directory|pattern|branch|commit|...]`** - выводит изменения в текущем файле, или директории, или во всех объектах, удовлетворяющих паттерну.
+    + `git diff` - показывает статус всех modified файлов.
+    + `git diff .gitignore` - показывает статус файла .gitignore.
+    + `git diff project/` -  показывает статус папки project/.
+    + `git diff Documentation/\*.txt` - показывает статус всех .txt файлов в директории Documentation/.
+    + `git diff master` - показывает изменения между текущей веткой и веткой master.
+    + `git diff HEAD HEAD^` - показывает изменения между предыдущим комитом и комитом после него.
+  - **`git diff --name-status`** - выводит только имена файлов, которые являются modified.
+
+7. **`git commit`** - записывает изменения в репозиторий.
+  - **`git commit [file|directory|pattern]`** - добавляет staged изменения в текущем файле, или директории, или во всех объектах, удовлетворяющих паттерну, в репозиторий.
+    + `git commit` - добавляет в репозиторий (делает fixed) все staged объекты.
+    + `git commit .gitignore` - добавляет в репозиторий файл .gitignore.
+    + `git commit project/` - добавляет в репозиторий папкe project/.
+    + `git commit Documentation/\*.txt` - добавляет в репозиторий все .txt файлы в директории Documentation/.
+  - **`git commit -m '[message]'`** - сообщение для комита можно ввести в ковычках вместо того, чтобы открывать редактор.
+    + `git commit -m 'Init commit'` - делает комит 'Init commit'.
+  - **`git commit -a`** - автоматически индексирует измененные файлы, которые ранее были добавлены в репозиторий и делает комит.
+  - **`git commit --amend`** - добавляет все staged файлы в предыдущий комит, тем самым перезаписывая его хэш.
+
+8. **`git reset`** - передвигает HEAD в указанное состояние.
+  - **`git reset [file|directory|pattern|branch|commit|...]`** - отменяет изменения файлов, комитов, веток и т.д., передвигая указатель HEAD. 
+    + `git reset` - отменяет изменения, добавленые в staged area с помощью `git add`, и делает их обратно modified.
+    + `git reset .gitignore` - добавляет в репозиторий файл .gitignore.
+    + `git reset project/` - добавляет в репозиторий папкe project/.
+    + `git reset Documentation/\*.txt` - добавляет в репозиторий все .txt файлы в директории Documentation/.
+    + `git reset HEAD^` - переводит последние закомиченные fixed изменения в состояние modified.
+    + `git reset ORIG_HEAD` - чтобы обратиться к HEAD, который был до reset, можно написать ORIG_HEAD.
+    + `git reset 99F99F` - переводит все изменения в комитах после комита с текушим хэшом "99F99F" в состояние modified.
+    + `git reset HEAD@{5}` - переводит голову в состояние, в котором она была 5 "передвижений" назад (чтобы узнать где она была 5 шагов назад, стоит посмотреть `git reflog`).
+  - **`git reset --soft'`** - не затрагивает проиндексированные файлы или workng tree.
+    + `git reset --soft HEAD^` - переводит последние закомиченные изменения в состояние staged и оставляет working tree таким, какое оно было до reset.
+  - **`git reset --hard'`** - не затрагивает проиндексированные файлы или workng tree.
+    + `git reset --hard HEAD^` - удаляет из дерева последний комит вместе со всеми изменениями.
+  - **`git reset --merge'`** - не затрагивает проиндексированные файлы или workng tree.
+    + `git reset --merge ORIG_HEAD` - отменяет последнее слияние веток.
 
 ***
 
