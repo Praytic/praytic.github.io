@@ -22,7 +22,6 @@ h6 {
 
 body {
     line-height: 2;
-    color: #fff;
     background: #3D3D3D;
 }
 
@@ -79,7 +78,6 @@ iframe {
     margin: 20px 40px;
     border-radius: 4px;
     box-shadow: 0 0 2px 2px rgba(155, 155, 155, 0.1);
-    border: 1px solid #d3d3d3;
 }
 
 header {
@@ -383,7 +381,6 @@ nav #menu-toggle {
     .docs-nav .active {
         background: #26ABE2;
         color: #fff;
-        border-right: 2px solid #ccc;
     }
 
     .docs-nav .separator {
