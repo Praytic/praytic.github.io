@@ -9,7 +9,7 @@
   ```Java
   public exampleCode;
   ```
- 
+
 ***
 
 ### 2. How to contribute

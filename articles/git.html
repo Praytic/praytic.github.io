@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство теории переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75180616-1', 'auto');
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Git</h1><h3>1. VCS</h3><ol>
+<li><p><strong>VCS (Version Control System)</strong> - система контроля версий, регистрирующая изменения в одной или нескольких файлах с тем, чтобы в дальнейшем была возможность вернуться к определенным старым версиям этих файлов. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%B5-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9">[1.1]</a></sup></p>
+<ul>
+<li>Позволяет разработчкам работать одновременно над одним проектом.</li>
+<li>Предотвращает случайные изменения в файлах.</li>
+<li>Управляет историей проекта.</li>
+<li>Существует два типа VCS: CVCS и DVCS.</li>
+<li>VCS может хранить изменения локально или удаленно.</li>
+</ul>
+</li>
+<li><p><strong>CVCS (Central Version Control System)</strong> - централизованная система контроля версий, которая подразумевает, что существует сервер, на котором хранятся все файлы под контролем VCS, и ряд клиентов получают копии файлов из него. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%B5-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9#%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D0%B8%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9">[1.2]</a></sup></p>
+<ul>
+<li>Имеет преимущество над локальными VCS.</li>
+<li>Администрирование единой VCS намного легче, чем локальные базы на каждом клиенте.</li>
+<li>Однако такой подход является не безопасным, т.к. CVCS в единственном экземпляре.</li>
+</ul>
+</li>
+<li><p><strong>DVCS (Distributed Version Control System)</strong> - распределенная система контроля версий подразумевает, что у клиентов находится полная копия репозитория с сервера, что позволяет легко восстановить рабочий прототип, если с ним что-то случится. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%B5-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9#%D0%A0%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%91%D0%BD%D0%BD%D1%8B%D0%B5-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F-%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9">[1.3]</a></sup></p>
+<ul>
+<li>Любое ответвление автоматически является бекапом проекта.</li>
+<li>В больше части этих систем можно работать с несколькими удаленными репозиториями, таким образом, можно одновременно работать по-разному с разными группами людей в рамках одного проекта.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>2. Общее</h3><ol>
+<li><p><strong>Принцип хранения</strong> - многие VCS хранят свои данные в виде списка изменений, Git же хранит полные копии файлов, только заменяя неизмененные файлы на ссылки. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git#%D0%A1%D0%BB%D0%B5%D0%BF%D0%BA%D0%B8-%D0%B2%D0%BC%D0%B5%D1%81%D1%82%D0%BE-%D0%BF%D0%B0%D1%82%D1%87%D0%B5%D0%B9">[2.1]</a></sup></p>
+<ul>
+<li>Таким образом Git является своего рода небольшой файловой системой.</li>
+<li>Такой подход предоставляет ряд преимуществ при восстановлении данных, работе с комитами и т.д., но требует больше места.</li>
+</ul>
+</li>
+<li><p><strong>Локальные операции</strong> - для совершения большинства операций в Git&#39;е необходимы только локальные файлы и ресурсы, т.е. обычно информация с других компьютеров в сети не нужна. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git#%D0%9F%D0%BE%D1%87%D1%82%D0%B8-%D0%B2%D1%81%D0%B5-%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8-%E2%80%94-%D0%BB%D0%BE%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5">[2.2]</a></sup></p>
+<ul>
+<li>Данная особенность позволяет спокойно делать коммиты, а затем отправить их, как только станет доступна сеть (в некоторых других VCS это невозможно или же крайне неудобно).</li>
+<li>Поскольку вся история проекта хранится локально у вас на диске, большинство операций кажутся практически мгновенными.</li>
+</ul>
+</li>
+<li><p><strong>Состояние файла</strong> - в Git&#39;е файлы могут находиться в следующих состояниях: fixed, changed, stagedm untracked, ignored. <sup><a href="https://git-scm.com/book/ru/v1/%D0%92%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-Git#%D0%A2%D1%80%D0%B8-%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F">[2.3]</a></sup></p>
+<ul>
+<li>fixed (commited, unmodified, unchanged) - файл уже сохранен в локальной базе. Если fixed файл модифицировать, то он переходит в changed.</li>
+<li>modified (changed) - файл изменен, но изменение не зафиксировано. Если changed файл проиндексировать (<code>git add</code>), то он переходит в staged.</li>
+<li>staged - файл изменен, и изменение было зафиксирвано. Если staged файл добавить в коммит (<code>git commit</code>), то он переходит в fixed.</li>
+<li>untracked - файл не индексирован. Если файл был недавно создан, то он является untracked.</li>
+<li>ignored - файл игнорируется .gitignore&#39;ом. Если файл находится в .gitignore (или попадает под шаблон), то он является ignored.</li>
+</ul>
+</li>
+<li><p><strong>Repository</strong> - это место, где Git хранит метаданные и базу данных объектов вашего проекта.</p>
+<ul>
+<li>Это наиболее важная часть Git&#39;а, и именно она копируется, когда вы клонируете репозиторий с другого компьютера.</li>
+<li>Git хранит все изменения в скрытой папке .git, которая есть в каждом проекте, находящемся под контролем VCS.</li>
+</ul>
+</li>
+<li><p><strong>Working Directory</strong> - это извлечённая из базы копия определённой версии проекта.</p>
+</li>
+<li><p><strong>Staging Area</strong> - это обычный файл, хранящийся в репозитории Git&#39;а, который содержит информацию о том, что должно войти в следующий коммит.</p>
+</li>
+</ol>
+<hr>
+<h3>3. Элементы <sup><a href="http://www.tutorialspoint.com/git/git_basic_concepts.htm">[3.1]</a></sup></h3><ol>
+<li><p><strong>Blob (Binary Large Object)</strong> - каждая версия файла представлена блобом.</p>
+<ul>
+<li>Блоб хранит данные файла, за исключением метаданных.</li>
+<li>Это бинарный файл, который в Git базе данных указывается как SHA1 хэш этого файла.</li>
+</ul>
+</li>
+<li><p><strong>Tree</strong> - объект, который представляет директорию.</p>
+<ul>
+<li>Дерево - это бинарный файл, который хранит ссылки к блобам и деревьям, также указывается SHA1 хэшом.</li>
+</ul>
+</li>
+<li><p><strong>Commit</strong> - содержит текущее состояние репозитория.</p>
+<ul>
+<li>Как и дерево или блоб, коммит хранится в виде SHA1 хэша.</li>
+<li>Можно понимать коммит, как узел в связном листе.</li>
+<li>Каждый коммит имеет указатель на своего предка-коммита.</li>
+<li>Коммит может имет несколько указателей на несколько предков - это значит, что он был создан слиянием веток.</li>
+</ul>
+</li>
+<li><p><strong>Branch</strong> - используется для создания новой ветки разработки.</p>
+<ul>
+<li>По умолчанию, первая ветка в репозитории - <code>master</code>.</li>
+</ul>
+</li>
+<li><p><strong>Tag</strong> - обозначает значимое имя с указанной версией в репозитории.</p>
+<ul>
+<li>Теги очень похожи на ветки, но отличие в том, что они неизменяемы. Если сделать тег для коммита, то даже если создать новый коммит от данного, то он не обновится.</li>
+</ul>
+</li>
+<li><p><strong>Clone</strong> - эта операция создает локальный инстанс репозитория.</p>
+<ul>
+<li>Она не только создает копию рабочей версии проекта, но и закачивает всю историю репозитория.</li>
+</ul>
+</li>
+<li><p><strong>Pull</strong> - операция копирования изменений из удаленного репозитория в локальный.</p>
+<ul>
+<li>Используется для синхронизации между репозиториями.</li>
+</ul>
+</li>
+<li><p><strong>Push</strong> - операция копирования изменений из локального репозтироия в удаленный.</p>
+<ul>
+<li>Используется для записи изменений в удаленный репозиторий (навсегда, если следовать правилам).</li>
+</ul>
+</li>
+<li><p><strong>HEAD</strong> - указатель, который обычно указывает на последний комит в ветке.</p>
+<ul>
+<li>Когда вы делаете комит, то голова перемещается на него.</li>
+<li>Голову можно переместить на любой другой объект кроме комита.</li>
+<li><strong>ORIG_HEAD</strong> - предыдущее состояние HEAD.</li>
+</ul>
+</li>
+<li><p><strong>Revision</strong> - представляет собой версию исходников</p>
+<ul>
+<li>В Git ревизии представлена коммитами.</li>
+</ul>
+</li>
+<li><p><strong>URL</strong> - место, где находится репозиторий.</p>
+<ul>
+<li>Хранится в файле конфигураций (<code>git config</code>).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>4. Операции</h3><ol>
+<li><p><strong><code>git config</code></strong> - считывание или запись глобальных или локальных конфигураций. <sup><a href="https://git-scm.com/docs/git-config">[4.1]</a></sup></p>
+<ul>
+<li><strong><code>git config --global user.name &quot;[name]&quot;</code></strong> - указывает символическое имя, которое будет привязываться к каждому комиту. <ul>
+<li><code>git config --global user.name &quot;CustomName&quot;</code> - добавление имени CustomName в конфиг.</li>
+</ul>
+</li>
+<li><strong><code>git config --global user.email &quot;[email address]&quot;</code></strong> - указывает почту, которая будет привязываться к каждому комиту. <ul>
+<li><code>git config --global user.name &quot;CustomName@email.com&quot;</code> - добавление почты CustomName@email.com в конфиг.</li>
+</ul>
+</li>
+<li><strong><code>git config --global alias.[name] [alias]|&quot;[composit alias]&quot;</code></strong> - добавляет глобальный алиас (сокращение). <ul>
+<li><code>git config --global alias.cf config</code> - добавление алиаса, который делает сокращение <code>git cf</code> для команды <code>git config</code> добавления конфигурации.</li>
+<li><code>git config --global alias.cfg &quot;config --global&quot;</code> - добавление составного алиаса, который делает сокращение <code>git cfg</code> для команды <code>git config --global</code> добавления глобальной конфигурации.</li>
+</ul>
+</li>
+<li><strong><code>git config --list</code></strong> - перечисляет все ключи конфигураций и их значения.</li>
+<li><strong><code>git config --unset --global [config]</code></strong> - удаляет указанный ключ из конфигураций.<ul>
+<li><code>git config --unset alias.cf</code> - удаление алиаса <code>git cf</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>git init</code></strong> - создание пустого репозитория или переинициализация существующего. <sup><a href="https://git-scm.com/docs/git-init">[4.2]</a></sup></p>
+<ul>
+<li><strong><code>git init</code></strong> - создает репозиторий в текущей папке.</li>
+<li><strong><code>git init [directory]</code></strong> - создает директорию &quot;directory&quot; с репозиторием.</li>
+</ul>
+</li>
+<li><p><strong><code>git clone</code></strong> - операция клонирования репозитория. <sup><a href="https://git-scm.com/docs/git-clone">[4.3]</a></sup></p>
+<ul>
+<li><strong><code>git clone [repository]</code></strong> - клонирование репозитория, который находится по пути &quot;repository&quot;.<ul>
+<li><code>git clone git@github.com:[username]/[repository].git</code> - клонирование репозитория по ssh ключу.</li>
+<li><code>git clone https://github.com/[username]/[repository].git</code> - клонирование репозитория через https протокол.</li>
+</ul>
+</li>
+<li><strong><code>git clone [repository] [directory]</code></strong> - клонирование репозитория, который находится по пути &quot;repository&quot;, в указанную директорию &quot;directory&quot;.<ul>
+<li><code>git clone https://github.com/[username]/[repository].git /home/name/projects/project</code> - клонирование репозитория в директорию /home/name/projects/project/.</li>
+</ul>
+</li>
+<li><strong><code>git clone -b [branch] [repository]</code></strong> - клонирование определенной ветки репозитория.<ul>
+<li><code>git clone -b master git@github.com:[username]/[repository].git</code> - клонирование ветки master.</li>
+</ul>
+</li>
+<li><strong><code>git clone -l [repository]</code></strong> - клонирование локального репозитория.<ul>
+<li><code>git clone -l /home/name/projects/project/ /home/name/projects/project2/</code> - клонирование локального репозитория из директории project в директорию project2.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>git add</code></strong> - операция индексирования файла. <sup><a href="https://git-scm.com/docs/git-add">[4.4]</a></sup></p>
+<ul>
+<li><strong><code>git add [modified]</code></strong> - индексирование одного файла &quot;modified&quot;, или дирректории &quot;modified&quot;, или всех объектов, удовлетворяющих паттерну &quot;modified&quot;.<ul>
+<li><code>git add .</code> - добавляет все файлы в текущей директории и ее поддиректориях.</li>
+<li><code>git add .gitignore</code> - добавляет в индекс файл .gitignore.</li>
+<li><code>git add project/</code> - добавляет в индекс файлы из директории project/.</li>
+<li><code>git add Documentation/\*.txt</code> - добавляет в индекс все .txt файлы в директории Documentation/.</li>
+</ul>
+</li>
+<li><strong><code>git add -A</code></strong> - добавление в индекс всех modified файлов в проекте.</li>
+</ul>
+</li>
+<li><p><strong><code>git status</code></strong> - операция вывода статуса текущего working tree. <sup><a href="https://git-scm.com/docs/git-status">[4.5]</a></sup></p>
+<ul>
+<li><strong><code>git status [file]</code></strong> - выводит статус по текущему файлу.<ul>
+<li><code>git status</code> - показывает статус всех modified и staged файлов.</li>
+<li><code>git status .gitignore</code> - показывает статус файла .gitignore.</li>
+<li><code>git status project/</code> -  показывает статус папки project/.</li>
+<li><code>git status Documentation/\*.txt</code> - показывает статус всех .txt файлов в директории Documentation/.</li>
+</ul>
+</li>
+<li><strong><code>git status --ignored</code></strong> - выводит статус также и ignored файлов.</li>
+</ul>
+</li>
+<li><p><strong><code>git diff</code></strong> - показывает изменения между элементами. <sup><a href="https://git-scm.com/docs/git-diff">[4.6]</a></sup></p>
+<ul>
+<li><strong><code>git diff [file]</code></strong> - выводит изменения в текущем файле.<ul>
+<li><code>git diff</code> - показывает статус всех modified файлов.</li>
+<li><code>git diff .gitignore</code> - показывает статус файла .gitignore.</li>
+<li><code>git diff project/</code> -  показывает статус папки project/.</li>
+<li><code>git diff Documentation/\*.txt</code> - показывает статус всех .txt файлов в директории Documentation/.</li>
+</ul>
+</li>
+<li><strong><code>git diff [object]</code></strong> - выводит изменения в текущем объекте.<ul>
+<li><code>git diff master</code> - показывает изменения между текущей веткой и веткой master.</li>
+<li><code>git diff HEAD HEAD^</code> - показывает изменения между предыдущим комитом и комитом после него.</li>
+</ul>
+</li>
+<li><strong><code>git diff --name-status</code></strong> - выводит только имена файлов, которые являются modified.</li>
+</ul>
+</li>
+<li><p><strong><code>git commit</code></strong> - записывает изменения в репозиторий. <sup><a href="https://git-scm.com/docs/git-commit">[4.7]</a></sup></p>
+<ul>
+<li><strong><code>git commit [file]</code></strong> - добавляет staged изменения в текущем файле в репозиторий.<ul>
+<li><code>git commit</code> - добавляет в репозиторий (делает fixed) все staged объекты.</li>
+<li><code>git commit .gitignore</code> - добавляет в репозиторий файл .gitignore.</li>
+<li><code>git commit project/</code> - добавляет в репозиторий папкe project/.</li>
+<li><code>git commit Documentation/\*.txt</code> - добавляет в репозиторий все .txt файлы в директории Documentation/.</li>
+</ul>
+</li>
+<li><strong><code>git commit -m &#39;[message]&#39;</code></strong> - сообщение для комита можно ввести в ковычках вместо того, чтобы открывать редактор.<ul>
+<li><code>git commit -m &#39;Init commit&#39;</code> - делает комит &#39;Init commit&#39;.</li>
+</ul>
+</li>
+<li><strong><code>git commit -a</code></strong> - автоматически индексирует измененные файлы, которые ранее были добавлены в репозиторий и делает комит.</li>
+<li><strong><code>git commit --amend</code></strong> - добавляет все staged файлы в предыдущий комит, тем самым перезаписывая его хэш.</li>
+</ul>
+</li>
+<li><p><strong><code>git reset</code></strong> - передвигает HEAD в указанное состояние. <sup><a href="https://git-scm.com/docs/git-reset">[4.8]</a></sup></p>
+<ul>
+<li><strong><code>git reset -- [file]</code></strong> - отменяет добавление файлов в staged area.<ul>
+<li><code>git reset</code> - отменяет изменения, добавленые в staged area с помощью <code>git add</code>, и делает их обратно modified.</li>
+<li><code>git reset .gitignore</code> - добавляет в репозиторий файл .gitignore.</li>
+<li><code>git reset project/</code> - добавляет в репозиторий папкe project/.</li>
+<li><code>git reset Documentation/\*.txt</code> - добавляет в репозиторий все .txt файлы в директории Documentation/.</li>
+</ul>
+</li>
+<li><strong><code>git reset [object]</code></strong> - передвигает HEAD на указанный объект<ul>
+<li><code>git reset HEAD^</code> - переводит последние закомиченные fixed изменения в состояние modified.</li>
+<li><code>git reset ORIG_HEAD</code> - чтобы обратиться к HEAD, который был до reset, можно написать ORIG_HEAD.</li>
+<li><code>git reset 99F99F</code> - переводит все изменения в комитах после комита с текушим хэшом &quot;99F99F&quot; в состояние modified.</li>
+<li><code>git reset HEAD@{5}</code> - переводит голову в состояние, в котором она была 5 &quot;передвижений&quot; назад (чтобы узнать где она была 5 шагов назад, стоит посмотреть <code>git reflog</code>).</li>
+</ul>
+</li>
+<li><strong><code>git reset --soft</code></strong> - не затрагивает проиндексированные файлы или рабочую директорию.<ul>
+<li><code>git reset --soft HEAD^</code> - переводит последние закомиченные изменения в состояние staged и оставляет рабочую директорию такой, какая она была до reset.</li>
+</ul>
+</li>
+<li><strong><code>git reset --hard</code></strong> - удаляет комит и изменения из рабочей директории.<ul>
+<li><code>git reset --hard HEAD^</code> - удаляет из дерева последний комит вместе со всеми изменениями.</li>
+</ul>
+</li>
+<li><strong><code>git reset --hard [remote]/[branch]</code></strong> - полностью перезаписывает текущую локальную историю и изменения в рабочей директории на те, что находятся в указанной удаленный ветке.<ul>
+<li><code>git reset --hard origin/master</code> - делает текущую ветку идентичной удаленной ветке &quot;master&quot;.</li>
+</ul>
+</li>
+<li><strong><code>git reset --merge</code></strong> - не затрагивает проиндексированные файлы или workng tree.<ul>
+<li><code>git reset --merge ORIG_HEAD</code> - отменяет последнее слияние веток.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>git rm</code></strong> - удаляет файлы из рабочей директории и фиксирует изменения. <sup><a href="https://git-scm.com/docs/git-rm">[4.9]</a></sup></p>
+<ul>
+<li><strong><code>git rm [file]</code></strong> - удаляет указанный файл и фиксирует изменения.</li>
+<li><strong><code>git rm --cached</code></strong> - переводит файл из состояния committed в состояние untracked.</li>
+</ul>
+</li>
+<li><p><strong><code>git mv</code></strong> - перемещает или переименовывает файлы, директории, символически ссылки. <sup><a href="https://git-scm.com/docs/git-mv">[4.10]</a></sup></p>
+<ul>
+<li><strong><code>git mv [file] [file]</code></strong> - изменяет имя указанного файла и фиксирует изменения.</li>
+</ul>
+</li>
+<li><p><strong><code>git branch</code></strong> - выводит, создает или удаляет ветки. <sup><a href="https://git-scm.com/docs/git-branch">[4.11]</a></sup></p>
+<ul>
+<li><strong><code>git branch</code></strong> - выводит все локальные ветки в данном репозитории.</li>
+<li><strong><code>git branch [branch]</code></strong> - создает новую ветку с указанным именем &quot;branch&quot;.</li>
+<li><strong><code>git branch -d [branch]</code></strong> - удаляет ветку с указанным именем &quot;branch&quot;.</li>
+<li><strong><code>git branch --set-upstream-to=[remote]/[branch-remote] [branch-local]</code></strong> - устанавливает связь текущей ветки 
+&quot;branch-local&quot; с веткой &quot;branch-remote&quot; в удаленном репозитории &quot;remote&quot;.</li>
+</ul>
+</li>
+<li><p><strong><code>git checkout</code></strong> - переключается между элементами или откатывает изменения в файлах в рабочей директории. <sup><a href="https://git-scm.com/docs/git-checkout">[4.12]</a></sup></p>
+<ul>
+<li><strong><code>git checkout -- [file]</code></strong> - откатывает изменения в файле.</li>
+<li><strong><code>git checkout [object]</code></strong> - переходит на указанный объект.</li>
+<li><strong><code>git checkout --track [remote] [branch]</code></strong> - создает новую локальную ветку &quot;branch&quot;, идентичную удаленной ветке.</li>
+</ul>
+</li>
+<li><p><strong><code>git merge</code></strong> - соединяет две или более истории в одну. <sup><a href="https://git-scm.com/docs/git-merge">[4.13]</a></sup></p>
+<ul>
+<li><strong><code>git merge [object]</code></strong> - сливает историю согласно указанному объекту.</li>
+<li><strong><code>git merge -s [strategy]</code></strong> - сливает истории, используя указанную стратегию.</li>
+<li><strong><code>git merge --no-commit</code></strong> - сливает истории, не создавая нового комита.</li>
+</ul>
+</li>
+<li><p><strong><code>git log</code></strong> - показывает лог комитов. <sup><a href="https://git-scm.com/docs/git-log">[4.14]</a></sup></p>
+<ul>
+<li><strong><code>git log [object]</code></strong> - показывает историю согласно указанному объекту.</li>
+<li><strong><code>git log [file]</code></strong> - показывает комиты, в которых фигурировал данный файл.</li>
+<li><strong><code>git log -[N]</code></strong> - ограничивает число выведенных коммитов на N.</li>
+</ul>
+</li>
+<li><p><strong><code>git stash</code></strong> - прячет, достает, очищает изменения в рабочей директории. <sup><a href="https://git-scm.com/docs/git-stash">[4.15]</a></sup></p>
+<ul>
+<li><strong><code>git stash</code></strong> - прячет все текущие staged файлы в стэш.</li>
+<li><strong><code>git stash pop</code></strong> - достает все файлы из стэша в staged area.</li>
+<li><strong><code>git stash list</code></strong> - показывает все файлы в стэше.</li>
+<li><strong><code>git stash clear</code></strong> - очищает стэш, удаляя все файлы в нем.</li>
+</ul>
+</li>
+<li><p><strong><code>git tag</code></strong> - создает, показывает, удаляет или проверяет теги. <sup><a href="https://git-scm.com/docs/git-tag">[4.16]</a></sup></p>
+<ul>
+<li><strong><code>git tag</code></strong> - выводит все созданные теги.</li>
+<li><strong><code>git tag - l [pattern]</code></strong> - выводит все созданные теги, удовлетворяющие указанному паттерну.</li>
+<li><strong><code>git tag [name]</code></strong> - создает тег для текущего положения HEAD с именем &quot;name&quot;.</li>
+<li><strong><code>git tag -d [name]</code></strong> - удаляет тег с именем &quot;name&quot;.</li>
+<li><strong><code>git tag -a [version]</code></strong> - создает аннотированный тег, который является полноценным объектом.</li>
+</ul>
+</li>
+<li><p><strong><code>git fetch</code></strong> - загружает историю из указанного репозитория. <sup><a href="https://git-scm.com/docs/git-fetch">[4.17]</a></sup></p>
+<ul>
+<li><strong><code>git fetch [remote]</code></strong> - обновляет все ветки, связанные с данным удаленным репозиторием.</li>
+<li><strong><code>git fetch --all</code></strong> - обновляет все ветки, которые имеют привязки к удаленным репозиториям.</li>
+</ul>
+</li>
+<li><p><strong><code>git pull</code></strong> - загружает историю из указанного репозитория и сливает ее с локальной историей. <sup><a href="https://git-scm.com/docs/git-pull">[4.18]</a></sup></p>
+<ul>
+<li><strong><code>git pull [remote] [branch]</code></strong> - загружает историю ветки из указанного удаленного репозитория.</li>
+<li><strong><code>git pull -r</code></strong> - применяет rebase алгоритм вместо merge при слиянии истории.</li>
+</ul>
+</li>
+<li><p><strong><code>git push</code></strong> - загружает историю в удаленный репозиторий. <sup><a href="https://git-scm.com/docs/git-push">[4.19]</a></sup></p>
+<ul>
+<li><strong><code>git push [remote] [branch]</code></strong> - загружает историю локальной ветки в указанный удаленный репозиторий.</li>
+<li><strong><code>git push [remote] :[branch]</code></strong> - удаляет указанную ветку из удаленного репозитория.</li>
+</ul>
+</li>
+<li><p><strong><code>git remote</code></strong> - управляет набором отслеживаемых репозиториев. <sup><a href="https://git-scm.com/docs/git-remote">[4.20]</a></sup></p>
+<ul>
+<li><strong><code>git remote</code></strong> - показывает имена подключенных репозиториев.</li>
+<li><strong><code>git remote -v</code></strong> - показывает имена и пути подключенных репозиториев.</li>
+<li><strong><code>git remote add [name] [path]</code></strong> - до</li>
+</ul>
+</li>
+<li><p><strong><code>git show</code></strong> - выводит информацию о различных объектах. <sup><a href="https://git-scm.com/docs/git-show">[4.21]</a></sup></p>
+<ul>
+<li><strong><code>git show [object]</code></strong> - выводит информацию об указанном объекте.</li>
+</ul>
+</li>
+<li><p><strong><code>git cherry-pick</code></strong> - переносит изменения, представленные в указанных комитах. <sup><a href="https://git-scm.com/docs/git-cherry-pick">[4.22]</a></sup></p>
+<ul>
+<li><strong><code>git cherry-pick [commit]</code></strong> - применяет указанный комит к текущей ветке.</li>
+</ul>
+</li>
+<li><p><strong><code>git rebase</code></strong> - переносит локальные комиты в указанное положение в дереве. <sup><a href="https://git-scm.com/docs/git-rebase">[4.23]</a></sup></p>
+<ul>
+<li><strong><code>git rebase [object]</code></strong> - применяет комиты из указанного объекта на текущую ветку.</li>
+<li><strong><code>git rebase -i</code></strong> - открывает редактор с выделенными комитами, где можно указать параметры ребейза 
+определенного коммита.</li>
+<li><strong><code>git rebase [object] --onto [newbase]</code></strong> - применяет выделенные коммиты в &quot;newbase&quot;.</li>
+</ul>
+</li>
+<li><p><strong><code>git revert</code></strong> - отменяет существующие комиты. <sup><a href="https://git-scm.com/docs/git-revert">[4.24]</a></sup></p>
+<ul>
+<li><strong><code>git revert [commit]</code></strong> - отменяет изменения, на которые указывает данный объект.</li>
+<li><strong><code>git revert --no-commit</code></strong> - отменяет изменения без создания нового комита.</li>
+</ul>
+</li>
+<li><p><strong><code>git grep</code></strong> - выводит строки, удовлетворяющие паттерну. <sup><a href="https://git-scm.com/docs/git-grep">[4.25]</a></sup></p>
+<ul>
+<li><strong><code>git grep [pattern] -- [file-pattern]</code></strong> - возвращает все выражения удовлетворяющие &quot;pattern&quot; во всех файлах, 
+удовлетворяющих &quot;file-pattern&quot;.</li>
+<li><strong><code>git grep -e</code></strong> - означает, что следущий параметр является паттерном.</li>
+</ul>
+</li>
+<li><p><strong><code>git clean</code></strong> - удаляет неиндексированные файлы из рабочей директории. <sup><a href="https://git-scm.com/docs/git-clean">[4.26]</a></sup></p>
+<ul>
+<li><strong><code>git clean [file]</code></strong> - удаляет untracked указанный файл.</li>
+<li><strong><code>git clean -d</code></strong> - удаляет также и директории.</li>
+<li><strong><code>git clean -f</code></strong> - если в конфигурациях поле clean.requireForce не true, то без этого параметра git откажется 
+удалять файлы.</li>
+<li><strong><code>git clean -x</code></strong> - игнорирует .gitignore файл, тем самым можно удалять ignored файлы.</li>
+</ul>
+</li>
+<li><p><strong><code>git reflog</code></strong> - управляет reflog информацией. <sup><a href="https://git-scm.com/docs/git-reflog">[4.27]</a></sup></p>
+<ul>
+<li><strong><code>git reflog [ref]</code></strong> - выводит reflog указанного ref.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>5. Алиасы</h3></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>

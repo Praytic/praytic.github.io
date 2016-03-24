@@ -22,8 +22,8 @@ h6 {
 
 body {
     line-height: 2;
-    color: #444;
-    background: #ededed;
+    color: #fff;
+    background: #3D3D3D;
 }
 
 img, iframe {
@@ -175,6 +175,27 @@ a:active {
     color: #47b5e2;
 }
 
+a.learnmore {
+    content: "Learn more";
+    display: inline-block;
+    padding: 15px;
+    margin-right: 5px;
+    background: #D5F4F7;
+    border: none;
+    outline: none;
+    color: white;
+    right: 20px;
+}
+a.learnmore:hover {
+    background: #EEFEFF;
+    transition: all 0.1s ease-in;
+}
+a.learnmore:active {
+    transform: translateY(4px);
+    border-bottom-width: 2px;
+    box-shadow: none;
+}
+
 /* Header Styles */
 
 header {
@@ -310,9 +331,13 @@ nav #menu-toggle {
 .docs-nav {
     background-color: #f5f5f5;
     list-style: none;
-    margin: 0 0 0 20px;
+    margin: 0 0 20px 20px;
     padding: 15px 20px;
     font-size: 0.97em;
+}
+
+.docs-nav hr {
+    margin: 5px 0 5px;
 }
 
 .docs-nav a {
