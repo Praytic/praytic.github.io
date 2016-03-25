@@ -251,3 +251,8 @@
 
 ***
 
+[rpc]: https://www.techopedia.com/definition/24022/remote-procedure-call-rpc
+[2.7]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,10
+[soap]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
+[wsdl]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
+[uddi]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
