@@ -14,17 +14,27 @@
 
 3. **Подключение сторонних программ** - веб сервисы могут обмениваться данными с различными программами независимо от
  языка программирования, на котором они написаны.
- 
-4. **Service Provider** - провайдер веб сервиса, который реализует его и делает доступным в интернете.
 
-5. **Service Requestor** - любой пользователь веб сервиса, который открывает сетевое соединение и отправляет XML 
-запросы.
+4. **Service** - реализация веб сервиса. <sup>[\[1.4\]][1.4]</sup>
+   - Сервис может быть маленьким, что будет умещаться в один JS файл, а может быть детально проработанным 30-летним COBOL приложением, запускаемым на центральном процессоре.
 
-6. **Service Registry (Broker)** - логически-централизованная директория сервисов, куда девелоперы публикуют новые 
-сервисы и 
-где можно найти существующие. Поэтому этот элемент является координационным центром для компаний и их услуг.
+5. **Service Description** - интерфейс веб сервиса. <sup>[\[1.5\]][1.5]</sup>
+   - Он выражается через XML и обуславливается одним или более стандартами.
+
+6. **Service Platform** - среда, используемая для хостинга одного или более веб сервисов. <sup>[\[1.6\]][1.6]</sup>
+   - Она включает в себя один или более SOAP серверов, ни одного или несколько UDDI реестров, защиту и транзакционные сервисы, используемые веб сервисами, которые хостятся на ней, и прочую инфраструктуру.
  
-7. Пример веб сервиса: [dailyinfo](http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx) 
+7. **Service Provider** - провайдер веб сервиса, который реализует его и делает доступным в интернете. <sup>[\[1.7\]][1.7]</sup>
+   - Провайдер может полностью предоставлять платформу или же только некоторые части J2EE функциональности, включая немного веб сервисвисных аддонов.
+
+8. **Service Requestor** - логика, которая находит и внедряет программные средства, предоставляемые одним или более провайдерами. <sup>[\[1.8\]][1.8]</sup>
+   - Роль реквестора могут играть: человек, использующий веб сервис, или другой веб сервис.
+
+9. **Service Registry (Broker)** - логически-централизованная директория сервисов, куда девелоперы публикуют новые 
+сервисы и где можно найти существующие. Поэтому этот элемент является координационным центром для компаний и их услуг. <sup>[\[1.9\]][1.9]</sup>
+   - Реестр предоставляет следующего вида информацию: бизнес данные, такие как имя, описание, контактная информация, или данные, необходимые для использования веб сервиса.
+ 
+10. Пример веб сервиса: [dailyinfo](http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx) 
 
 ***
 
@@ -252,7 +262,16 @@
 ***
 
 [rpc]: https://www.techopedia.com/definition/24022/remote-procedure-call-rpc
-[2.7]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,10
-[soap]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
 [wsdl]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
 [uddi]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
+[soap]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,820
+
+
+[1.4]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=22&zoom=auto,-83,751
+[1.5]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=22&zoom=auto,-83,751
+[1.6]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=18&zoom=auto,-83,662
+[1.7]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=23&zoom=auto,-83,400
+[1.8]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=24&zoom=auto,-83,471
+[1.9]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=24&zoom=auto,-83,828
+
+[2.7]: http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o'reilly_-_java_web_services.pdf#page=12&zoom=auto,-83,10
