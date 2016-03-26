@@ -3,8 +3,8 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-75180616-1', 'auto');
-ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Web Service</h1><h3>1. Общее</h3><ol>
-<li><p><strong>Web Service</strong> - приложение, предназначенное для обеспечения сетевого взаимодействия между компьютерами. </p>
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Web Service</h1><h3>1. Общее</h3><ol>
+<li><p><strong>Web Service</strong> - программная система, предназначенная поддерживать взаимодействие между интераперабельными устройствами через сеть. Веб сервис обладает интерфейсом, описанным в WSDL формате. Другие системы, взаимодействуют с веб сервисом через SOAP-сообщения, которые обычно передаются с помощью HTTP с XML сериализацией в связке с другими веб-стандартами. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#whatis">[source]</a></sup></p>
 <ul>
 <li>Сервис доступен по сети, может располагаться и выполняться на разных компьютерах. </li>
 <li>Передача сообщений между сервисом и клиентом происходит в независимом формате.</li>
@@ -13,69 +13,160 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li>Не привязан к операционной системе или языку программирования</li>
 </ul>
 </li>
-<li><p><strong>Переиспользуемые компоненты</strong> - веб сервисы могут предоставить приложению такие компоненты, как: обмен валюты, 
-сводка о погоде, перевод текста и т.д. </p>
-</li>
-<li><p><strong>Подключение сторонних программ</strong> - веб сервисы могут обмениваться данными с различными программами независимо от
-языка программирования, на котором они написаны.</p>
-</li>
-<li><p><strong>Service Provider</strong> - провайдер веб сервиса, который реализует его и делает доступным в интернете.</p>
-</li>
-<li><p><strong>Service Requestor</strong> - любой пользователь веб сервиса, который открывает сетевое соединение и отправляет XML 
-запросы.</p>
-</li>
-<li><p><strong>Service Registry (Broker)</strong> - логически-централизованная директория сервисов, куда девелоперы публикуют новые 
-сервисы и 
-где можно найти существующие. Поэтому этот элемент является координационным центром для компаний и их услуг.</p>
-</li>
 <li><p>Пример веб сервиса: <a href="http://www.cbr.ru/dailyinfowebserv/dailyinfo.asmx">dailyinfo</a> </p>
 </li>
 </ol>
 <hr>
-<h3>2. Основные компоненты</h3><ol>
-<li><p><strong>SOAP (Simple Object Access Protocol)</strong> - основанный на XML протокол обмена сообщениями.</p>
+<h3>2. Архитектурные модели</h3><ol>
+<li><p><strong>SOA (Service Based Architecture)</strong> - модульный подход к разработке программного обеспечения, основанный на использовании распределённых, слабо связанных заменяемых компонентов, оснащённых стандартизированными интерфейсами для взаимодействия по стандартизированным протоколам. <sup><a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81-%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F_%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0">[source]</a></sup></p>
+<ul>
+<li>Программные комплексы, разработанные в соответствии с сервис-ориентированной архитектурой, обычно реализуются как набор веб-служб, взаимодействующих по протоколу SOAP, но существуют и другие реализации, например, на основе REST.</li>
+</ul>
 </li>
-<li><p><strong>REST (REpresentational State Transfer)</strong> - стиль архитектуры веб сервиса.</p>
+<li><p><strong>ROA (REST-Oriented Architecture)</strong> - архитектурный стиль приложения и подход к разработке для создания ПО в виде ресурсов с RESTful интерфейсами. Эти ресурсы являются программными компонентами, которые могут быть переиспользованы для различных целей. <sup><a href="https://en.wikipedia.org/wiki/Resource-oriented_architecture">[source]</a></sup></p>
+</li>
+<li><p><strong>MOM (Message-Oriented Model)</strong> сосредаточена на тех аспектах архитектуры, которые относятся к сообщениям и их обработке. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#message_oriented_model">[source]</a></sup></p>
+</li>
+<li><p><strong>SOM (Service-Oriented Model)</strong> сосредаточена на тех аспектах архитектуры, которые относятся к сервису и действиям. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service_oriented_model">[source]</a></sup></p>
+<ul>
+<li>Главная цель SOM - устанавливать отношения между агентом, сервисом, который он реализует, и запросами.</li>
+<li>SOM построен на основе MOM, но сосредочен больше на действия, чем на сообщения.</li>
+</ul>
+</li>
+<li><p><strong>ROM (Resource-Oriented Model)</strong> сосредоточена на тех аспектах архитектуры, которые относятся к ресурсам, и сервис модель которых связана с манипулированием ресурсами. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#resource_oriented_model">[source]</a></sup></p>
+</li>
+<li><p><strong>PM (Policy Model)</strong> сосредаточена на тех аспектах архитектуры, которые относятся к политике, расширениям, защите и качеству сервиса. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#policy_model">[source]</a></sup></p>
+</li>
+<li><p><strong>MM (Management Model)</strong> сосредаточена на тех аспектах архитектуры, которые относятся к регулированию веб сервисов. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#management_model">[source]</a></sup></p>
+</li>
+</ol>
+<hr>
+<h3>3. Технологии</h3><ol>
+<li><p><strong>SOAP (Simple Object Access Protocol)</strong> - основанный на XML протокол обмена сообщениями.</p>
 </li>
 <li><p><strong>WSDL (Web Services Description Language)</strong> - язык разметки, основанный на XML, преднзначенный для 
 описания веб сервисов.</p>
 </li>
-<li><p><strong>RDF (Resource Description Framework)</strong> - фреймворк, написанный на XML, предназначенный для описания ресурсов в 
-сети.</p>
+<li><p><strong>UDDI (Universal Description, Discovery, and Integration)</strong> - предоставляет всемирный реестр веб сервисов для рекламы, поиска и хранения.</p>
 </li>
-<li><p><strong>RSS (Really Simple Syndication)</strong> - семейство XML форматов, предназначенных для публикации обновленной 
-информации, такой как: лента новостей, записи в блогах, аудио и видео материалы.</p>
+<li><p>Взаимодействие между SOAP, WSDL и UDDI:</p>
+<ul>
+<li>Приложение играет роль веб сервисов, которые нужны клиенту для доступа к другому приложению или бизнес логике, расположенной где-то в сети. </li>
+<li>Клиент делает запрос в UDDI реестр для нахождения сервиса по имени, категории, идентификатору или какой-то другой спецификации. </li>
+<li>Как только сервис найден, клиент получает информацию о местонахождении WSDL документа из UDDI реестра. </li>
+<li>WSDL документ содержит информацию о том, как обратиться к веб сервису, и формат запросов в XML схему.</li>
+<li>Клиент создает SOAP сообщение в соответствии с XML схемой, взятой из WSDL, и посылает запрос хосту (где находится веб сервис).</li>
+</ul>
 </li>
 </ol>
 <hr>
-<h3>3. SOAP API</h3><ol>
-<li><p><strong>SOAP</strong> выполняет следующие функции:</p>
+<h3>4. SOM</h3><ol>
+<li><p><strong>SOM (Service-Oriented Model)</strong> сосредаточена на тех аспектах архитектуры, которые относятся к сервису и действиям. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service_oriented_model">[source]</a></sup></p>
 <ul>
-<li>протокол обмена сообщениями, созданный для взаимодействия через интернет.</li>
-<li>может расширять HTTP для XML messaging.</li>
-<li>предоставляет траспортировку данных для веб сервисов.</li>
-<li>может быть использован для транслирования сообщения.</li>
-<li>является платформо- и языково-независимым.</li>
-<li>определяет какая информация отправляется и как через XML.</li>
-<li>позволяет клиентским приложениям легко подключаться к удаленным сервисам и вызывать удаленные методы</li>
+<li>Главная цель SOM - устанавливать отношения между агентом, сервисом, который он реализует, и запросами.</li>
+<li>SOM построен на основе MOM, но сосредочен больше на действия, чем на сообщения.</li>
+</ul>
+</li>
+<li><p><strong>Message</strong> - единица информации, отсылаемая одним агентом другому в конексте веб сервисов. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#message">[source]</a></sup></p>
+</li>
+<li><p><strong>Action</strong> - любое действие, представленное агентом в качестве отклика на получение сообщения, или посылки сообщения, или другого изменения состояния. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#action">[source]</a></sup></p>
+</li>
+<li><p><strong>Service</strong> - набор действий, которые формируют целостную систему с точки зрения провайдеров и реквесторов. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service">[source]</a></sup></p>
+</li>
+<li><p><strong>Agent</strong> - программа, выполняющая функции, указанные пользователем, сущностью или процессом. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#agent">[source]</a></sup></p>
+<ul>
+<li>Агент представляет программу, выполняющую функции согласно действиям пользователя, сущности или процесса.</li>
+<li>Агент обладает идентификатором, владельцем (сущностью) и может предоставлять 1 и более сервисов или запрашивать 0 и более сервисов.</li>
+</ul>
+</li>
+<li><p><strong>Choreography</strong> - определяет очередность и условия, которые позволяют объеденению независимых веб сервисов обмениваться информацией с целью достичь некоторую полезную функцию. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#choreography">[source]</a></sup></p>
+</li>
+<li><p><strong>Choreography Description Language</strong> - нотация для описания хореографии. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#choreography_description_language">[source]</a></sup></p>
+</li>
+<li><p><strong>Service Description</strong> - набор документов, описывающих интерфейс и семантику сервиса. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service_description">[source]</a></sup></p>
+<ul>
+<li>Описание выражается через XML и обуславливается одним или более стандартами.</li>
+</ul>
+</li>
+<li><p><strong>Service Operation</strong> - абстрактная группировка сообщений, которую сервис посылает и получает, чтобы совершить определенную задачу. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service_operation">[source]</a></sup></p>
+</li>
+<li><p><strong>Service Platform</strong> - среда, используемая для хостинга одного или более веб сервисов. <sup>[[source]][service-platform]</sup></p>
+<ul>
+<li>Она включает в себя один или более SOAP серверов, ни одного или несколько UDDI реестров, защиту и транзакционные сервисы, используемые веб сервисами, которые хостятся на ней, и прочую инфраструктуру.</li>
+</ul>
+</li>
+<li><p><strong>Service Provider</strong> - агент, который способен и предназначен для совершения действий, связанных с сервисом. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#id2608853">[source]</a></sup></p>
+<ul>
+<li>Провайдер предоставляет 1 или более сервисов.</li>
+<li>Провайдер представляет или вызывает представление действий, связанных с сервисом.</li>
+</ul>
+</li>
+<li><p><strong>Service Requester</strong> - сущность, которая отвечает за запросы к сервису через провайдер. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#id2608853">[source]</a></sup></p>
+<ul>
+<li>Реквестор запрашивает 1 или более сервисов.</li>
+</ul>
+</li>
+<li><p><strong>Service Registry (Broker)</strong> - логически-централизованная директория сервисов, куда девелоперы публикуют новые 
+сервисы и где можно найти существующие. Поэтому этот элемент является координационным центром для компаний и их услуг. <sup>[[source]][service-registry]</sup></p>
+<ul>
+<li>Реестр предоставляет следующего вида информацию: бизнес данные, такие как имя, описание, контактная информация, или данные, необходимые для использования веб сервиса.</li>
+</ul>
+</li>
+<li><p><strong>Service Semantics</strong> - контракт между провайдером и реквестором, который отображает вызов сервиса.  <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#id2617100">[source]</a></sup></p>
+<ul>
+<li>Семантика является обобщением таксов, которые составляют сервис.</li>
+<li>Семантика может выражаться с помощью языка описания сервиса.</li>
+</ul>
+</li>
+<li><p><strong>Service Task</strong> - еденица активности, связанная с сервисом. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#service_task">[source]</a></sup></p>
+</li>
+</ol>
+<hr>
+<h3>5. ROM</h3><ol>
+<li><strong>ROM (Resource-Oriented Model)</strong> сосредоточена на тех аспектах архитектуры, которые относятся к ресурсам, и сервис модель которых связана с манипулированием ресурсами. <sup><a href="https://www.w3.org/TR/2003/WD-ws-arch-20030808/#resource_oriented_model">[source]</a></sup></li>
+</ol>
+<hr>
+<h3>6. SOAP</h3><ol>
+<li><p><strong>SOAP</strong> - протокол обмена структурированными сообщениями в распределенной вычислительной среде. Также предоставляет стандарт структуры упаковки данных для транспортировки XML документов с помощью различных интернет-технологий, как: SMTP, HTTP, FTP. <sup><a href="http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o&#39;reilly_-_java_web_services.pdf#page=12&amp;zoom=auto,-83,820">[source]</a></sup></p>
+<ul>
+<li>Так как SOAP обладает стандартным механизмом транспортировки, различные клиенты и серверы могут взаимодействовать, например, с EJB через .NET клиент и наоборот.</li>
 </ul>
 </li>
 <li><p>Пример взаимодействия клиента с Web приложением (регистрация аккаунта):</p>
-<pre><code> 1. Программа на клиентской стороне конвертирует информацию о регистрации аккаунта в SOAP сообщение.
- 2. SOAP сообщение отсылается в веб сервис, как тело HTTP POST запроса.
- 3. Веб сервис распаковывает SOAP реквест и конвертирует в комманду, которую понимает приложение на сервере.
- 4. Приложение обрабатывает информацию своей логикой и отправляет ответ с новым уникальным номером аккаунта.
- 5. Следующим шагом, веб сервис конвертирует ответ сервера в SOAP сообщение, которое отправляет назад в клиентское 
- приложение, как ответ на HTTP запрос.
- 6. Клиентское приложение распаковывает SOAP сообщение и предоставляет клиенту соотвествующую информацию.
+<ul>
+<li>Программа на клиентской стороне конвертирует информацию о регистрации аккаунта в SOAP сообщение.</li>
+<li>SOAP сообщение отсылается в веб сервис, как тело HTTP POST запроса.</li>
+<li>Веб сервис распаковывает SOAP реквест и конвертирует в комманду, которую понимает приложение на сервере.</li>
+<li>Приложение обрабатывает информацию своей логикой и отправляет ответ с новым уникальным номером аккаунта.</li>
+<li>Следующим шагом, веб сервис конвертирует ответ сервера в SOAP сообщение, которое отправляет назад в клиентское 
+приложение, как ответ на HTTP запрос.</li>
+<li>Клиентское приложение распаковывает SOAP сообщение и предоставляет клиенту соотвествующую информацию.</li>
+</ul>
+</li>
+<li><p>Клиент/сервер связь:</p>
+<pre><code>               HTTP POST of SOAP request document
+  SOAP: client ----------------------------------&gt; service
+
+        client &lt;---------------------------------- service
+                    SOAP (maybe JSON) document
 </code></pre></li>
+<li><p><strong>SOAP Building Blocks</strong>. SOAP сообщение - это обычный XML документ, содержащий следующие элементы:</p>
+<ul>
+<li>Оболочка - идентифицирует XML документ как SOAP сообщение.</li>
+<li>Заголовок - содержит различного рода информацию о сообщении, которая помещается обычно в заголовки.</li>
+<li>Тело - содержит информацию о вызове и ответе.</li>
+<li>Ошибка - содержит все ошибки и текущий статус.</li>
+</ul>
+</li>
 </ol>
 <hr>
-<h3>4. REST API</h3><hr>
-<h3>5. Bulk API</h3><hr>
-<h3>6. XML WSDL</h3><ol>
-<li><p><strong>WSDL Documents</strong> - WSDL документ описывает веб сервис. Он указывает местоположение сервиса и его методы, 
-используя следующие элементы:</p>
+<h3>7. WSDL</h3><ol>
+<li><p><strong>WSDL (Web Service Description Language)</strong> - XML технология, которая описывает интерфейс веб сервиса в стандартизированном виде. WSDL указывает стандарт, как веб сервис должен представлять входные и выходные параметры при вызове извне, как должна выглядеть структура функции, природа вызова и как осуществлять связывание протокола сервера. <sup><a href="http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o&#39;reilly_-_java_web_services.pdf#page=12&amp;zoom=auto,-83,820">[source]</a></sup></p>
+<ul>
+<li>WSDL позволяет различным клиентам автоматически распознавать, как взаимодействовать с веб сервисом.</li>
+</ul>
+</li>
+<li><p><strong>WSDL документ</strong> - описывает веб сервис. Он указывает местоположение сервиса и его методы, используя следующие элементы:</p>
 <ul>
 <li><code>&lt;types&gt;</code> - определяет типы данных, используемые веб сервисом.</li>
 <li><code>&lt;message&gt;</code> - определяет элементы данных для каждой операции.</li>
@@ -217,8 +308,156 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>7. UDDI</h3><hr>
-<h3>8. XML-RPC</h3><hr>
-<h3>9. Protocol Stack</h3><hr>
-<h3>10. XML RDF</h3><hr>
-<h3>11. XML RSS</h3><hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
+<h3>8. UDDI</h3><ol>
+<li><strong>UDDI (Universal Description, Discovery, and Integration)</strong> - предоставляет всемирный реестр веб сервисов для рекламы, поиска и хранения. <sup><a href="http://gsl.mit.edu/media/programs/south-africa-summer-2015/materials/o&#39;reilly_-_java_web_services.pdf#page=12&amp;zoom=auto,-83,820">[source]</a></sup><ul>
+<li>UDDI предоставляет структуру для представления деловых отношений, веб сервисов, технических метаданных и точек доступа к веб сервисам.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>9. REST</h3><ol>
+<li><p><strong>REST (REpresentational State Transfer)</strong> - это стиль архитектуры программного обеспечения для распределенных систем, использующий веб протоколы и веб технологии. REST архитектура включает в себя клиентское и серверное взаимодействие, построенное вокруг передачи ресурсов. <sup><a href="https://www.techopedia.com/definition/1312/representational-state-transfer-rest">[source]</a></sup></p>
+<ul>
+<li>Самая большая реализация REST - World Wide Web, которая, как правило, используется для построения веб-служб.</li>
+<li>Системы, которые построены согласно REST принципам, называются RESTful.</li>
+<li>REST может быть использован для сбора данных вебсайта через XML файлы веб страницы.</li>
+<li>Пользователи могут обращаться к веб страницам через URL сайта, взаимодействовать с XML файлами через браузер и использовать данные как угодно.</li>
+<li>Базовые REST принципы:<ul>
+<li>Client и Server - клиент и сервер должны быть отделены от REST операций через специальный интерфейс, который улучшает переносимость кода.</li>
+<li>Stateless - каждый клиентский запрос должен содержать все требуемые данные для обработки запроса без хранения клиентского окружения на сервере.</li>
+<li>Cacheable - ответы могут быть закэшированны на клиентском компьютере, чтобы ускорить веб поиск.</li>
+<li>Layered System - позволяет клиентам подключаться к серверу через вспомогательный уровень для улучшения расширяемости.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Клиент/сервер связь:</p>
+<pre><code>                  HTTP GET, POST, PUT, or DELETE
+  REST: client ----------------------------------&gt; service
+
+        client &lt;---------------------------------- service
+                 XML, JSON, plaintext,... document
+</code></pre></li>
+</ol>
+<hr>
+<h3>10. Protocol Stack</h3><ol>
+<li><p><strong>Протокол</strong> -  набор соглашений интерфейса логического уровня, которые определяют обмен данными между различными программами.  <sup>[[source]][protocol]</sup></p>
+</li>
+<li><p><strong>TCP/IP</strong> - семейство протоколов, предназначенных для взаимодйествия между электронными устройствами. Определяет, как они должны быть связаны через интернет и как нужно передавать данные между ними. <sup><a href="http://www.w3schools.com/website/web_tcpip.asp">[source]</a></sup></p>
+</li>
+<li><p><strong>TCP (Transmission Control Protocol)</strong> - отвечает за разбиение данных на небольшие пакеты перед тем, как пересылать их по сети, и за сборку этих пакетов в исходное состояние после получения. <sup>[[source]][tcp]</sup></p>
+</li>
+<li><p><strong>IP (Internet Protocol)</strong> - отвечает за обмен данными между устройствами, т.е. за адресацию, отправку и получение пакетов данных через интернет. <sup>[[source]][ip]</sup></p>
+</li>
+<li><p><strong>DNS (Domain Name Server)</strong> - иерархическая система имен, построенная на распределенных базах данных. <sup><a href="https://www.techopedia.com/definition/5361/hypertext-transport-protocol-secure-https">[source]</a></sup></p>
+<ul>
+<li>Когда пользователь посещает сайт, то имя сайта преобразуется в числовое представление с помощью DNS.</li>
+<li>Когда регистрируется новый домен вместе с TCP/IP адресом, DNSs по всему миру фиксируют эту информацию.</li>
+</ul>
+</li>
+<li><p><strong>HTTP (HyperText Transfer Protocol)</strong> - протокол уровня приложения, используемый в основном в World Wide Web. HTTP использует клиент-серверную модель, где браузер является клиентом и общается с веб-сервером, который хостит веб-сайт. <sup><a href="https://www.techopedia.com/definition/2336/hypertext-transfer-protocol-http">[source]</a></sup></p>
+<ul>
+<li>Обычный HTTP запрос состоит из следующих шагов:<ul>
+<li>Открывается соединение к HTTP серверу.</li>
+<li>Запрос отправляется на сервер.</li>
+<li>Выполняются вычисления на сервере.</li>
+<li>Сервер посылает назад ответ.</li>
+<li>Соединение закрывается.</li>
+</ul>
+</li>
+<li>Для HTTP, действие над данными задается с помощью методов (CRUD операций):<ul>
+<li>GET - получить.</li>
+<li>PUT - добавить, заменить.</li>
+<li>POST - добавить, изменить, удалить.</li>
+<li>DELETE - удалить.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>HTTPS (HyperText Transfer Protocol Secure)</strong> - разновидность HTTP протокола, который добавляет передаваемым данным уровень безопасности через SSL протокол или TLS протокол. <sup><a href="https://www.techopedia.com/definition/5361/hypertext-transport-protocol-secure-https">[source]</a></sup></p>
+</li>
+<li><p><strong>FTP (File Transfer Protocol)</strong> - протокол, используемый для передачи или обмена файлами между компьютерами. FTP часто используется для загрузки сетевых страниц и других документов с частного устройства разработки на открытые сервера хостинга. </p>
+</li>
+<li><p><strong>GIOP (General Inter-ORB Protocol)</strong> - абстрактный протокол в распределённых объектных системах, обеспечивающий возможность взаимодействия сервисов-брокеров.</p>
+</li>
+<li><p><strong>IIOP (Inter-ORB Protocol)</strong> - является конкретной реализацией абстрактных определений GIOP.</p>
+</li>
+<li><p><strong>SSL (Secure Socket Layer)</strong> - стандартный протокол, используемый для защищенной передачи документов через сеть.</p>
+</li>
+<li><p><strong>TLS (Transport Layer Security)</strong> - улучшенная версия SSL протокола.</p>
+</li>
+<li><p><strong>SNMP (Simple Network Management Protocol)</strong> - используется для управления сетями.</p>
+</li>
+<li><p><strong>ARP (Address Resolution Protocol)</strong> - используется IP для поиска адреса параметров сетевой карты компьютера, опираясь на IP-адрес.</p>
+</li>
+<li><p><strong>RARP (Reverse Address Resolution Protocol)</strong> - используется IP для поиска IP-адресов, опираясь на параметры сетевой карты компьютера.</p>
+</li>
+<li><p><strong>PPTP (Point to Point Tunneling Protocol)</strong> - используется для установления соединения (тунеля) между приватными сетями.</p>
+</li>
+<li><p><strong>NTP (Network Time Protocol)</strong> - используется для синхронизации времени между компьютерами.</p>
+</li>
+<li><p><strong>LDAP (Lightweight Directory Access Protocol)</strong> - используется для сбора информации о пользователях и электронных почтовых адресов из интернета.</p>
+</li>
+<li><p><strong>ICMP (Internet Control Message Protocol)</strong> - заботится об ошибках в сети.</p>
+</li>
+<li><p><strong>DHCP (Dynamic Host Configuration Protocol)</strong> - используется для поиска динамических IP-адресов компьютеров в сети.</p>
+</li>
+<li><p><strong>BOOTP (Boot Protocol)</strong> - используется для бута (запуска) компьютеров из сети.</p>
+</li>
+<li><p><strong>POP (Post Office Protocol)</strong> - используется программами с почтовой функциональностью для отыскания нужной почти из почтового сервера. </p>
+</li>
+<li><p><strong>IMAP (Internet Message Access Protocol)</strong> - действует также, как и POP, только не загружает сразу все запрашиваемые почты, а дает возможность посмотреть на сообщения, которые выдает почтовый сервер, или удалить их из базы.</p>
+</li>
+<li><p><strong>SMTP (Simple Mail Transfer Protocol)</strong> - заботится об отправки сообщений в почту. Обычно сообщения посылаются на почтовый сервер, а затем в другие серверы и только потом в пункт назначения. Может передавать только текстовые данные.</p>
+</li>
+<li><p><strong>MIME (Multi-purpose Internet Mail Extensions)</strong> - выполняет такие же функции, что и SMTP, только может еще передавать в сообщениях двоичные данные, т.е. аудио, видео, картинки, что угодно.</p>
+</li>
+</ol>
+<hr>
+<h3>11. Прочие Технологии</h3><ol>
+<li><p><strong>Servlet API</strong> является основой для всех остальных технологий Java, касающихся Web и дает возможность динамически генерировать любой web-контент, используя любые библиотеки, доступные для java. </p>
+</li>
+<li><p><strong>JSP (JavaServer Pages)</strong> - технология, используемая для разработки интерактивных веб страниц. JSP была разработана Sun Microsystems и является улучшенной версией Java сервлетов. <sup><a href="https://www.techopedia.com/definition/4886/javaserver-page-jsp">[source]</a></sup></p>
+<ul>
+<li>Как и большинство серверных технологий, JSP отделяет бизнес логику от представления.</li>
+<li>JSP являются обычные HTML страницы с встроенным Java кодом.</li>
+<li>Чтобы обработать JSP файл, разработчику нужен JSP движок, который подключен к веб серверу. </li>
+<li>JSP страница компилируется в сервлет, который управляет сервлет движком (этот этап называется &quot;преобразованием&quot;). Сервлет движок затем загружает класс сервлета и реализовывает его, чтобы создать динамический HTML, который затем посылается в браузер. Такой процесс запускается каждый раз, когда запрашивается очередная страница.</li>
+<li>Если вместе с JSP исользовать JDBC, то можно сделать динамические, связанные с базой данных, вебсайты.</li>
+</ul>
+</li>
+<li><p><strong>Apache Tomcat</strong> - опенсорсный веб сервер, разработанный Apache Software Foundation. Он позволяет реализовывать Java сервлеты и JSPs для поддержки эффективных Java-серверных сред. <sup><a href="https://www.techopedia.com/definition/15735/apache-tomcat">[source]</a></sup></p>
+<ul>
+<li>Пользователь также может получить доступ к конфигурациям и использовать XML для настройки проектов.</li>
+<li>Tomcat может предоставить рантайм оболочку для Java сервлетов.</li>
+<li>Ключевой элемент Java-based веб сервера - сервлет контейнер, поэтому JSP скрипты и им подобные автоматически преобразовываются в сервлет.</li>
+<li><strong>Catalina</strong> — контейнер сервлетов Tomcat’а, который реализует спецификацию сервлетов.</li>
+</ul>
+</li>
+<li><p><strong>Apache Ant</strong> - Java-based опенсорсный build tool, разработанный Apache Software Foundation. Он схож с &quot;make&quot; утилитой, но в большинстве своем функционирует только на java платформе. <sup><a href="https://www.techopedia.com/definition/16219/apache-ant">[source]</a></sup></p>
+<ul>
+<li>В отличии от Make, Ant написан на XML, поэтому портируемость и простота - это два главных преимущества Ant.</li>
+</ul>
+</li>
+<li><p><strong>RPC (Remote Procedure Call)</strong> - класс технологий, позволяющих компьютерным программам вызывать функции или процедуры в другом адресном пространстве (как правильно, на удаленных компьютерах). <sup><a href="https://www.techopedia.com/definition/24022/remote-procedure-call-rpc">[source]</a></sup></p>
+<ul>
+<li>RPC работает по принципу: отправитель или клиент создает запрос с помощью процедуры, функции или вызова метода в удаленный сервер, который RPC обрабатывает и посылает. Когда удаленный сервер получает запрос, он отсылает ответ назад клиенту, и приложение продолжает свою работу. Перед тем, как продолжать работу программы, клиент ждет, пока сервер завершит процесс обработки.</li>
+<li>В общем, RPC приложения используют модули, называемые прокси и заглушки, которые заставляют их выглядеть как простые локальные вызовы процедур.<ul>
+<li>RPC-ориентированное приложение - приложение, в которых существует интерактивная связь между удалёнными компонентами с небольшим временем ответов и относительно малым количеством передаваемых данных.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>RMI (Remote Method Invocation)</strong> - программный интерфейс вызова удаленных методов в языке Java. <sup><a href="https://www.techopedia.com/definition/1311/remote-method-invocation-rmi">[source]</a></sup></p>
+<ul>
+<li>Он представляет объектно-ориентированный эквивалент RPC.</li>
+<li>RMI функциональность находится в <code>java.rmi</code> пакете и предоставляет распределенную объектную модель, специфицирующую, каким образом производится вызов удаленных методов, работающих на другой виртуальной машине Java.</li>
+<li>При доступе к объектам на другом компьютере возможно вызывать методы этого объекта. Необходимо только передать параметры метода на другой компьютер, сообщить объекту о необходимости выполнения метода, а затем получить обратно возвращаемое значение. </li>
+</ul>
+</li>
+<li><p><strong>RSS (Really Simple Syndication)</strong></p>
+</li>
+<li><p><strong>RDF (Resource Description Framework)</strong></p>
+</li>
+</ol>
+<hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
