@@ -1,4 +1,4 @@
-# Java EE
+# Java EE (Enterprise Edition)
 
 ### 1. Общее
 
