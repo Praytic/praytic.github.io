@@ -197,6 +197,49 @@ public class StandartTest extends Test {
 </li>
 </ul>
 </li>
+<li><p><strong>JavaBeans</strong> - компоненты (бины), обеспечивающие основу для многократно используемых, встраиваемых и модульных компонентов ПО. Компоненты JavaBeans могут принимать различные формы, но наиболее широко они применяются в элементах графического пользовательского интерфейса. <sup><a href="https://ru.wikipedia.org/wiki/JavaBeans">[source]</a></sup></p>
+<ul>
+<li>Одна из целей создания JavaBeans — взаимодействие с похожими компонентными структурами.</li>
+<li>Чтобы класс мог работать как bean, он должен соответствовать определённым соглашениям:<ul>
+<li>Класс должен иметь конструктор без параметров, с модификатором доступа public. Такой конструктор позволяет инструментам создать объект без дополнительных сложностей с параметрами.</li>
+<li>Свойства класса должны быть доступны через get, set и другие методы (так называемые методы доступа), которые должны подчиняться стандартному соглашению об именах. Это легко позволяет инструментам автоматически определять и обновлять содержание bean’ов. </li>
+<li>Класс должен быть сериализуем. Это даёт возможность надёжно сохранять, хранить и восстанавливать состояние bean независимым от платформы и виртуальной машины способом.</li>
+<li>Класс должен иметь переопределенные методы equals(), hashCode() и toString().</li>
+</ul>
+</li>
+<li><p>Пример бина, как POJO объекта:</p>
+<pre><code class="language-Java">public class PersonBean implements Serializable {
+  private String name;
+
+  public PersonBean() {
+  }
+
+  public String getName() {
+     return (this.name);
+  }
+  public void setName(String name) {
+     this.name = name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+      ...
+  }
+  @Override
+  public int hashCode() {
+      ...
+  }
+  @Override
+  public String toString() {
+      ...
+  }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>POJO (Plain Old Java Object)</strong> - простой Java-объект, не унаследованный от какого-то специфического объекта и не  реализующий никаких служебных интерфейсов сверх тех, которые нужны для бизнес-модели. <sup><a href="https://ru.wikipedia.org/wiki/POJO">[source]</a></sup></p>
+</li>
 </ol>
 <hr>
 <h3>3. ООП</h3><ol>
@@ -218,7 +261,7 @@ public class StandartTest extends Test {
 <li><p><strong>Наследование</strong> - возможность создавать потомков и переопределять часть функциональности класса.</p>
 <ul>
 <li>Реализуется с помощью ключевого слова extends.</li>
-<li>Java не поддерживает множественное наследование.</li>
+<li>Java не поддерживает множественное наследование классов.</li>
 </ul>
 </li>
 <li><p><strong>Абстракция</strong> - это выделение общих характеристик объекта, отличая от всех других объектов.</p>
@@ -226,7 +269,7 @@ public class StandartTest extends Test {
 <li>Реализуется с помощью абстрактных классов и интерфейсов.</li>
 </ul>
 </li>
-<li><p><strong>Класс</strong> — это описания структуры и поведения объектов.</p>
+<li><p><strong>Класс</strong> — это описание структуры и поведения объектов.</p>
 </li>
 <li><p><strong>Объекты</strong> — это участки памяти виртуальной машины, содержащие своё состояние в виде полей.</p>
 </li>
@@ -591,4 +634,5 @@ executor.execute(new Runnable() {
 </li>
 <li><p>Иерархия мапов<br> <img src="https://i.gyazo.com/edfb3a3797946a21747880fcac1507ba.png" alt="Иерархия мапов"></p>
 </li>
-</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
+</ol>
+<hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>

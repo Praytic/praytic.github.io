@@ -4,33 +4,68 @@
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-75180616-1', 'auto');
 ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Java EE (Enterprise Edition)</h1><h3>1. Общее</h3><ol>
-<li><p><strong>EIS (Enterprise Information System)</strong> - регулирует корпоративные програмные обеспечения, которые представляют важную информационную инфраструктуру компании. Проще говоря, EISs позволяют организациям контролировать эффективность работы предприятия, а также выявлять проблемы и составлять новые решения. <sup><a href="https://www.techopedia.com/definition/24327/enterprise-information-system-tier-eis">[1.1]</a></sup></p>
+<li><p><strong>Клиент</strong> - приложение, использующее объекты сервера с помощью создания запросов.</p>
 <ul>
-<li>EIS стек технологий включает JDBC API, JP API, JT API и JCA.</li>
-<li>К примеру, EIS являются: Siebel Systems, SAP AG, Great Plains Systems, Oracle Applications.</li>
-<li>Обычный EIS состоит из четырех компонентов: техническое, програмнное обеспечение, пользовательский интерфейс и телекоммуникации.</li>
-<li>EIS предоставляет интерфейс JDB для Java платформы.</li>
+<li>Множество различных приложений могут считаться клиентами, и они не обязательно должны быть написаны на Java.</li>
+<li>Клиентом может быть браузер, автономное приложение или любой сервер, который работает на другой машине.</li>
 </ul>
 </li>
-<li><p><strong>ERP (Enterprise Resource Planning)</strong> - метод эффективного использования человеческих ресурсов, программного и технического обеспечения для увеличения продуктивности и прибыли, что упрощает бизнес решения компании. Проще говоря, ERP решение позволяет каждому отделу или бизнес сфере управляться централизованно, при этом работать отдельно друг от друга.<sup><a href="https://www.techopedia.com/definition/1508/enterprise-resource-planning-erp">[1.2]</a></sup></p>
+<li><p><strong>Сервер</strong> - приложение, обрабатывающее запросы клиента и возвращающее ответ.</p>
+</li>
+<li><p><strong>Модульное программирование</strong> - это организация программы как совокупности небольших независимых блоков, называемых модулями, структура и поведение которых подчиняются определенным правилам. <sup><a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">[source]</a></sup></p>
+</li>
+<li><p><strong>Модуль</strong> -  функционально законченный фрагмент программы.  <sup><a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%B4%D1%83%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5">[source]</a></sup></p>
+<ul>
+<li>Java предусматривает объединение модулей в пакеты.</li>
+</ul>
+</li>
+<li><p><strong>Платформа</strong> - в общем смысле, это любая существующая среда выполнения, в которой должен выполняться вновь разрабатываемый фрагмент программного обеспечения или объектный модуль с учётом накладываемых этой средой ограничений и предоставляемых возможностей. <sup><a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%8F_%D0%BF%D0%BB%D0%B0%D1%82%D1%84%D0%BE%D1%80%D0%BC%D0%B0">[source]</a></sup> </p>
+</li>
+<li><p><strong>Компонент</strong> - это автономная функциональная программная единица, которая собирается в JEE приложение в связке с классами и файлами, и затем обменивается данными с другими компонентами. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABB">[source]</a></sup> </p>
+<ul>
+<li>JEE спецификация определяет следующие разновидности JEE компонентов:<ul>
+<li>Клиентские приложения и апплеты - клиент-компоненты, запускаются на клиенте.</li>
+<li>Servlet, JSF, JSP компоненты - веб-компоненты, запускаются на сервере.</li>
+<li>EJB (EB) компоненты - бизнес-компоненты, запускаются на сервере.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>EJB (Enterprise JavaBeans)</strong> - спецификация технологии написания и поддержки серверных компонентов, содержащих бизнес-логику. <sup><a href="https://ru.wikipedia.org/wiki/Enterprise_JavaBeans">[source]</a></sup> </p>
+<ul>
+<li>EJB применяется, когда необходимо:<ul>
+<li>Поддержка сохранности данных (persistence); данные должны быть в сохранности даже после остановки программы, чаще всего достигается с помощью использования базы данных.</li>
+<li>Поддержка распределённых транзакций.</li>
+<li>Поддержка параллельного изменения данных и многопоточность.</li>
+<li>Поддержка событий.</li>
+<li>Поддержка именования и каталогов (JNDI).</li>
+<li>Безопасность и ограничение доступа к данным.</li>
+<li>Поддержка автоматизированной установки на сервер приложений.</li>
+<li>Удалённый доступ.</li>
+</ul>
+</li>
+<li>EJB разделяются на 3 типа: Entity Beans, Session Beans, Message Driven Beans.</li>
+</ul>
+</li>
+<li><p><strong>ERP (Enterprise Resource Planning)</strong> - метод эффективного использования человеческих ресурсов, программного и технического обеспечения для увеличения продуктивности и прибыли, что упрощает бизнес решения компании. Проще говоря, ERP решение позволяет каждому отделу или бизнес сфере управляться централизованно, при этом работать отдельно друг от друга. <sup><a href="https://www.techopedia.com/definition/1508/enterprise-resource-planning-erp">[source]</a></sup></p>
 <ul>
 <li>ERP может включать в себя множественные приложения или один програмнный пакет, который аккуратно распространяет данные, необходимые для нескольких бизнес отделов компании.</li>
 <li>ERP может содержать множество различных бизнес моделей, включая: производство, платежную ведомость, продажи, реестр, партнеров, финансы и бухгалтерию, CRM (Customer Relationship Management).</li>
 </ul>
 </li>
-<li><p><strong>TP (Transaction Processing)</strong> - процесс завершения задачи и/или пользовательского/программного запроса мгновенно или в рантайме. Это набор различных взаимосвязанных задач и процессов, которые должны работать синхронно, чтобы завершить процесс транзакции. <sup><a href="https://www.techopedia.com/definition/464/transaction-processing">[1.3]</a></sup></p>
+<li><p><strong>TP (Transaction Processing)</strong> - процесс завершения задачи и/или пользовательского/программного запроса мгновенно или в рантайме. Это набор различных взаимосвязанных задач и процессов, которые должны работать синхронно, чтобы завершить процесс транзакции. <sup><a href="https://www.techopedia.com/definition/464/transaction-processing">[source]</a></sup></p>
 <ul>
 <li>TP относится к любой real-time транзакции или процессу, представленному TPS.</li>
 </ul>
 </li>
 <li><p><strong>TPS (Transaction Processing System)</strong> или <strong>Transaction Server</strong> - система программного обеспечения или 
-комбинация технического/программного обеспечения, которая поддерживает транзакционные технологии. <sup><a href="https://www.techopedia.com/definition/707/transaction-process-system-tps">[1.4]</a></sup></p>
+комбинация технического/программного обеспечения, которая поддерживает транзакционные технологии. <sup><a href="https://www.techopedia.com/definition/707/transaction-process-system-tps">[source]</a></sup></p>
 <ul>
 <li>Когда TPS получает запрос, то она согласовывается с соотвествующей системой для авторизации, для зароса данных или какого-нибудь определенного задания для завершения транзакции.</li>
 <li>Например, когда сделан запрос на выдачу материальных средств в банкомате, он сперва авторизирует пользователя согласно его данным из карточки и сохраняет запрос/статус в банковской системе. Когда информация получена, банкомат преобразует пользовательский запрос в транзакцию. Кроме того, TPS может принять, отклонить или прекратить транзакцию, в зависимости от переменных среды.</li>
 </ul>
 </li>
-<li><p><strong>API (Application Programming Interface)</strong> - это программа, которая производит взаимодействие с другими программами. Например, она позволяет программисту взаимодействовать с приложением, используя набор доступных этим API функций.<sup><a href="https://www.techopedia.com/definition/24407/application-programming-interface-api">[1.5]</a></sup></p>
+<li><p><strong>API (Application Programming Interface)</strong> - это программа, которая производит взаимодействие с другими программами. Например, она позволяет программисту взаимодействовать с приложением, используя набор доступных этим API функций.<sup><a href="https://www.techopedia.com/definition/24407/application-programming-interface-api">[source]</a></sup></p>
 <ul>
 <li>API является корректно построенным, если при его расширении не произойдет сбоев в программах, которые зависят от него.</li>
 <li>API может быть языково- зависимым и независимым.</li>
@@ -41,6 +76,131 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </ul>
 </li>
 </ul>
+</li>
+</ol>
+<hr>
+<h3>2. Многослойная Архитектура</h3><ol>
+<li><p><strong>Многослойная архитектура</strong>  - клиент-серверная архитектура, в которой представление, логика и управление данными разделены. Самая распространенная многослойная архитектура - трехслойная. <sup><a href="https://en.wikipedia.org/wiki/Multitier_architecture">[source]</a></sup></p>
+</li>
+<li><p><strong>Трехслойная архитектура</strong> - клиент-серверная архитектура, в которой пользовательский интерфейс, логика и управление данными разрабатываются и поддерживаются, как независимые модули, чаще всего на раздельных платформах. <sup><a href="https://en.wikipedia.org/wiki/Multitier_architecture#Three-tier_architecture">[source]</a></sup></p>
+</li>
+<li><p><strong>Client Tier</strong> - данный слой состоит из клиентов, которые обращаются к серверу и находятся на различных с ним машинах. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee001.htm#GCRLA">[source]</a></sup></p>
+</li>
+<li><p><strong>Web Tier</strong> - данный слой состоит из компонентов, которые управляют взаимодействием между клиент и бизнес стеками. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee001.htm#GCRNL">[source]</a></sup></p>
+<ul>
+<li>Главные задачи веб-слоя:<ul>
+<li>Динамическая генерация контента для клиента.</li>
+<li>Сбор входных данных от пользователей клиентского интерфейса и возврат соответствующих результатов из компонентов бизнес-слоя.</li>
+<li>Контролировать отображение страниц клиента.</li>
+<li>Регулировать состояние данных во время текущей сессии пользователя.</li>
+<li>Представлять некоторую базовую логику и временно хранить некоторые данные в управляющих бинах.</li>
+</ul>
+</li>
+<li>Список самых главных JEE технологий, которые используются в веб-слое в JEE приложениях: JSF, EL, Servlets, CDI, DI.</li>
+</ul>
+</li>
+<li><p><strong>Business Tier</strong> - данный стек состоит из компонентов, которые предоставляют бизнес логику приложению. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee001.htm#GCRLS">[source]</a></sup></p>
+<ul>
+<li>Бизнес логика - это код, который предоставляет функциональность определенным доменам, таким как: финансовая индустрия или e-commerce сайт.</li>
+<li>Список самых главных JEE технологий, которые используются в бизнес-слое в JEE приложениях: EJB (EB) компоненты, JAX-RS RESTful веб сервисы, JPA сущности.</li>
+</ul>
+</li>
+<li><p><strong>EIS (Enterprise Information System) Tier</strong> - данный стек состоит из серверов баз данных, ERP систем и других существующих источников данных по типу мейнфреймов. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee001.htm#GCRKW">[source]</a></sup></p>
+<ul>
+<li>Эти ресурсы обычно находятся отдельно от JEE сервера, и к ним обращаются через компоненты бизнес-слоя.</li>
+<li>Список самых главных JEE технологий, которые используются в EIS-слое в JEE приложениях: JDBC API, JPA, JCA, JTA.</li>
+</ul>
+</li>
+<li><p>Пример приложения с многослойной архитектурой:</p>
+<p><img src="https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_001.png" alt="example"></p>
+</li>
+</ol>
+<hr>
+<h3>3. Clients</h3><ol>
+<li><p><strong>Web Clients</strong> - разделяются на две части: <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABD">[source]</a></sup></p>
+<ul>
+<li>Динамические веб страницы, содержащие различного рода языки разметки, которые генерируются веб компонентами, запускаемыми из веб-слоя.</li>
+<li>Веб браузер, который формирует вид страниц, поучаемых от сервера.</li>
+</ul>
+</li>
+<li><p><strong>Application Clients</strong> - запускаются на машине клиента и позволяют пользователям выполнять задачи, для которых необходим достаточно функциональный пользовательский интерфейс, который не может предоставить язык разметки. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABF">[source]</a></sup></p>
+<ul>
+<li>Клиентские приложения напрямую имеют доступ к EBs из бизнес-слоя. Однако если требования приложения предусматривают такую возможность, то клиент может открыть HTTP соединение, чтобы установить соединение с сервлетом из веб-слоя.</li>
+</ul>
+</li>
+<li><p><strong>Applets</strong> - веб страница, получаемая из веб-слоя может включать в себя встроенный апплет. Написанный на Java апплет - это малое клиентское приложение, которое работает с JVM, встроенной в браузер. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABE">[source]</a></sup></p>
+</li>
+<li><p><strong>JBs Component Architecture</strong>. Сервер- и клиент-слои могут включать в себя компоненты, основанные на архитектуре JBs компонентов, чтобы управлять потоком данных между: <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABG">[source]</a></sup></p>
+<ul>
+<li>Клиентским приложением или апплетом и компонентами, запускаемыми на JEE сервере.</li>
+<li>Серверными компонентами и базой данных.</li>
+</ul>
+</li>
+<li><p><strong>JEE Server Communications</strong>. Клиент связывается с бизнес-слоем, запускаемым на JEE сервере напрямую, либо через веб страницы или через сервлеты из веб-слоя. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABH">[source]</a></sup></p>
+<ul>
+<li>Диграмма элементов, которые могут составлять клиент-слой:</li>
+</ul>
+<p><img src="https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_002.png" alt="diagram"></p>
+</li>
+</ol>
+<hr>
+<h3>4. Containers</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO">https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO</a></p>
+<hr>
+<h3>5. Web Services Support</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview005.htm">https://docs.oracle.com/javaee/7/tutorial/overview005.htm</a></p>
+<hr>
+<h3>6. APIs</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm">https://docs.oracle.com/javaee/7/tutorial/overview007.htm</a></p>
+<ol>
+<li><p><strong>EJB</strong></p>
+</li>
+<li><p><strong>Servlet</strong></p>
+</li>
+<li><p><strong>JSF</strong></p>
+</li>
+<li><p><strong>WebSocket</strong></p>
+</li>
+<li><p><strong>Concurrency Utilities</strong></p>
+</li>
+<li><p><strong>Batch</strong></p>
+</li>
+<li><p><strong>JSON-P</strong></p>
+</li>
+<li><p><strong>Bean Validation</strong></p>
+</li>
+<li><p><strong>EJB Lite</strong></p>
+</li>
+<li><p><strong>EL</strong></p>
+</li>
+<li><p><strong>JavaMain</strong></p>
+</li>
+<li><p><strong>JSP</strong></p>
+</li>
+<li><p><strong>Connectors</strong></p>
+</li>
+<li><p><strong>JP</strong></p>
+</li>
+<li><p><strong>JMS</strong></p>
+</li>
+<li><p><strong>Management</strong></p>
+</li>
+<li><p><strong>WS Metadata</strong></p>
+</li>
+<li><p><strong>Web Services</strong></p>
+</li>
+<li><p><strong>JACC</strong></p>
+</li>
+<li><p><strong>JASPIC</strong></p>
+</li>
+<li><p><strong>JAX-RS</strong></p>
+</li>
+<li><p><strong>JAX-WS</strong></p>
+</li>
+<li><p><strong>JSTL</strong></p>
+</li>
+<li><p><strong>JTA</strong></p>
+</li>
+<li><p><strong>CDI</strong></p>
+</li>
+<li><p><strong>DI</strong></p>
 </li>
 </ol>
 <hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>

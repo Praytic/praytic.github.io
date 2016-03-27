@@ -22,7 +22,7 @@ h6 {
 
 body {
     line-height: 2;
-    background: #3D3D3D;
+    background: rgba(155, 155, 155, 0.2);
 }
 
 img, iframe {
