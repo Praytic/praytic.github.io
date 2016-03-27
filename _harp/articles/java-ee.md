@@ -81,7 +81,7 @@
   - Список самых главных JEE технологий, которые используются в EIS-слое в JEE приложениях: JDBC API, JPA, JCA, JTA.
 
 1. Пример приложения с многослойной архитектурой:
-  ![example][https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_001.png]
+  ![example](https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_001.png)
 
 ***
 
@@ -102,7 +102,7 @@
 
 3. **JEE Server Communications**. Клиент связывается с бизнес-слоем, запускаемым на JEE сервере напрямую, либо через веб страницы или через сервлеты из веб-слоя. <sup>[\[source\]][jee-server-communications]</sup>
   - Диграмма элементов, которые могут составлять клиент-слой:
-  ![diagram][https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_002.png]
+  ![diagram](https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_002.png)
 
 ***
 
