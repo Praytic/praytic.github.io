@@ -91,6 +91,16 @@ header {
     position: relative;
 }
 
+section {
+    padding: 3em 0;
+    text-align: left;
+    background: #fff;
+}
+
+section.centered {
+    text-align: center;
+}
+
 strong, dt, h3, h4 {
     font-weight: 700;
 }
@@ -398,16 +408,6 @@ nav #menu-toggle {
     .container {
         max-width: 1500px;
         padding: 0 20px;
-    }
-
-    section {
-        padding: 3em 0;
-        text-align: left;
-        background: #fff;
-    }
-
-    section.centered {
-        text-align: center;
     }
 
     input {
