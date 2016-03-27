@@ -89,6 +89,7 @@ header {
     width: 95%;
     max-width: 650px;
     position: relative;
+    padding: 0 20px;
 }
 
 section {
