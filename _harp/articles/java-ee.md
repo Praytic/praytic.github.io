@@ -70,7 +70,7 @@
     + Контролировать отображение страниц клиента.
     + Регулировать состояние данных во время текущей сессии пользователя.
     + Представлять некоторую базовую логику и временно хранить некоторые данные в управляющих бинах.
-  - Список самых главных JEE технологий, которые используются в веб-слое в JEE приложениях: JSF, EL, Servlets, Contexts, DI.
+  - Список самых главных JEE технологий, которые используются в веб-слое в JEE приложениях: JSF, EL, Servlets, CDI, DI.
 
 1. **Business Tier** - данный стек состоит из компонентов, которые предоставляют бизнес логику приложению. <sup>[\[source\]][business-tier]</sup>
   - Бизнес логика - это код, который предоставляет функциональность определенным доменам, таким как: финансовая индустрия или e-commerce сайт.
@@ -103,9 +103,82 @@
 
 3. **JEE Server Communications**. Клиент связывается с бизнес-слоем, запускаемым на JEE сервере напрямую, либо через веб страницы или через сервлеты из веб-слоя. <sup>[\[source\]][jee-server-communications]</sup>
   - Диграмма элементов, которые могут составлять клиент-слой:
+
   ![diagram](https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_002.png)
 
 ***
+
+### 4. Containers
+
+https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO
+
+***
+
+### 5. Web Services Support
+
+https://docs.oracle.com/javaee/7/tutorial/overview005.htm
+
+***
+
+### 6. APIs
+
+https://docs.oracle.com/javaee/7/tutorial/overview007.htm
+
+1. **EJB**
+
+1. **Servlet**
+
+1. **JSF**
+
+1. **WebSocket**
+
+1. **Concurrency Utilities**
+
+1. **Batch**
+
+1. **JSON-P**
+
+1. **Bean Validation**
+
+1. **EJB Lite**
+
+1. **EL**
+
+1. **JavaMain**
+
+1. **JSP**
+
+1. **Connectors**
+
+1. **JP**
+
+1. **JMS**
+
+1. **Management**
+
+1. **WS Metadata**
+
+1. **Web Services**
+
+1. **JACC**
+
+1. **JASPIC**
+
+1. **JAX-RS**
+
+1. **JAX-WS**
+
+1. **JSTL**
+
+1. **JTA**
+
+1. **CDI**
+
+1. **DI**
+
+***
+
+
 
 [eis]: https://www.techopedia.com/definition/24327/enterprise-information-system-tier-eis
 [erp]: https://www.techopedia.com/definition/1508/enterprise-resource-planning-erp
