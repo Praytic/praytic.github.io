@@ -81,6 +81,7 @@
   - Список самых главных JEE технологий, которые используются в EIS-слое в JEE приложениях: JDBC API, JPA, JCA, JTA.
 
 1. Пример приложения с многослойной архитектурой:
+
   ![example](https://docs.oracle.com/javaee/7/tutorial/img/jeett_dt_001.png)
 
 ***
