@@ -144,63 +144,199 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>4. Containers</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO">https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO</a></p>
+<h3>4. Containers</h3><ol>
+<li><p><strong>Server</strong> - серверное приложение, реализующее JEE APIs и предоставляющее стандартные JEE сервисы.</p>
+<ul>
+<li>JEE серверы позволяют снабжать пользователя данными приложения, также как и веб серверы снабжают веб-страницы браузерам.</li>
+</ul>
+</li>
+<li><p><strong>Container</strong> - интерфейс между компонентом и низкоуровневой функциональностью, предоставляемой платформой для поддержки этого компонента. Каждый из компонентов играет свою специфическую роль, поддерживает набор интерфейсов API и предлагает компонентам сервисы. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRKQ">[source]</a></sup></p>
+<ul>
+<li>Контейнеры скрывают техническую сложность и повышают мобильность.</li>
+<li>При разработке приложений каждого типа необходимо учитывать возможности и ограничения каждого контейнера, чтобы знать, использовать один или несколько. Например, для разработки веб-приложения необходимо сначала разработать уровень фреймворка JSF и уровень EJB Lite, a затем развернуть их в веб-контейнер.</li>
+</ul>
+</li>
+<li><p><strong>Web Container</strong> предоставляет базовые сервисы для управления и исполнения веб-компонентов (сервлетов, компонентов EJB Lite, страниц JSP, фильтров, слушателей, страниц JSF и веб-сервисов). Он отвечает за создание экземпляров, инициализацию и вызов сервлетов, а также поддержку протоколов HTTP и HTTPS. Этот контейнер используется для подачи веб-страниц к клиент-браузерам. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRMB">[source]</a></sup></p>
+<ul>
+<li>Веб-контейнер - интерфейс между веб-компонентами и веб сервером.</li>
+<li>Веб-компонент может быть сервлетом или JSF страницей.</li>
+<li>Контейнер управляет жизненным циклом компонента, посылает запросы компонентам приложения и предоставляет интерфейсы контекстным данным, например, информацию о текущем запросе.</li>
+</ul>
+</li>
+<li><p><strong>EJB Container</strong> отвечает за управление и исполнение компонентов модели EJB (компонент-сеансы EJB и компоненты, управляемые сообщениями), содержащих уровень бизнес-логики вашего приложения на Java EE. Он создает новые сущности компонентов EJB, управляет их жизненным циклом и обеспечивает реализацию таких сервисов, как транзакция, безопасность, параллельный доступ, распределение, служба именования либо возможность асинхронного вызова. <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRMA">[source]</a></sup></p>
+<ul>
+<li>EJB-контейнер - интерфейс между EBs, которые предоставляют бизнес логику JEE приложению, и JEE сервером.</li>
+<li>EJB-контейнер запускается на JEE сервере и управляет выполнением EBs приложения.</li>
+</ul>
+</li>
+<li><p><strong>Application Client Container</strong> включает набор Java-классов, библиотек и других файлов, необходимых для реализации в приложениях Java SE таких возможностей, как внедрение, управление безопасностью и служба именования (в частности, Swing, пакетная обработка либо просто класс с методом <code>main()</code>). Контейнер ACC обращается к EJB-контейнеру, используя протокол RMI-IIOP, а к веб-контейнеру — по протоколу HTTP (например, для веб-служб). <sup><a href="https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRLJ">[source]</a></sup></p>
+<ul>
+<li>АС-контейнер - интерфейс между клиентами JEE приложения (JSE приложения, которые используют JEE серверные компоненты).</li>
+<li>AC-контейнер запускается на клиентской машине и является шлюзом между клиентским приложением и JEE серверными компонентами, которые использует клиент.</li>
+</ul>
+</li>
+</ol>
 <hr>
-<h3>5. Web Services Support</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview005.htm">https://docs.oracle.com/javaee/7/tutorial/overview005.htm</a></p>
+<h3>5. Web Services Support</h3><hr>
+<h3>6. JEE Specification APIs</h3><ol>
+<li><p><strong>JEE (Java Enterprise Edidtion)</strong> - набор спецификаций и соответствующей документации, описывающей архитектуру серверной платформы для задач средних и крупных предприятий.</p>
+<ul>
+<li>JEE - это обобщающая спецификация, которая объединяет и интегрирует остальные.</li>
+</ul>
+</li>
+<li><p><strong>WP (Web Profile)</strong> - веб-профиль JEE платформы, предназначенный в основном для веб-приложений следующего поколения.</p>
+</li>
+<li><p><strong>MB (Managed Beans)</strong> - легковесные управляемые контейнером POJOs с минимальными требованиями. Поддерживают небольшой набор базовых сервисов, таких как внедрение, callbacks, перехватчики. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXSD">[source]</a></sup></p>
+<ul>
+<li>Представляют собой обобщение MBs из JSF технологии и могут быть использованы где угодно в JEE приложении, а не только в веб модулях.</li>
+</ul>
+</li>
+</ol>
 <hr>
-<h3>6. APIs</h3><p><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm">https://docs.oracle.com/javaee/7/tutorial/overview007.htm</a></p>
-<ol>
-<li><p><strong>EJB</strong></p>
+<h3>7. Web Service Specification APIs</h3><ol>
+<li><p><strong>WS (Web Services)</strong> - JEE поддерживает SOAP и RESTful веб-сервисы.</p>
+<ul>
+<li>Интерфейс Java для веб-сервисов на XML (JAX-WS), сменивший интерфейс с поддержкой вызовов удаленных процедур на основе XML (JAX-RPC), обеспечивает работу веб-служб, работающих по протоколу SOAP/HTTP. </li>
+<li>Интерфейс для веб-сервисов RESTful (JAX-RS) поддерживает веб-службы, использующие стиль REST.</li>
+</ul>
 </li>
-<li><p><strong>Servlet</strong></p>
+<li><p><strong>WS (Web Services) Metadata</strong> - спецификация, направленная на стандартизацию разработки интерфейсов веб-сервисов для JEE платформы. Она определяет синтаксис и семантику метаданных веб-сервисов, но не определяет среду рантайма или контейнера.</p>
+<ul>
+<li>Используя анотации из данной спецификации, можно аннотировать реализацию веб-сервиса или интерфейс веб-сервиса.</li>
+<li>Она позволяет разработчикам создавать портируемые веб сервисы с помощью простых POJO, добавляя им аннотации, а также помогает генерировать веб сервисы с помощью специального визарда или с помощью публикации </li>
+</ul>
 </li>
-<li><p><strong>JSF</strong></p>
+<li><p><strong>JAX-RS (Java API for RESRful Web Services)</strong> - спецификация определяет APIs для разработки веб сервисов, постороенных согласно REST стилю. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRBT">[source]</a></sup></p>
+<ul>
+<li>JAX-RS приложение - веб-приложение, которое состоит из классов, упакованных как сервлеты в WAR файл вместе с необходимыми библиотеками.</li>
+</ul>
 </li>
-<li><p><strong>WebSocket</strong></p>
+<li><p><strong>JSON-P (JSON Processing)</strong> — появившийся только в JEE 7 Java-интерфейс для обработки JSON (JSON-P), позволяет приложениям синтаксически анализировать, генерировать, трансформировать и запрашивать JSON. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAGIEEI">[source]</a></sup></p>
 </li>
-<li><p><strong>Concurrency Utilities</strong></p>
+</ol>
+<hr>
+<h3>8. Web Specification APIs</h3><ol>
+<li><p><strong>Servlet</strong> - является интерфейсом, реализация которого расширяет функциональные возможности сервера. Сервлет взаимодействует с клиентами посредством принципа запрос-ответ. Классы сервлетов наследуют возможности серверов, которые хостят приложение, доступное через программную модель &quot;запрос-ответ&quot;. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACM">[source]</a></sup></p>
+<ul>
+<li>Хотя сервлеты могут обслуживать любые запросы, они обычно используются для расширения веб-серверов.</li>
+</ul>
 </li>
-<li><p><strong>Batch</strong></p>
+<li><p><strong>JSF (JavaServer Faces)</strong> - фреймворк пользовательского интерфейса, для создания веб-приложений. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACP">[source]</a></sup> </p>
+<ul>
+<li>Главные компоненты JSF:<ul>
+<li>GUI фреймворк</li>
+<li>Гибкая модель отображения компонентов в различных видах HTML или в других языках разметок и технологий.</li>
+<li>Стандарт RenderKit для генерации HTML 4.01 разметки.</li>
+</ul>
 </li>
-<li><p><strong>JSON-P</strong></p>
+</ul>
+</li>
+<li><p><strong>JSP (JavaServer Pages)</strong> - технология, позволяющая веб-разработчикам создавать содержимое, которое имеет как статические, так и динамические компоненты. Страница JSP содержит текст двух типов: статические исходные данные, которые могут быть оформлены в одном из текстовых форматов HTML, SVG, WML, или XML, и JSP-элементы, которые конструируют динамическое содержимое. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACN">[source]</a></sup></p>
+<ul>
+<li>Код JSP-страницы транслируется в Java-код сервлета с помощью компилятора JSP-страниц Jasper, и затем компилируется в байт-код JVM. </li>
+</ul>
+</li>
+<li><p><strong>JSTL (JSP Standard Tag Library)</strong> - стандартная библиотека тегов JSP. Является расширением спецификации JSP, добавляющее библиотеку JSP тегов для общих нужд, таких как разбор XML данных, условная обработка, создание циклов и поддержка интернационализации. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACO">[source]</a></sup> </p>
+<ul>
+<li>JSTL является альтернативой такому виду встроенной в JSP логики, как скриплеты, то есть прямые вставки Java кода.</li>
+</ul>
+</li>
+<li><p><strong>WebSocket</strong> - протокол приложения, предоставляющий двусторонние связи между двумя пирами (peers) через TCP. Он позволяет JEE приложением создавать конечные точки (endpoints), используя аннотации, которые указывают конфигурацию параметров точки, и указывают callback методы. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAHDJBJ">[source]</a></sup> </p>
+</li>
+<li><p><strong>EL (Expression Language)</strong> - скриптовый язык выражений, который позволяет получить доступ к JBs из JSP. <sup><a href="https://ru.wikipedia.org/wiki/Expression_Language">[source]</a></sup></p>
+</li>
+</ol>
+<hr>
+<h3>9. Enterprise Specification APIs</h3><ol>
+<li><p><strong>EJB (Enterprise JavaBeans)</strong> - спецификация технологии написания и поддержки серверных компонентов, содержащих бизнес-логику. <sup><a href="https://ru.wikipedia.org/wiki/Enterprise_JavaBeans">[source]</a></sup> </p>
+<ul>
+<li>EJB применяется, когда необходимо:<ul>
+<li>Поддержка сохранности данных (persistence); данные должны быть в сохранности даже после остановки программы, чаще всего достигается с помощью использования базы данных.</li>
+<li>Поддержка распределённых транзакций.</li>
+<li>Поддержка параллельного изменения данных и многопоточность.</li>
+<li>Поддержка событий.</li>
+<li>Поддержка именования и каталогов (JNDI).</li>
+<li>Безопасность и ограничение доступа к данным.</li>
+<li>Поддержка автоматизированной установки на сервер приложений.</li>
+<li>Удалённый доступ.</li>
+</ul>
+</li>
+<li>EJB разделяются на 3 типа: Entity Beans, Session Beans, Message Driven Beans.</li>
+</ul>
+</li>
+<li><p><strong>JavaMail</strong>. Многим приложениям требуется функция отправки сообщений электронной почты, которая может быть реализована благодаря этому интерфейсу. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACS">[source]</a></sup> </p>
+<ul>
+<li>JavaMail API разделяется на 2 части:<ul>
+<li>Интерфейс уровня приложения, используемый компонентами приложения для отправки сообщений электронной почты.</li>
+<li>Интерфейс сервис провайдера.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>JCA (Java Connector Architecture)</strong> - коннекторы позволяют получить доступ к корпоративным информационным системам (EIS) с компонента JEE. К таким компонентам относятся базы данных, мейнфреймы, либо программы для планирования и управления ресурсами предприятия (ERP). <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACZ">[source]</a></sup> </p>
+<ul>
+<li>Существующие приложения и EISs, интегрированные в JEE платформу через JCA, могут восприниматься как XML-based веб сервисы из-за использования JAX-WS и JEE компонентных моделей.</li>
+</ul>
+</li>
+<li><p><strong>JPA (Java Persistence)</strong> — стандартный интерфейс для объектно-реляционного отображения (ORM). С помощью встроенного языка запросов JPQL вы можете обращаться к объектам, хранящимся в основной базе данных. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNADB">[source]</a></sup> </p>
+<ul>
+<li>JP используется объектно-реляционное отображение для устранения пробела между объектно-ориентированной моделью и реляционной базой данных.</li>
+<li>JP содержит следущие сервисы: JPA (Java Persistence API), QL (Query Language), метаданные для объектно-реляционного отображения.</li>
+</ul>
+</li>
+<li><p><strong>JTA (Java Transaction API)</strong> — этот сервис предлагает интерфейс разграничения транзакций, используемый контейнером и приложением. Он также предоставляет интерфейс между диспетчером транзакций и диспетчером ресурсов на уровне интерфейса драйвера службы. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACR">[source]</a></sup> </p>
+</li>
+<li><p><strong>JMS (Java Message Service)</strong> - интерфейс для доступа к службам сообщений. Позволяет компонентам асинхронно обмениваться данными через сообщения. Он поддерживает надежный обмен сообщениями по принципу «от точки к точке» (P2P), а также модель публикации-подписки (pub-sub). <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACQ">[source]</a></sup> </p>
+</li>
+</ol>
+<hr>
+<h3>10. Прочие APIs</h3><ol>
+<li><p><strong>JACC (Java Authorization Contract for Containers)</strong></p>
 </li>
 <li><p><strong>Bean Validation</strong></p>
-</li>
-<li><p><strong>EJB Lite</strong></p>
-</li>
-<li><p><strong>EL</strong></p>
-</li>
-<li><p><strong>JavaMain</strong></p>
-</li>
-<li><p><strong>JSP</strong></p>
-</li>
-<li><p><strong>Connectors</strong></p>
-</li>
-<li><p><strong>JP</strong></p>
-</li>
-<li><p><strong>JMS</strong></p>
-</li>
-<li><p><strong>Management</strong></p>
-</li>
-<li><p><strong>WS Metadata</strong></p>
-</li>
-<li><p><strong>Web Services</strong></p>
-</li>
-<li><p><strong>JACC</strong></p>
-</li>
-<li><p><strong>JASPIC</strong></p>
-</li>
-<li><p><strong>JAX-RS</strong></p>
-</li>
-<li><p><strong>JAX-WS</strong></p>
-</li>
-<li><p><strong>JSTL</strong></p>
-</li>
-<li><p><strong>JTA</strong></p>
 </li>
 <li><p><strong>CDI</strong></p>
 </li>
 <li><p><strong>DI</strong></p>
+</li>
+<li><p><strong>Batch</strong></p>
+</li>
+<li><p><strong>Concurrency Utilities</strong></p>
+</li>
+<li><p><strong>Management</strong></p>
+</li>
+<li><p><strong>JASPIC (Java Authentication Service Provider Interface for Containers)</strong></p>
+</li>
+</ol>
+<h3>11. JSE APIs</h3><ol>
+<li><p><strong>Common Annotations</strong></p>
+</li>
+<li><p><strong>JDBC</strong></p>
+</li>
+<li><p><strong>JNDI</strong> </p>
+</li>
+<li><p><strong>JAXP</strong></p>
+</li>
+<li><p><strong>JAXB (Java Architecture for XML Binding)</strong> - позволяет связывать классы и XML представления. Предоставляет две основные возможности:  маршаллирование Java объектов в XML и наоборот, то есть демаршализация из XML обратно в Java объект. Другими словами, JAXB позволяет хранить и извлекать данные в памяти в любом XML-формате, без необходимости выполнения определенного набора процедур загрузки и сохранения XML. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACW">[source]</a></sup></p>
+</li>
+<li><p><strong>JAX-WS (Java API for Web Services)</strong> - спецификация определяет APIs для разработки веб сервисов. Является заменой технологии JAX-RPC, предоставляя более документо-ориентированную модель сообщений и упрощая разработку веб-служб за счёт использования аннотаций. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACV">[source]</a></sup></p>
+<ul>
+<li>Использование аннотаций устраняет необходимость создания дескрипторов веб-служб. Декларация конечных точек (endpoints) происходит непосредственно в классах Java.</li>
+<li>Прямая интеграция с JAXB 2.0.</li>
+<li>Внедрение ресурсов (Resource injection).</li>
+<li>Поддержка MTOM.</li>
+<li>Возможность выбора между двумя путями разработки: снизу-вверх (программист разрабатывает endpoint-классы сам) и сверху-вниз (Java классы генерируются по WSDL).</li>
+</ul>
+</li>
+<li><p><strong>JAF</strong> </p>
+</li>
+<li><p><strong>StAX</strong></p>
+</li>
+<li><p><strong>JAAS</strong></p>
+</li>
+<li><p><strong>JMX</strong></p>
+</li>
+<li><p><strong>SAAJ</strong></p>
 </li>
 </ol>
 <hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
