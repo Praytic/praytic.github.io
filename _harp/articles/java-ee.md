@@ -53,8 +53,6 @@
     + optional - Java APIs, которые могут быть загружены с официальных источников.
     + unofficial - Java APIs, которые являются сторонними APIs и могут быть загружены с различных сайтов.
 
-1. **Спецификация** - 
-
 ***
 
 ### 2. Многослойная Архитектура
@@ -139,8 +137,6 @@ https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO
 
 ### 5. Web Services Support
 
-https://docs.oracle.com/javaee/7/tutorial/overview005.htm
-
 ***
 
 ### 6. JEE Specification APIs
@@ -150,34 +146,34 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 
 1. **WP (Web Profile)** - веб-профиль JEE платформы, предназначенный в основном для веб-приложений следующего поколения.
 
-1. **MB (Managed Beans)** - обычный JB, управляемый JSF фреймворком.
+1. **MB (Managed Beans)** - легковесные управляемые контейнером POJOs с минимальными требованиями. Поддерживают небольшой набор базовых сервисов, таких как внедрение, callbacks, перехватчики. <sup>[\[source\]][mb]</sup>
+  - Представляют собой обобщение MBs из JSF технологии и могут быть использованы где угодно в JEE приложении, а не только в веб модулях.
 
 ***
 
 ### 7. Web Service Specification APIs
 
-1. **WS (Web Services)** - JEE поддерживает SOAP и RESTful веб-сервисы. 
+1. **WS (Web Services)** - JEE поддерживает SOAP и RESTful веб-сервисы. <sup>[\[source\]][ws]</sup>
   - Интерфейс Java для веб-сервисов на XML (JAX-WS), сменивший интерфейс с поддержкой вызовов удаленных процедур на основе XML (JAX-RPC), обеспечивает работу веб-служб, работающих по протоколу SOAP/HTTP. 
   - Интерфейс для веб-сервисов RESTful (JAX-RS) поддерживает веб-службы, использующие стиль REST.
 
-1. **WS (Web Services) Metadata**
+1. **WS (Web Services) Metadata** - спецификация, направленная на стандартизацию разработки интерфейсов веб-сервисов для JEE платформы. Она определяет синтаксис и семантику метаданных веб-сервисов, но не определяет среду рантайма или контейнера. <sup>[\[source\]][ws-metadata]</sup>
+  - Используя анотации из данной спецификации, можно аннотировать реализацию веб-сервиса или интерфейс веб-сервиса.
+  - Она позволяет разработчикам создавать портируемые веб сервисы с помощью простых POJO, добавляя им аннотации, а также помогает генерировать веб сервисы с помощью специального визарда или с помощью публикации 
 
-1. **JAX-RS**
+1. **JAX-RS (Java API for RESRful Web Services)** - спецификация определяет APIs для разработки веб сервисов, постороенных согласно REST стилю. <sup>[\[source\]][jax-rs]</sup>
+  - JAX-RS приложение - веб-приложение, которое состоит из классов, упакованных как сервлеты в WAR файл вместе с необходимыми библиотеками.
 
-1. **JAX-WS**
-
-1. **JSON-P (JSON Processing)** - — появившийся только в JEE 7 Java-интерфейс для обработки JSON (JSON-P), позволяет приложениям синтаксически анализировать, генерировать, трансформировать и запрашивать JSON.
-
-1. **JAXB**
+1. **JSON-P (JSON Processing)** — появившийся только в JEE 7 Java-интерфейс для обработки JSON (JSON-P), позволяет приложениям синтаксически анализировать, генерировать, трансформировать и запрашивать JSON. <sup>[\[source\]][json-p]</sup>
 
 ***
 
 ### 8. Web Specification APIs
 
-1. **Servlet** - является интерфейсом, реализация которого расширяет функциональные возможности сервера. Сервлет взаимодействует с клиентами посредством принципа запрос-ответ. Классы сервлетов наследуют возможности серверов, которые хостят приложение, доступное через программную модель "запрос-ответ".
+1. **Servlet** - является интерфейсом, реализация которого расширяет функциональные возможности сервера. Сервлет взаимодействует с клиентами посредством принципа запрос-ответ. Классы сервлетов наследуют возможности серверов, которые хостят приложение, доступное через программную модель "запрос-ответ". <sup>[\[source\]][servlet]</sup>
   - Хотя сервлеты могут обслуживать любые запросы, они обычно используются для расширения веб-серверов.
 
-1. **JSF (JavaServer Faces)** - фреймворк пользовательского интерфейса, для создания веб-приложений. 
+1. **JSF (JavaServer Faces)** - фреймворк пользовательского интерфейса, для создания веб-приложений. <sup>[\[source\]][jsf]</sup> 
   - Главные компоненты JSF:
     + GUI фреймворк
     + Гибкая модель отображения компонентов в различных видах HTML или в других языках разметок и технологий.
@@ -186,9 +182,10 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 1. **JSP (JavaServer Pages)** - технология, позволяющая веб-разработчикам создавать содержимое, которое имеет как статические, так и динамические компоненты. Страница JSP содержит текст двух типов: статические исходные данные, которые могут быть оформлены в одном из текстовых форматов HTML, SVG, WML, или XML, и JSP-элементы, которые конструируют динамическое содержимое. <sup>[\[source\]][jsp]</sup>
   - Код JSP-страницы транслируется в Java-код сервлета с помощью компилятора JSP-страниц Jasper, и затем компилируется в байт-код JVM. 
 
-1. **JSTL**
+1. **JSTL (JSP Standard Tag Library)** - стандартная библиотека тегов JSP. Является расширением спецификации JSP, добавляющее библиотеку JSP тегов для общих нужд, таких как разбор XML данных, условная обработка, создание циклов и поддержка интернационализации. <sup>[\[source\]][jstl]</sup> 
+  - JSTL является альтернативой такому виду встроенной в JSP логики, как скриплеты, то есть прямые вставки Java кода.
 
-1. **WebSocket**
+1. **WebSocket** - протокол приложения, предоставляющий двусторонние связи между двумя пирами (peers) через TCP. Он позволяет JEE приложением создавать конечные точки (endpoints), используя аннотации, которые указывают конфигурацию параметров точки, и указывают callback методы. <sup>[\[source\]][websocket]</sup> 
 
 1. **EL (Expression Language)** - скриптовый язык выражений, который позволяет получить доступ к JBs из JSP. <sup>[\[source\]][el]</sup>
 
@@ -196,29 +193,39 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 
 ### 9. Enterprise Specification APIs
 
-1. **EJB (Enterprise JavaBean)** - тело кода, ко
+1. **EJB (Enterprise JavaBeans)** - спецификация технологии написания и поддержки серверных компонентов, содержащих бизнес-логику. <sup>[\[source\]][ejb]</sup> 
+  - EJB применяется, когда необходимо:
+    + Поддержка сохранности данных (persistence); данные должны быть в сохранности даже после остановки программы, чаще всего достигается с помощью использования базы данных.
+    + Поддержка распределённых транзакций.
+    + Поддержка параллельного изменения данных и многопоточность.
+    + Поддержка событий.
+    + Поддержка именования и каталогов (JNDI).
+    + Безопасность и ограничение доступа к данным.
+    + Поддержка автоматизированной установки на сервер приложений.
+    + Удалённый доступ.
+  - EJB разделяются на 3 типа: Entity Beans, Session Beans, Message Driven Beans.
 
-1. **JavaMail**. Многим приложениям требуется функция отправки сообщений электронной почты, которая может быть реализована благодаря этому интерфейсу.
+1. **JavaMail**. Многим приложениям требуется функция отправки сообщений электронной почты, которая может быть реализована благодаря этому интерфейсу. <sup>[\[source\]][javamail]</sup> 
   - JavaMail API разделяется на 2 части:
     + Интерфейс уровня приложения, используемый компонентами приложения для отправки сообщений электронной почты.
     + Интерфейс сервис провайдера.
 
-1. **JCA (Java Connector Architecture)** - коннекторы позволяют получить доступ к корпоративным информационным системам (EIS) с компонента JEE. К таким компонентам относятся базы данных, мейнфреймы, либо программы для планирования и управления ресурсами предприятия (ERP).
+1. **JCA (Java Connector Architecture)** - коннекторы позволяют получить доступ к корпоративным информационным системам (EIS) с компонента JEE. К таким компонентам относятся базы данных, мейнфреймы, либо программы для планирования и управления ресурсами предприятия (ERP). <sup>[\[source\]][jca]</sup> 
   - Существующие приложения и EISs, интегрированные в JEE платформу через JCA, могут восприниматься как XML-based веб сервисы из-за использования JAX-WS и JEE компонентных моделей.
 
-1. **JPA (Java Persistence)** — стандартный интерфейс для объектно-реляционного отображения (ORM). С помощью встроенного языка запросов JPQL вы можете обращаться к объектам, хранящимся в основной базе данных.
+1. **JPA (Java Persistence)** — стандартный интерфейс для объектно-реляционного отображения (ORM). С помощью встроенного языка запросов JPQL вы можете обращаться к объектам, хранящимся в основной базе данных. <sup>[\[source\]][jpa]</sup> 
   - JP используется объектно-реляционное отображение для устранения пробела между объектно-ориентированной моделью и реляционной базой данных.
   - JP содержит следущие сервисы: JPA (Java Persistence API), QL (Query Language), метаданные для объектно-реляционного отображения.
 
-1. **JTA (Java Transaction API)** — этот сервис предлагает интерфейс разграничения транзакций, используемый контейнером и приложением. Он также предоставляет интерфейс между диспетчером транзакций и диспетчером ресурсов на уровне интерфейса драйвера службы.
+1. **JTA (Java Transaction API)** — этот сервис предлагает интерфейс разграничения транзакций, используемый контейнером и приложением. Он также предоставляет интерфейс между диспетчером транзакций и диспетчером ресурсов на уровне интерфейса драйвера службы. <sup>[\[source\]][jta]</sup> 
 
-1. **JMS (Java Message Service)** - интерфейс для доступа к службам сообщений. Позволяет компонентам асинхронно обмениваться данными через сообщения. Он поддерживает надежный обмен сообщениями по принципу «от точки к точке» (P2P), а также модель публикации-подписки (pub-sub).
+1. **JMS (Java Message Service)** - интерфейс для доступа к службам сообщений. Позволяет компонентам асинхронно обмениваться данными через сообщения. Он поддерживает надежный обмен сообщениями по принципу «от точки к точке» (P2P), а также модель публикации-подписки (pub-sub). <sup>[\[source\]][jms]</sup> 
 
 ***
 
 ### 10. Прочие APIs
 
-1. **JACC**
+1. **JACC (Java Authorization Contract for Containers)**
 
 1. **Bean Validation**
 
@@ -232,9 +239,9 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 
 1. **Management**
 
-1. **JASPIC (Java Authentication Service Provider Interface for Containers)** - 
+1. **JASPIC (Java Authentication Service Provider Interface for Containers)**
 
-### 11. Независимые APIs
+### 11. JSE APIs
 
 1. **Common Annotations**
 
@@ -243,6 +250,17 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 1. **JNDI** 
 
 1. **JAXP**
+
+1. **JAXB (Java Architecture for XML Binding)** - позволяет связывать классы и XML представления. Предоставляет две основные возможности:  маршаллирование Java объектов в XML и наоборот, то есть демаршализация из XML обратно в Java объект. Другими словами, JAXB позволяет хранить и извлекать данные в памяти в любом XML-формате, без необходимости выполнения определенного набора процедур загрузки и сохранения XML. <sup>[\[source\]][jaxb]</sup>
+
+1. **JAX-WS (Java API for Web Services)** - спецификация определяет APIs для разработки веб сервисов. Является заменой технологии JAX-RPC, предоставляя более документо-ориентированную модель сообщений и упрощая разработку веб-служб за счёт использования аннотаций. <sup>[\[source\]][jax-ws]</sup>
+  - Использование аннотаций устраняет необходимость создания дескрипторов веб-служб. Декларация конечных точек (endpoints) происходит непосредственно в классах Java.
+  - Прямая интеграция с JAXB 2.0.
+  - Внедрение ресурсов (Resource injection).
+  - Поддержка MTOM.
+  - Возможность выбора между двумя путями разработки: снизу-вверх (программист разрабатывает endpoint-классы сам) и сверху-вниз (Java классы генерируются по WSDL).
+
+1. **JAF** 
 
 1. **StAX**
 
@@ -277,3 +295,32 @@ https://docs.oracle.com/javaee/7/tutorial/overview005.htm
 [applets]: https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABE
 [jb-component-architecture]: https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABG
 [jee-server-communications]: https://docs.oracle.com/javaee/7/tutorial/overview003.htm#BNABH
+[servlet]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACM
+[jsf]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACP
+[jsp]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACN
+[jstl]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACO
+[jpa]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNADB
+[jta]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACR
+[jax-rs]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRBT
+[mb]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXSD
+[cdi]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXVO
+[di]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXVG
+[bean-validation]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXTY
+[jms]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACQ
+[jca]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACZ
+[javamail]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACS
+[jacc]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRBE
+[jaspic]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRGP
+[websocket]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAHDJBJ
+[json-p]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAGIEEI
+[concurrency-utilities]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAFGFCJ
+[batch]: https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAJHGIH
+[jdbc]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADA
+[jndi]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADC
+[jaf]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACT
+[jaxp]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACU
+[jaxb]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACW
+[jax-ws]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACV
+[saaj]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACX
+[jaas]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADD
+[common-annotations]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#sthref108
