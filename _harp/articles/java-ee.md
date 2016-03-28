@@ -110,8 +110,6 @@
 
 ### 4. Containers
 
-https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO
-
 1. **Server** - серверное приложение, реализующее JEE APIs и предоставляющее стандартные JEE сервисы.
   - JEE серверы позволяют снабжать пользователя данными приложения, также как и веб серверы снабжают веб-страницы браузерам.
 
@@ -153,11 +151,11 @@ https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO
 
 ### 7. Web Service Specification APIs
 
-1. **WS (Web Services)** - JEE поддерживает SOAP и RESTful веб-сервисы. <sup>[\[source\]][ws]</sup>
+1. **WS (Web Services)** - JEE поддерживает SOAP и RESTful веб-сервисы.
   - Интерфейс Java для веб-сервисов на XML (JAX-WS), сменивший интерфейс с поддержкой вызовов удаленных процедур на основе XML (JAX-RPC), обеспечивает работу веб-служб, работающих по протоколу SOAP/HTTP. 
   - Интерфейс для веб-сервисов RESTful (JAX-RS) поддерживает веб-службы, использующие стиль REST.
 
-1. **WS (Web Services) Metadata** - спецификация, направленная на стандартизацию разработки интерфейсов веб-сервисов для JEE платформы. Она определяет синтаксис и семантику метаданных веб-сервисов, но не определяет среду рантайма или контейнера. <sup>[\[source\]][ws-metadata]</sup>
+1. **WS (Web Services) Metadata** - спецификация, направленная на стандартизацию разработки интерфейсов веб-сервисов для JEE платформы. Она определяет синтаксис и семантику метаданных веб-сервисов, но не определяет среду рантайма или контейнера.
   - Используя анотации из данной спецификации, можно аннотировать реализацию веб-сервиса или интерфейс веб-сервиса.
   - Она позволяет разработчикам создавать портируемые веб сервисы с помощью простых POJO, добавляя им аннотации, а также помогает генерировать веб сервисы с помощью специального визарда или с помощью публикации 
 
@@ -324,3 +322,8 @@ https://docs.oracle.com/javaee/7/tutorial/overview004.htm#BNABO
 [saaj]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACX
 [jaas]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADD
 [common-annotations]: https://docs.oracle.com/javaee/7/tutorial/overview008.htm#sthref108
+[web-container]: https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRMB
+[ejb-container]: https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRMA
+[application-client-container]: https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRLJ
+[container]: https://docs.oracle.com/javaee/7/firstcup/java-ee002.htm#GCRKQ
+[el]: https://ru.wikipedia.org/wiki/Expression_Language
