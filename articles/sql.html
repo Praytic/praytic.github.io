@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство теории переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75180616-1', 'auto');
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>SQL (Structed Query Language)</h1><h3>1. Общее</h3><ol>
+<li><p><strong>DB (Database)</strong> — совокупность данных, хранимых в соответствии со схемой данных, манипулирование которыми 
+выполняют в соответствии с правилами средств моделирования данных.</p>
+</li>
+<li><p><strong>DBMS (Database Management System)</strong> - совокупность программных и лингвистических средств общего или специального
+назначения, обеспечивающих управление созданием и использованием баз данных.</p>
+</li>
+<li><p><strong>RDB (Relational Database)</strong> — это такая база данных, которая воспринимается ее пользователями как множество 
+переменных (т.е. переменных отношения — relvar), значениями которых являются отношения или, менее формально, таблицы.</p>
+</li>
+<li><p><strong>RDBMS (Database Management System)</strong> - DBMS, управляющая реляционными базами данных.</p>
+<ul>
+<li>Примеры: Oracle Database, IBM DB2, Microsoft SQL Server.</li>
+</ul>
+</li>
+<li><p><strong>Table</strong> - объект DB, коллекция, состоящая из схемы (заголовка) и тела.</p>
+</li>
+<li><p><strong>Scheme</strong> - определяет поля таблицы.</p>
+</li>
+<li><p><strong>Table Body</strong> - множество записей, хранящих значения, соответствующие каждому столбцу таблицы.</p>
+</li>
+<li><p><strong>Column</strong> - набор однотипных значений в таблице, соответствующий данному полю.</p>
+</li>
+<li><p><strong>Field</strong> - каждая таблица разделена на подразделы, называемые полями. Поле описывает один столбец, т.е. задает 
+тип значения, которое будет в нем храниться, название столбца, ограничения, накладываемые на столбец.</p>
+</li>
+<li><p><strong>Row</strong> - уникальный элемент таблицы, который может состоять из нескольких значений (в зависимости от полей 
+таблицы).</p>
+</li>
+</ol>
+<hr>
+<h3>2. Нормализация</h3><ol>
+<li><p><strong>Нормальная форма</strong> определяется как совокупность требований, которым должно удовлетворять отношение.</p>
+</li>
+<li><p><strong>Нормализация</strong> - процесс преобразования отношений базы данных к виду, отвечающему нормальным формам. Нормализация предназначена для приведения структуры БД к виду, обеспечивающему минимальную логическую избыточность.</p>
+</li>
+<li><p><strong>Первая нормальная форма (1НФ)</strong> - отношение находится в 1НФ, если любое поле любой записи хранит только одно значение.</p>
+</li>
+<li><p><strong>Вторая нормальная форма (2НФ)</strong> - выполняется условие 1НФ и любое неключевое поле полностью зависит от ключа.</p>
+</li>
+<li><p><strong>Третья нормальная форма (3НФ)</strong> - выполняется условие 2НФ и нет неключевых полей зависящих от значения других неключевых полей.</p>
+</li>
+<li><p><strong>Нормальная форма Бойса-Кодда (НФБК)</strong> - каждая нетривиальная неприводимая слева функциональная зависимость обладает потенциальным ключом в качестве детерминанта.</p>
+</li>
+</ol>
+<hr>
+<h3>3. DML</h3><ol>
+<li><p><strong>DML (Data Manipulation Language)</strong> - это семейство компьютерных языков, используемых в компьютерных программах или пользователями баз данных для получения, вставки, удаления или изменения данных в базах данных.</p>
+<ul>
+<li>На текущий момент наиболее популярным языком DML является SQL, используемый для получения и манипулирования данными в RDBMS.</li>
+</ul>
+</li>
+<li><p><strong><code>SELECT</code></strong> - получает определенные записи из одной или нескольких таблиц.</p>
+<pre><code class="language-sql">SELECT column1, column2....columnN
+FROM  table_name;
+</code></pre>
+</li>
+<li><p><strong><code>INSERT</code></strong> - вставляет в таблицу новую запись.</p>
+<pre><code class="language-sql">INSERT INTO TABLE_NAME VALUES (value1,value2,value3,...valueN);
+</code></pre>
+</li>
+<li><p><strong><code>UPDATE</code></strong> - изменяет существующую запись.</p>
+<pre><code class="language-sql">UPDATE table_name SET column1 = value1, ...., columnN = valueN WHERE [condition];
+</code></pre>
+</li>
+<li><p><strong><code>DELETE</code></strong> - удаляет записи, удовлетворяющие условию.</p>
+<pre><code class="language-sql">DELETE FROM table_name
+WHERE [condition];
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3>4. DDL</h3><ol>
+<li><p><strong>DDL (Data Definition Language)</strong> - это семейство компьютерных языков, используемых в компьютерных программах для описания структуры баз данных.</p>
+<ul>
+<li>На текущий момент наиболее популярным языком DDL является SQL, используемый для получения и манипулирования данными в RDBMS.</li>
+</ul>
+</li>
+<li><p><strong><code>CREATE</code></strong> - создает новую таблицу, представление таблицы или объект в базе данных или саму базу данных.</p>
+<pre><code class="language-sql">CREATE DATABASE DatabaseName;
+CREATE TABLE table_name(column1 datatype, ... columnN datatype, PRIMARY KEY(M columns));
+</code></pre>
+</li>
+<li><p><strong><code>AFTER</code></strong> - модифицирует существующий объект БД, как например таблицу.</p>
+</li>
+<li><p><strong><code>DROP</code></strong> - удаляет новую таблицу, представление таблицы или объект в базе данных или саму базу данных.</p>
+<pre><code class="language-sql">DROP TABLE table_name;
+DROP DATABASE DatabaseName;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3>5. DCL</h3><ol>
+<li><p><strong>DDL (Data Definition Language)</strong> - подмножество языка управления базами данных SQL, предназначенное для осуществления административных операций, присваивающих или отменяющих право (привилегию) использовать базу данных, таблицы и другие объекты базы данных, а также выполнять те или иные операторы SQL.</p>
+</li>
+<li><p><strong><code>GRANT</code></strong> - авторизует одного или более пользователей для представления операции или набора операций над объектом.</p>
+<pre><code class="language-sql">GRANT SELECT, UPDATE
+ON example
+TO some_user, another_user;
+</code></pre>
+</li>
+<li><p><strong><code>REVOKE</code></strong> - уничтожает возможность авторизации.</p>
+<pre><code class="language-sql">REVOKE SELECT, UPDATE
+ON example
+FROM some_user, another_user;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3>6. TCL</h3><ol>
+<li><p><strong>TCL (Transaction Control Language)</strong> - компьютерный язык и часть SQL, используемый для обработки транзакций.</p>
+</li>
+<li><p><strong><code>COMMIT</code></strong> - оператор управления транзакциями языка SQL для успешного завершения транзакции. При выполнении оператора изменения, сделанные от начала транзакции и ранее не видимые для других транзакций, фиксируются в базе данных.</p>
+<pre><code class="language-sql">BEGIN TRANSACTION WORK;
+INSERT INTO MyTable VALUES (&#39;50&#39;, &#39;some string&#39;);
+COMMIT WORK;
+</code></pre>
+</li>
+<li><p><strong><code>ROLLBACK</code></strong> - оператор языка SQL, который применяется для того, чтобы отменять все изменения, внесённые начиная с момента начала транзакции или с какой-то точки сохранения, очищать все точки сохранения данной транзакции, завершать транзакцию и освобождать все блокировки данной транзакции.</p>
+<pre><code class="language-sql">ROLLBACK TO SAVEPOINT_NAME;
+</code></pre>
+</li>
+<li><p><strong><code>SAVEPOINT</code></strong> - устанавливает точку сохранения внутри транзакции.</p>
+<pre><code class="language-sql">SAVEPOINT SAVEPOINT_NAME;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3>7. Объекты</h3><ol>
+<li><p><strong>Курсор</strong> - это объект базы данных, который позволяет приложениям работать с записями &quot;по-одной&quot;, а не сразу с множеством, как это делается в обычных SQL командах.</p>
+</li>
+<li><p><strong>Индекс</strong> — объект базы данных, создаваемый с целью повышения производительности поиска данных. Индекс формируется из значений одного или нескольких столбцов таблицы и указателей на соответствующие строки таблицы и, таким образом, позволяет искать строки, удовлетворяющие критерию поиска.</p>
+</li>
+<li><p><strong>Некластерные индексы</strong> создаются СУБД по умолчанию. Данные физически расположены в произвольном порядке, но логически упорядочены согласно индексу. Такой тип индексов подходит для таблиц, где часто изменяются значения.</p>
+</li>
+<li><p><strong>Кластерные индексы</strong> - данные физически упорядочены, что серьезно повышает скорость выборок данных (но только в случае последовательного доступа к данным). </p>
+<ul>
+<li>Для одной таблицы может быть создан только один кластерный индекс.</li>
+</ul>
+</li>
+<li><p><strong>Триггер</strong> - это SQL процедура, которая срабатывает при каком-нибудь событии (<code>INSERT</code>, <code>DELETE</code> или <code>UPDATE</code>). Триггер не может быть вызван или выполнен вручную, СУБД автоматически вызывает его после модификации данных в соответствующей таблице. </p>
+<ul>
+<li>Триггер может вызывать другие процедуры.</li>
+</ul>
+</li>
+<li><p><strong>Ограничения</strong> - правила, накладываемые на таблицу или поле в таблице, призванные ограничить набор возможных записей в таблицу / столбец.</p>
+</li>
+<li><p><strong>Представление</strong> - виртуальная таблица, представляющая данные одной или более таблиц альтернативным образом. Результат выполнения оператора <code>SELECT</code>.</p>
+</li>
+</ol>
+<hr>
+<h3>8. Объединения</h3><ol>
+<li><p><strong><code>JOIN</code></strong> или <strong><code>INNER JOIN</code></strong> - показывает только общие записи обоих таблиц.</p>
+<pre><code class="language-sql">SELECT table1.column1, table2.column2...
+FROM table1
+INNER JOIN table2 ON table1.common_field = table2.common_field;
+</code></pre>
+</li>
+<li><p><strong><code>OUTER JOIN</code></strong> или <strong><code>LEFT OUTER JOIN</code></strong> - показывает все записи из левой таблицы независимо от наличия соответствующих записей в правой таблице. </p>
+<pre><code class="language-sql">SELECT table1.column1, table2.column2...
+FROM table1
+LEFT JOIN table2 ON table1.common_field = table2.common_field;
+</code></pre>
+</li>
+<li><p><strong><code>FULL OUTER JOIN</code></strong> - показывает все возможные комбинации строк из обеих таблиц, соответствующие данному условию.</p>
+<pre><code class="language-sql">SELECT table1.column1, table2.column2...
+FROM table1
+FULL JOIN table2 ON table1.common_field = table2.common_field;
+</code></pre>
+</li>
+<li><p><strong><code>CROSS JOIN</code></strong> или <strong>декартово произведение</strong> образует все возможные комбинации строк из обеих таблиц.</p>
+<pre><code class="language-sql">SELECT table1.column1, table2.column2...
+FROM  table1, table2... ;
+</code></pre>
+</li>
+<li><p><strong><code>SELF JOIN</code></strong> используется для объединения таблицы с самой собой.</p>
+<pre><code class="language-sql">SELECT a.column_name, b.column_name...
+FROM table1 a, table1 b
+WHERE a.common_field = b.common_field;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h3>9. Способы объединений</h3><ol>
+<li><p><strong>Объединение с помощью вложенных циклов</strong> - это простейший способ объединения. Для каждой строки внешней зависимости ищуется совпадения по всем строкам внутренней зависимости. Временная сложность O(M*N).</p>
+</li>
+<li><p><strong>Хеш-объединение</strong> - более сложная операция, но с низкой стоимостью. Считываются все элементы из внутренней зависимости; в памяти создается хеш таблица; один за другим считываются все эелменты из внешней зависимости. Для каждого элемента вычисляется хеш, чтобы можно было найти соответствующий блок внутренней зависимости; элементы из блока сравниваются с элементами из внешней зависимости. Временная сложность O(M + N), где M - стоимость создания хеш таблицы, а N - стоимость хеш функции.</p>
+</li>
+<li><p><strong>Объединение слиянием</strong> - это единственный способ объединения, в результате которого данные получаются отсортированными. Сначала сортируются оба набора входных данных по ключам объединения, а затем осуществляется слияние (принцип сортировки слиянием). Временная сложность O(N + M), если входные зависимости отсортированны, иначе O(Nlog(N) + Mlog(M)).</p>
+</li>
+</ol>
+<hr>
+<h3>10. Операторы ограничения</h3><ol>
+<li><p><strong>Ограничения</strong> - правила, накладываемые на таблицу или поле в таблице, призванные ограничить набор возможных записей в таблицу / столбец.</p>
+</li>
+<li><p><strong><code>NOT NULL</code></strong> - столбец не может иметь NULL значения.</p>
+</li>
+<li><p><strong><code>DEFAULT</code></strong> - записывает в ячеку столбца дефолтное значение, если оно не было указано.</p>
+</li>
+<li><p><strong><code>UNIQUE</code></strong> - обеспечивает отсутствие дубликатов в столбце или наборе столбцов. По умолчанию ограничение primary создает кластерный индекс на столбце, а unique - некластерный.</p>
+</li>
+<li><p><strong><code>PRIMARY KEY</code></strong> - устанавливает ключевой столбец. По умолчанию ограничение primary создает кластерный индекс на столбце, а unique - некластерный.</p>
+</li>
+<li><p><strong><code>FOREIGN KEY</code></strong> - устанавливает связь с ключевым стобцом другой таблицы.</p>
+</li>
+<li><p><strong><code>CHECK</code></strong> - используется для ограничения множества значений, которые могут быть помещены в данный столбец.</p>
+</li>
+<li><p><strong><code>INDEX</code></strong> - используется для быстрого создания и извлечения данных из БД. </p>
+</li>
+</ol>
+<hr>
+<h3>11. Связи</h3><ol>
+<li><p><strong>Связь &quot;один ко одному&quot; (1:1)</strong> - в строке таблицы А может сопоставляться только одна строка таблицы Б, и наоборот. Реализуется с помощью указания внешних ключей в обоеих таблицах у участников связи.</p>
+</li>
+<li><p><strong>Связь &quot;многие ко многим&quot; (M:N)</strong> - в строке таблицы А может сопоставляться несколько строк таблицы Б, и наоборот. Реализуется с помощью отдельной таблицы с внешними ключами, ссылающимися на участников связи.</p>
+</li>
+<li><p><strong>Связь &quot;один ко многим&quot; (1:N)</strong> - в этом типе связей у строки таблицы А может быть несколько совпадающих строк таблицы Б, но каждой строке таблицы Б может соответствовать только одна строка из А. Реализуется с помощью указания внешнего ключа в таблице Б, ссылающегося на участников связи таблицы А.</p>
+</li>
+</ol>
+<hr>
+<h3>12. Общие операторы</h3><p><strong><code>WHERE</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц.</p>
+<p><strong><code>AND</code></strong> - связывающий оператор &quot;И&quot;.</p>
+<p><strong><code>OR</code></strong> - связывающий оператор &quot;ИЛИ&quot;.</p>
+<p><strong><code>LIMIT</code></strong> - выводит ограниченное число выделенных записей.</p>
+<p><strong><code>ORDER BY</code></strong> - выводит ограниченное число выделенных записей.</p>
+<p><strong><code>GROUP BY</code></strong> - группирует все записи с одинаковым условием.</p>
+<p><strong><code>DISTINCT</code></strong> - удаляет из выборки все записи с одинаковым условием.</p>
+<p><strong><code>AS</code></strong> - переименовывает таблицу или столбец для текущего запроса.</p>
+<p><strong><code>HAVING</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц. В отличии от <code>WHERE</code>, <code>HAVING</code> применяется к результату операции и выполняется уже после того, как результат будет получен.</p>
+<p><strong><code>TRUNCATE</code></strong> - удаляет все значения из таблицы.</p>
+<p><strong><code>USE</code></strong> - выбирает доступную базу данных для подключения.</p>
+<p><strong><code>SHOW</code></strong> - выводит списк баз данных, таблиц или схем.</p>
+<hr>
+<h3>13. Логические операторы</h3><p><strong><code>ALL</code></strong> - сравнивает значение с множеством других значений.</p>
+<p><strong><code>AND</code></strong> - позволяет устанавливать несколько условий.</p>
+<p><strong><code>ANY</code></strong> - сравнивает значение с множеством тех значений, которые удовлетворяют условию.</p>
+<p><strong><code>BETWEEN</code></strong> - возвращает множество значений, находящихся в указанном промежутке.</p>
+<p><strong><code>EXISTS</code></strong> - ищет вхождение строки в таблице, удовлетворяющее заданному критерию.</p>
+<p><strong><code>IN</code></strong> - сравнивает значение со списком указанных значений.</p>
+<p><strong><code>LIKE</code></strong> - сравнивает значение с другими похожими значениями используя wildcard.</p>
+<p><strong><code>NOT</code></strong> - реверсает результат логической операции.</p>
+<p><strong><code>OR</code></strong> - комбинирует условия.</p>
+<p><strong><code>IS NULL</code></strong> - сравнивает значение с NULL.</p>
+<p><strong><code>UNIQUE</code></strong> - ищет все уникальные строчки в таблице.</p>
+<hr>
+<h3>14. Агрегатные операторы</h3><p><strong><code>COUNT</code></strong> - подсчитывает количество строк в выборке.</p>
+<p><strong><code>MAX</code></strong> - выбирает максимальное значение из столца.</p>
+<p><strong><code>MIN</code></strong> - выбирает минимальное значение из столбца.</p>
+<p><strong><code>AVG</code></strong> - выбирает среднее значение из столбца.</p>
+<p><strong><code>SUM</code></strong> - подсчитывает сумму значений в числовом столбце.</p></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
