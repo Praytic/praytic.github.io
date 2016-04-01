@@ -77,6 +77,15 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ul>
 </li>
+<li><p><strong>Framework</strong> - программное обеспечение, облегчающее разработку и объединение разных компонентов большого программного проекта.</p>
+</li>
+<li><p><strong>JCP (Java Community Process)</strong> - формальный процесс, который позволяет заинтересованным лицам участвовать в формировании будущих версий спецификаций платформ языка Java.</p>
+</li>
+<li><p><strong>JSR (Java Specification Request)</strong> - формальные документы, описывающие спецификации и технологии, которые предлагается добавить к Java платформе.</p>
+<ul>
+<li>Шаги разработки JSR: запрос &gt; черновик для сообщества &gt; открытый черновик &gt; поддержка.</li>
+</ul>
+</li>
 </ol>
 <hr>
 <h3>2. Многослойная Архитектура</h3><ol>
@@ -178,10 +187,12 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li>AC-контейнер запускается на клиентской машине и является шлюзом между клиентским приложением и JEE серверными компонентами, которые использует клиент.</li>
 </ul>
 </li>
+<li><p>Диаграмма связей между контейнерами.
+<img src="https://dl.dropboxusercontent.com/1/view/frkkhoh7ngae0dk/Apps/Shutter/Selection_038.png" alt="diagram"> </p>
+</li>
 </ol>
 <hr>
-<h3>5. Web Services Support</h3><hr>
-<h3>6. JEE Specification APIs</h3><ol>
+<h3>5. JEE Specification APIs</h3><ol>
 <li><p><strong>JEE (Java Enterprise Edidtion)</strong> - набор спецификаций и соответствующей документации, описывающей архитектуру серверной платформы для задач средних и крупных предприятий.</p>
 <ul>
 <li>JEE - это обобщающая спецификация, которая объединяет и интегрирует остальные.</li>
@@ -196,7 +207,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>7. Web Service Specification APIs</h3><ol>
+<h3>6. Web Service Specification APIs</h3><ol>
 <li><p><strong>WS (Web Services)</strong> - JEE поддерживает SOAP и RESTful веб-сервисы.</p>
 <ul>
 <li>Интерфейс Java для веб-сервисов на XML (JAX-WS), сменивший интерфейс с поддержкой вызовов удаленных процедур на основе XML (JAX-RPC), обеспечивает работу веб-служб, работающих по протоколу SOAP/HTTP. </li>
@@ -218,7 +229,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>8. Web Specification APIs</h3><ol>
+<h3>7. Web Specification APIs</h3><ol>
 <li><p><strong>Servlet</strong> - является интерфейсом, реализация которого расширяет функциональные возможности сервера. Сервлет взаимодействует с клиентами посредством принципа запрос-ответ. Классы сервлетов наследуют возможности серверов, которые хостят приложение, доступное через программную модель &quot;запрос-ответ&quot;. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#BNACM">[source]</a></sup></p>
 <ul>
 <li>Хотя сервлеты могут обслуживать любые запросы, они обычно используются для расширения веб-серверов.</li>
@@ -250,7 +261,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>9. Enterprise Specification APIs</h3><ol>
+<h3>8. Enterprise Specification APIs</h3><ol>
 <li><p><strong>EJB (Enterprise JavaBeans)</strong> - спецификация технологии написания и поддержки серверных компонентов, содержащих бизнес-логику. <sup><a href="https://ru.wikipedia.org/wiki/Enterprise_JavaBeans">[source]</a></sup> </p>
 <ul>
 <li>EJB применяется, когда необходимо:<ul>
@@ -293,32 +304,36 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 </li>
 </ol>
 <hr>
-<h3>10. Прочие APIs</h3><ol>
-<li><p><strong>JACC (Java Authorization Contract for Containers)</strong></p>
+<h3>9. Прочие APIs</h3><ol>
+<li><p><strong>JACC (Java Authorization Contract for Containers)</strong> - определяет соглашение о взаимодействии между сервером приложений Java EE и поставщиком сервиса авторизации, позволяя, таким образом, сторонним поставщикам такого сервиса подключаться к любому продукту JEE. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRBE">[source]</a></sup></p>
 </li>
-<li><p><strong>Bean Validation</strong></p>
+<li><p><strong>Bean Validation</strong> - данная спецификация определяет модель метаданных и API для валидаци данных в JBs компонентах. Вместо того, чтобы распространять валидацию данных на несколько слоев (браузер, сервер и т.д.), эта спецификация позволяет определить контейнеры валидации в одном месте и распределять их по разным слоям. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXTY">[source]</a></sup></p>
 </li>
-<li><p><strong>CDI</strong></p>
+<li><p><strong>CDI</strong> - определяет набор контекстно-зависимых сервисов, предоставляемых JEE контейнерами, которые облегчают разработчкам использование EJBs вместе с JSF в веб приложениях.  <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXVO">[source]</a></sup></p>
 </li>
-<li><p><strong>DI</strong></p>
+<li><p><strong>DI</strong> - процесс предоставления внешней зависимости программному компоненту. Является специфичной формой &quot;инверсии управления&quot;, когда она применяется к управлению зависимостями. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GJXVG">[source]</a></sup></p>
 </li>
-<li><p><strong>Batch</strong></p>
+<li><p><strong>Batch</strong> - пакетный фреймворк, который предоставляет поодержку для создания и запуска пакетных служб в приложении. Пакетные службы - это такие задачи, которые могут выполняться без участия пользователя. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAJHGIH">[source]</a></sup></p>
 </li>
-<li><p><strong>Concurrency Utilities</strong></p>
+<li><p><strong>Concurrency Utilities</strong> - API, предоставляющее асинхронные возможности для компонентов JEE приложения через указанные типы объектов: управляемый исполнительный сервис, управляемый планированный исполнительный сервис, управляемая фабрика потоков и контекстный сервис. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#CJAFGFCJ">[source]</a></sup></p>
 </li>
-<li><p><strong>Management</strong></p>
+<li><p><strong>Management</strong> - JEE с помощью специального управляющего компонента определяет API для операций с контейнерами и серверами.</p>
 </li>
-<li><p><strong>JASPIC (Java Authentication Service Provider Interface for Containers)</strong></p>
+<li><p><strong>JASPIC (Java Authentication Service Provider Interface for Containers)</strong> - определяет стандартный интерфейс, с помощью которого модули аутентификации могут быть интегрированы с контейнерами. В результате модули могут установить идентификаторы подлинности, используемые контейнерами. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview007.htm#GIRGP">[source]</a></sup></p>
 </li>
 </ol>
-<h3>11. JSE APIs</h3><ol>
-<li><p><strong>Common Annotations</strong></p>
+<h3>10. JSE APIs</h3><ol>
+<li><p><strong>Common Annotations</strong> - аннотации предоставляют возможность декларативного программирования в Java платформе. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#sthref108">[source]</a></sup></p>
 </li>
-<li><p><strong>JDBC</strong></p>
+<li><p><strong>JDBC (Java Database Connectivity)</strong> - API для возможности соединения с реляционными базами данных. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADA">[source]</a></sup></p>
+<ul>
+<li>JDBC API содержит два основных типа интерфейсов: первый — для разработчиков приложений и второй (более низкого уровня) — для разработчиков драйверов.</li>
+<li>JDBC основан на концепции так называемых драйверов, позволяющих получать соединение с базой данных по специально описанному URL. </li>
+</ul>
 </li>
-<li><p><strong>JNDI</strong> </p>
+<li><p><strong>JNDI (Java Naming and Directory Interface)</strong> - API, организованный в виде службы каталогов, который позволяет Java-клиентам открывать и просматривать данные и объекты по их именам. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADC">[source]</a></sup></p>
 </li>
-<li><p><strong>JAXP</strong></p>
+<li><p><strong>JAXP (Java API for XML Processing)</strong> - набор абстрактных API, упрощающих обработку XML данных с помощью программ, написанных на Java.  Усиливает стандартные анализаторы SAX (Simple API for XML Parsing) и DOM (Document Object Model). <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACU">[source]</a></sup></p>
 </li>
 <li><p><strong>JAXB (Java Architecture for XML Binding)</strong> - позволяет связывать классы и XML представления. Предоставляет две основные возможности:  маршаллирование Java объектов в XML и наоборот, то есть демаршализация из XML обратно в Java объект. Другими словами, JAXB позволяет хранить и извлекать данные в памяти в любом XML-формате, без необходимости выполнения определенного набора процедур загрузки и сохранения XML. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACW">[source]</a></sup></p>
 </li>
@@ -331,15 +346,15 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li>Возможность выбора между двумя путями разработки: снизу-вверх (программист разрабатывает endpoint-классы сам) и сверху-вниз (Java классы генерируются по WSDL).</li>
 </ul>
 </li>
-<li><p><strong>JAF</strong> </p>
+<li><p><strong>JAF (JavaBeans Activation Framework)</strong> - предоставляет фреймворк для управления данными в различных MIME типах. Используется в JavaMail API. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACT">[source]</a></sup></p>
 </li>
-<li><p><strong>StAX</strong></p>
+<li><p><strong>StAX (Streaming API for XML)</strong> - предоставляет API для парсинга XML.</p>
 </li>
-<li><p><strong>JAAS</strong></p>
+<li><p><strong>JAAS (Java Authentication and Authorization Service)</strong> - API отделяет аутентификацию и авторизацию пользователей от основной программы, чтобы управлять ими независимо от программы. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNADD">[source]</a></sup></p>
 </li>
-<li><p><strong>JMX</strong></p>
+<li><p><strong>JMX (Java Management Extensions)</strong> - технология, предназначенная для контроля и управления приложениями, системными объектами, устройствами и компьютерными сетями. Данные ресурсы представляются через MBs.</p>
 </li>
-<li><p><strong>SAAJ</strong></p>
+<li><p><strong>SAAJ (SOAP with Attachments API for Java)</strong> - низкоуровневый API, от которого зависит JAX-WS. <sup><a href="https://docs.oracle.com/javaee/7/tutorial/overview008.htm#BNACX">[source]</a></sup></p>
 </li>
 </ol>
 <hr></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
