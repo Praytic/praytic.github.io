@@ -6,7 +6,7 @@ ga('create', 'UA-75180616-1', 'auto');
 ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Design Patterns</h1><h3>1. Общее</h3><ol>
 <li><strong>Паттерн</strong> или <strong>шаблон проектирования</strong> - повторимая архитектурная конструкция, представляющая собой решение проблемы проектирования в рамках некоторого часто возникающего контекста.</li>
 </ol>
-<h3>1. Creational Patterns</h3><ol>
+<h3>2. Creational Patterns</h3><ol>
 <li><p><strong>Abstract Factory</strong> (Абстрактная фабрика) - предоставляет интерфейс для создания групп связанных или зависимых объектов, не указывая их конкретный класс.</p>
 </li>
 <li><p><strong>Factory Method</strong> (Фабричный метод) - определяет интерфейс для создания объекта, но позволяет подклассам решать, какой класс инстанцировать. Позволяет делегировать создание объекта подклассам.</p>
@@ -18,7 +18,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li><p><strong>Singleton</strong> (Одиночка) - гарантирует, что класс имеет только один экземпляр и предоставляет глобальную точку доступа к нему.</p>
 </li>
 </ol>
-<h3>1. Structural Patterns</h3><ol>
+<h3>3. Structural Patterns</h3><ol>
 <li><p><strong>Adapter</strong> (Адаптер) - конвертирует интерфейс класса в другой интерфейс, ожидаемый клиентом. Позволяет классам с разными интерфейсами работать вместе.</p>
 </li>
 <li><p><strong>Proxy</strong> (Прокси) - предоставляет замену другого объекта для контроля доступа к нему.</p>
@@ -34,7 +34,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li><p><strong>Flyweight</strong> (Приспособленец) - благодаря совместному использованию, поддерживает эффективную работу с большим количеством объектов.</p>
 </li>
 </ol>
-<h3>1. Behavioral Patterns</h3><ol>
+<h3>4. Behavioral Patterns</h3><ol>
 <li><p><strong>Memento</strong> (Хранитель) - не нарушая инкапсуляцию, определяет и сохраняет внутреннее состояние объекта и позволяет позже восстановить объект в этом состоянии.</p>
 </li>
 <li><p><strong>Chain of responsibility</strong> (Цепочка обязанностей) - избегает связывания отправителя запроса с его получателем, давая возможность обработать запрос более чем одному объекту. Связывает объекты-получатели и передает запрос по цепочке, пока объект не обработает его.</p>
@@ -58,12 +58,12 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li><p><strong>Visitor</strong> (Посетитель) - представляет собой операцию, которая будет выполнена над объектами группы классов. Дает возможность определить новую операцию без изменения кода классов, над которыми эта операция проводится.</p>
 </li>
 </ol>
-<h3>1. MVC</h3><ol>
+<h3>5. MVC</h3><ol>
 <li><strong>MVC (Model-View-Controller)</strong> - схема использования нескольких шаблонов проектирования, с помощью которых модель приложения, пользовательский интерфейс и взаимодействие с пользователем разделены на три отдельных компонента таким образом, чтобы модификация одного из компонентов оказывала минимальное воздействие на остальные.</li>
 </ol>
-<h3>1. MVP</h3><ol>
+<h3>6. MVP</h3><ol>
 <li><strong>MVP (Model-View-Presenter)</strong> - шаблон проектирования, производный от MVC, который используется в основном для построения пользовательского интерфейса. Элемент Presenter в данном шаблоне берёт на себя функциональность посредника (аналогично контроллеру в MVC) и отвечает за управление событиями пользовательского интерфейса так же, как в других шаблонах обычно отвечает представление.</li>
 </ol>
-<h3>1. MVVM</h3><ol>
+<h3>7. MVVM</h3><ol>
 <li><strong>MVVM (Model-View-ViewModel)</strong> - шаблон проектирования, производный от MVP, который используется для разделения модели и её представления, что необходимо для изменения их отдельно друг от друга. Например, разработчик задает логику работы с данными, а дизайнер соответственно работает с пользовательским интерфейсом.</li>
 </ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
