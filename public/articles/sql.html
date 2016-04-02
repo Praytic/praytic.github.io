@@ -29,8 +29,7 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li><p><strong>Field</strong> - каждая таблица разделена на подразделы, называемые полями. Поле описывает один столбец, т.е. задает 
 тип значения, которое будет в нем храниться, название столбца, ограничения, накладываемые на столбец.</p>
 </li>
-<li><p><strong>Row</strong> - уникальный элемент таблицы, который может состоять из нескольких значений (в зависимости от полей 
-таблицы).</p>
+<li><p><strong>Row</strong> - элемент таблицы, который может состоять из нескольких значений (в зависимости от полей таблицы).</p>
 </li>
 </ol>
 <hr>
@@ -215,7 +214,7 @@ WHERE a.common_field = b.common_field;
 </ol>
 <hr>
 <h3>11. Связи</h3><ol>
-<li><p><strong>Связь &quot;один ко одному&quot; (1:1)</strong> - в строке таблицы А может сопоставляться только одна строка таблицы Б, и наоборот. Реализуется с помощью указания внешних ключей в обоеих таблицах у участников связи.</p>
+<li><p><strong>Связь &quot;один ко одному&quot; (1:1)</strong> - в строке таблицы А может сопоставляться только одна строка таблицы Б, и наоборот. Реализуется с помощью указания внешних ключей в обеих таблицах у участников связи.</p>
 </li>
 <li><p><strong>Связь &quot;многие ко многим&quot; (M:N)</strong> - в строке таблицы А может сопоставляться несколько строк таблицы Б, и наоборот. Реализуется с помощью отдельной таблицы с внешними ключами, ссылающимися на участников связи.</p>
 </li>
@@ -223,33 +222,67 @@ WHERE a.common_field = b.common_field;
 </li>
 </ol>
 <hr>
-<h3>12. Общие операторы</h3><p><strong><code>WHERE</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц.</p>
-<p><strong><code>AND</code></strong> - связывающий оператор &quot;И&quot;.</p>
-<p><strong><code>OR</code></strong> - связывающий оператор &quot;ИЛИ&quot;.</p>
-<p><strong><code>LIMIT</code></strong> - выводит ограниченное число выделенных записей.</p>
-<p><strong><code>ORDER BY</code></strong> - выводит ограниченное число выделенных записей.</p>
-<p><strong><code>GROUP BY</code></strong> - группирует все записи с одинаковым условием.</p>
-<p><strong><code>DISTINCT</code></strong> - удаляет из выборки все записи с одинаковым условием.</p>
-<p><strong><code>AS</code></strong> - переименовывает таблицу или столбец для текущего запроса.</p>
-<p><strong><code>HAVING</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц. В отличии от <code>WHERE</code>, <code>HAVING</code> применяется к результату операции и выполняется уже после того, как результат будет получен.</p>
-<p><strong><code>TRUNCATE</code></strong> - удаляет все значения из таблицы.</p>
-<p><strong><code>USE</code></strong> - выбирает доступную базу данных для подключения.</p>
-<p><strong><code>SHOW</code></strong> - выводит списк баз данных, таблиц или схем.</p>
+<h3>12. Общие операторы</h3><ol>
+<li><p><strong><code>WHERE</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц.</p>
+</li>
+<li><p><strong><code>AND</code></strong> - связывающий оператор &quot;И&quot;.</p>
+</li>
+<li><p><strong><code>OR</code></strong> - связывающий оператор &quot;ИЛИ&quot;.</p>
+</li>
+<li><p><strong><code>LIMIT</code></strong> - выводит ограниченное число выделенных записей.</p>
+</li>
+<li><p><strong><code>ORDER BY</code></strong> - выводит ограниченное число выделенных записей.</p>
+</li>
+<li><p><strong><code>GROUP BY</code></strong> - группирует все записи с одинаковым условием.</p>
+</li>
+<li><p><strong><code>DISTINCT</code></strong> - удаляет из выборки все записи с одинаковым условием.</p>
+</li>
+<li><p><strong><code>AS</code></strong> - переименовывает таблицу или столбец для текущего запроса.</p>
+</li>
+<li><p><strong><code>HAVING</code></strong> - используется для указания условия выборки данных из таблицы или при слиянии таблиц. В отличии от <code>WHERE</code>, <code>HAVING</code> применяется к результату операции и выполняется уже после того, как результат будет получен.</p>
+</li>
+<li><p><strong><code>TRUNCATE</code></strong> - удаляет все значения из таблицы.</p>
+</li>
+<li><p><strong><code>USE</code></strong> - выбирает доступную базу данных для подключения.</p>
+</li>
+<li><p><strong><code>SHOW</code></strong> - выводит списк баз данных, таблиц или схем.</p>
+</li>
+</ol>
 <hr>
-<h3>13. Логические операторы</h3><p><strong><code>ALL</code></strong> - сравнивает значение с множеством других значений.</p>
-<p><strong><code>AND</code></strong> - позволяет устанавливать несколько условий.</p>
-<p><strong><code>ANY</code></strong> - сравнивает значение с множеством тех значений, которые удовлетворяют условию.</p>
-<p><strong><code>BETWEEN</code></strong> - возвращает множество значений, находящихся в указанном промежутке.</p>
-<p><strong><code>EXISTS</code></strong> - ищет вхождение строки в таблице, удовлетворяющее заданному критерию.</p>
-<p><strong><code>IN</code></strong> - сравнивает значение со списком указанных значений.</p>
-<p><strong><code>LIKE</code></strong> - сравнивает значение с другими похожими значениями используя wildcard.</p>
-<p><strong><code>NOT</code></strong> - реверсает результат логической операции.</p>
-<p><strong><code>OR</code></strong> - комбинирует условия.</p>
-<p><strong><code>IS NULL</code></strong> - сравнивает значение с NULL.</p>
-<p><strong><code>UNIQUE</code></strong> - ищет все уникальные строчки в таблице.</p>
+<h3>13. Логические операторы</h3><ol>
+<li><p><strong><code>ALL</code></strong> - сравнивает значение с множеством других значений.</p>
+</li>
+<li><p><strong><code>AND</code></strong> - позволяет устанавливать несколько условий.</p>
+</li>
+<li><p><strong><code>ANY</code></strong> - сравнивает значение с множеством тех значений, которые удовлетворяют условию.</p>
+</li>
+<li><p><strong><code>BETWEEN</code></strong> - возвращает множество значений, находящихся в указанном промежутке.</p>
+</li>
+<li><p><strong><code>EXISTS</code></strong> - ищет вхождение строки в таблице, удовлетворяющее заданному критерию.</p>
+</li>
+<li><p><strong><code>IN</code></strong> - сравнивает значение со списком указанных значений.</p>
+</li>
+<li><p><strong><code>LIKE</code></strong> - сравнивает значение с другими похожими значениями используя wildcard.</p>
+</li>
+<li><p><strong><code>NOT</code></strong> - реверсает результат логической операции.</p>
+</li>
+<li><p><strong><code>OR</code></strong> - комбинирует условия.</p>
+</li>
+<li><p><strong><code>IS NULL</code></strong> - сравнивает значение с NULL.</p>
+</li>
+<li><p><strong><code>UNIQUE</code></strong> - ищет все уникальные строчки в таблице.</p>
+</li>
+</ol>
 <hr>
-<h3>14. Агрегатные операторы</h3><p><strong><code>COUNT</code></strong> - подсчитывает количество строк в выборке.</p>
-<p><strong><code>MAX</code></strong> - выбирает максимальное значение из столца.</p>
-<p><strong><code>MIN</code></strong> - выбирает минимальное значение из столбца.</p>
-<p><strong><code>AVG</code></strong> - выбирает среднее значение из столбца.</p>
-<p><strong><code>SUM</code></strong> - подсчитывает сумму значений в числовом столбце.</p></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
+<h3>14. Агрегатные операторы</h3><ol>
+<li><p><strong><code>COUNT</code></strong> - подсчитывает количество строк в выборке.</p>
+</li>
+<li><p><strong><code>MAX</code></strong> - выбирает максимальное значение из столца.</p>
+</li>
+<li><p><strong><code>MIN</code></strong> - выбирает минимальное значение из столбца.</p>
+</li>
+<li><p><strong><code>AVG</code></strong> - выбирает среднее значение из столбца.</p>
+</li>
+<li><p><strong><code>SUM</code></strong> - подсчитывает сумму значений в числовом столбце.</p>
+</li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
