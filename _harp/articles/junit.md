@@ -280,10 +280,19 @@
     + equalToIgnoringWhiteSpace - проверка равенство строке, игнорируя пробелы.
     + containsString, endsWith, startsWith - проверка на содержание вхождения строки.
 
+### 4. Mockito
+
+1. **Mock** - объект-пустышка, предназначенный для проверки ожидаемого поведения тестируемого объекта.
+
+1. **Stub** - объект-пустышка, предназначенный для получения нужного состояния тестируемого объекта. Они моделируют внешнее окружение тестового класса.
+
+1. **Mockito** - фреймворк для тестирования, который используется в сочитании с JUnit. Он позволяет создавать и настраивать моки.
+
 ### Источники
 1. https://github.com/junit-team/junit4/wiki
 2. http://www.vogella.com/tutorials/JUnit/article.html
-3. https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki
 4. http://www.vogella.com/tutorials/Mockito/article.html
+3. https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki
 5. http://www.tutorialspoint.com/junit/index.htm
 6. https://en.wikipedia.org/wiki/Unit_testing
+7. https://habrahabr.ru/post/134836/
