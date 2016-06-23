@@ -133,7 +133,16 @@
 
 1. **DI (Dependency Injection)** - процесс, в котором объекты определяют свои зависимости посредством внедрения.
   - Базовые пакеты Spring IoC контейнера: `org.springframework.beans`, `org.springframework.context`
-  - 
+  - Преимущества DI:
+    + Разделение обязанностей
+    + Вся работа по инициализации зависимостей выполняется инъектором
+    + Конфигурированные компоненты делают приложение лекго-расширяемым
+    + Возможность создания моков для модульного тестирования
+  - DI использует связывание объектов во время работы программы, а не во время компиляции.
+  - В спринге DI происходит через рефлексию и аннотации. Так что, все, что нужно сделать - это аннотировать поле, конструктор или сеттер и сконфигурировать их в XML или Java классе.
+
+1. **`ApplicationContext`** - интерфейс, который представляет собой Spring IoC контейнер и отвечает за инстанциирование, конфигурирование и сборку бинов. Он получает инструкции о том, с какими объектами он работает, через конфигурационные метаданные, которые могут быть представлены в виде XML, Java аннотаций или Java кода.
+  - Имплементации: `ClassPathXmlApplicationContext`, `FileSystemXmlApplicationContext`, `GenericApplicationContext`, `GenericGroovyApplicationContext`, `GenericWebApplicationContext`, `GenericXmlApplicationContext`, `GroovyWebApplicationContext`, `ResourceAdapterApplicationContext`, `StaticApplicationContext`, `StaticPortletApplicationContext`, `StaticWebApplicationContext`, `XmlPortletApplicationContext`, `XmlWebApplicationContext`
 
 ***
 
@@ -390,7 +399,11 @@
 
 ### 34. Spring REST
 
+***
 
+### Sources
+
+1. http://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial
 
 [1.1]: http://platform.spring.io/platform/
 [1.2]: http://projects.spring.io/spring-boot/
