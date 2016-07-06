@@ -3,242 +3,310 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-75180616-1', 'auto');
-ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Java SE (Standart Edition)</h1><h3>1. Общее</h3><ol>
-<li><p><strong>JRE (Java Runtime Environment)</strong> — минимальная реализация виртуальной машины, необходимая для исполнения Java-приложений, без компилятора и других средств разработки. Включает в себя:</p>
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Kotlin</h1><h3>1. Идиомы</h3><ol>
+<li><p><strong>DTO (Data Transfer Object)</strong> - обычный объект, который используется для пересылки или хранения данных. </p>
 <ul>
-<li>Виртуальную машину — Java Virtual Machine</li>
-<li>Библиотеки Java-классов.</li>
+<li>Пример создания класса <code>Customer</code> c геттерами и сеттерами для всех полей. Модификтор <code>data</code> предоставляет методы <code>equals()</code>, <code>hashCode()</code>, <code>toString()</code>, <code>copy()</code>, а также возможность деструктурирования.<pre><code class="language-Kotlin">data class Customer(val name: String, val email: String)
+</code></pre>
+</li>
 </ul>
 </li>
-<li><p><strong>JDK (Java Development Kit)</strong> — бесплатно распространяемый компанией Oracle Corporation (ранее Sun Microsystems) комплект разработчика приложений на языке Java. Он включает в себя:</p>
+<li><p><strong>Параметры по-умолчанию</strong> - котлин поддерживает параметры по-умолчанию.</p>
 <ul>
-<li>Компилятор Java (javac)</li>
-<li>Стандартные библиотеки классов Java</li>
-<li>Примеры, документацию, различные утилиты</li>
-<li>Исполнительную систему Java (JRE).</li>
+<li>Пример:<pre><code class="language-Kotlin">fun foo(a: Int = 0, b: String = &quot;&quot;) { ... }
+</code></pre>
+</li>
 </ul>
 </li>
-<li><p><strong>JVM (Java Virtual Machine)</strong> — виртуальная машина Java — основная часть JRE. </p>
+<li><p><strong>Фильтрация</strong> - у коллекций в котлине имеется метод filter, который в сочитании с лямбда-выражениями позволяет удобно отсеивать нужные значения коллекции.</p>
 <ul>
-<li>Виртуальная машина Java интерпретирует Байт-код Java, предварительно созданный из исходного текста Java-программы компилятором Java (javac). </li>
-<li>JVM может также использоваться для выполнения программ, написанных на других языках программирования.</li>
-<li>HotSpot - основная JVM для настольных компьютеров и серверов, выпускаемая корпорацией Oracle.</li>
+<li>Пример:<pre><code class="language-Kotlin">val positives = list.filter { x -&gt; x &gt; 0 }
+val positives = list.filter { it &gt; 0 }
+</code></pre>
+</li>
 </ul>
 </li>
-<li><p><strong>Байт-код</strong> — набор инструкций, исполняемых виртуальной машиной Java. </p>
+<li><p><strong>Подстановка</strong> - в котлине есть возможность подстановки значений переменных в строку используя имя переменной.</p>
 <ul>
-<li>Для обеспечения кроссплатформенности программа сначала компилируется в промежуточный язык низкого уровня — байт-код. </li>
-<li>Если выполнение байт-кода на JVM нежелательно, исходный код на языке Java или Java байт-код может быть скомпилирован напрямую в нативный машинный код.</li>
+<li>Пример:<pre><code class="language-Kotlin">val name = &quot;NAME&quot;
+println(&quot;Name $name&quot;)
+</code></pre>
+</li>
 </ul>
 </li>
-<li><p><strong>Динамическая компиляция JIT (Just In Time)</strong> -  технология увеличения производительности программных систем, использующих байт-код, путём компиляции байт-кода в машинный код или в другой формат непосредственно во время работы программы. Большинство реализаций JIT имеют последовательную структуру: </p>
+<li><p><strong>Проверка типа</strong> - совмещая операторы <code>when</code> и <code>is</code> можно добиться удобной проверки на тип объекта.</p>
 <ul>
-<li>Сначала приложение компилируется в байт-код виртуальной машины среды исполнения (AOT-компиляция).</li>
-<li>Потом JIT компилирует байт-код непосредственно в машинный код.</li>
-<li>В итоге при запуске приложения тратится лишнее время, что, впоследствии, компенсируется более быстрой его работой.</li>
+<li>Пример:<pre><code class="language-Kotlin">when (x) {
+ is Foo -&gt; ...
+ is Bar -&gt; ...
+ else   -&gt; ...
+}
+</code></pre>
+</li>
 </ul>
 </li>
-<li><p><strong>Garbage Collector</strong> - одна из форм автоматического управления памятью. </p>
+<li><p><strong>Диапазоны</strong> - в котлине имееется оператор <code>..</code> для обозначения диапазонов.</p>
 <ul>
-<li>Все объекты к которым невозможно добраться с корневых точек будут считаться мусором. </li>
-<li>HotSpot VM использует именно такой подход. </li>
-<li>Память освобождается сборщиком мусора по его собственному &quot;усмотрению&quot;</li>
+<li>Пример:<pre><code class="language-Kotlin">for (i in 1..100) { ... }  // closed range: includes 100
+for (i in 1 until 100) { ... } // half-open range: does not include 100
+for (x in 2..10 step 2) { ... }
+for (x in 10 downTo 1) { ... }
+if (x in 1..10) { ... }
+</code></pre>
+</li>
 </ul>
+</li>
+<li><p><strong>Read-only коллекции</strong></p>
+<pre><code class="language-Kotlin">for (i in 1..100) { ... }  // closed range: includes 100
+for (i in 1 until 100) { ... } // half-open range: does not include 100
+for (x in 2..10 step 2) { ... }
+for (x in 10 downTo 1) { ... }
+if (x in 1..10) { ... }
+</code></pre>
+</li>
+<li><p><strong>Доступ по ключу</strong></p>
+<pre><code class="language-Kotlin">map[&quot;key&quot;] = value
+</code></pre>
+</li>
+<li><p><strong>Singleton</strong></p>
+<pre><code class="language-Kotlin">object Resource {
+   val name = &quot;Name&quot;
+}
+</code></pre>
+</li>
+<li><p><strong>Выражения с возвратом значения</strong></p>
+<pre><code class="language-Kotlin">result = when (color) {
+   &quot;Red&quot; -&gt; 0
+   &quot;Green&quot; -&gt; 1
+   &quot;Blue&quot; -&gt; 2
+   else -&gt; throw IllegalArgumentException(&quot;Invalid color param value&quot;)
+}
+</code></pre>
+<pre><code class="language-Kotlin">result = try {
+   count()
+} catch (e: ArithmeticException) {
+   throw IllegalStateException(e)
+}
+</code></pre>
+<pre><code class="language-Kotlin">result = if (param == 1) {
+   &quot;one&quot;
+} else if (param == 2) {
+   &quot;two&quot;
+} else {
+   &quot;three&quot;
+}
+</code></pre>
 </li>
 </ol>
 <hr>
-<h3>2. Элементы</h3><ol>
-<li><p><strong>Пакет</strong> - это именованная логическая группа классов. Пакеты непосредственно соответствуют иерархии в файловой системе.</p>
-</li>
-<li><p><strong>Импортирование имен</strong> - способ ссылки на классы из другого пакета. При импортировании простое имя типа погружается в текущую область видимости имён, и его можно использовать непосредственно, без указания имени пакета.</p>
-</li>
-<li><p><strong>Класс</strong> — это описания структуры и поведения объектов. Классы записываются программистом в виде исходного кода и компилируются в байт-код. Имея байт-код классов, виртуальная машина способна создавать объекты и обеспечивать вызов их методов.</p>
+<h3>1. Базовые конструкции</h3><ol>
+<li><p><strong>Типы данных</strong></p>
 <ul>
-<li>Шаблон определения класса:<pre><code class="language-Java">[public] [final|abstract] class ClassName 
-[extends OtherClass] 
-[implements Interface1, Interface2] {}
+<li>Синтаксис типа:<pre><code class="language-Kotlin">annotations typeDescriptor
+</code></pre>
+<ul>
+<li><code>typeDescriptor</code> может быть функцией, пользовательским типом, nullable типом или dynamic.</li>
+<li><code>annotations</code> состоит из одной или нескольких аннотаций.</li>
+</ul>
+</li>
+<li><strong><code>Number</code></strong> - данный тип схож с джавовским, но не совсем. В котлине он представляет следующие типы (не наследуются): <code>Double</code>, <code>Float</code>, <code>Long</code>, <code>Int</code>, <code>Short</code>, <code>Byte</code>.<ul>
+<li>Десятичные числа: <code>123</code>. Long числа: <code>123L</code></li>
+<li>Шестнадцетиричные числа: <code>0x0F</code></li>
+<li>Двоичные числа: <code>0b00001011</code></li>
+<li>Числа с плавающей точкой: <code>123.5</code>, <code>123.5e10</code>. Float числа: <code>123.5f</code></li>
+<li>В котлине не поддерживается неявное преобразование малых чисел в больше (Byte в Int, например).</li>
+</ul>
+</li>
+<li><strong><code>Char</code></strong> - в котлине символы не могут воспринматься как числа, в отличии от джавы.<ul>
+<li>Экранируемые символы: <code>\t</code>, <code>\b</code>, <code>\n</code>, <code>\r</code>, <code>\&#39;</code>, <code>\&quot;</code>, <code>\\</code>, <code>\$</code> или символ юникода <code>&#39;\uFF00&#39;</code></li>
+</ul>
+</li>
+<li><strong><code>Boolean</code></strong> - булев тип, принимающий <code>true</code> или <code>false</code>.</li>
+<li><strong><code>Array</code></strong> - массивы в котлине представлены этим классом, который имеет геттер и сеттер в виде квадратных скобок.<ul>
+<li>В отличии от массивов в джава, массивы в котлине инварианты. Это значит, что нельзя присвоить значение типа <code>Array&lt;String&gt;</code> переменной типа <code>Array&lt;Any&gt;</code>. Для этого нужно использовать явное преобразование.</li>
+</ul>
+</li>
+<li><strong><code>String</code></strong> - строки как и в джава - неизменяемы, к элементам строки (символам) можно образаться с помощью геттера в виде квадратных скобок.<ul>
+<li>Тройные кавычки обозначают, что текст внутри них останется таким, каким он выглядит в редакторе (за исключением отступов, их можно указать с помощью знака <code>|</code>).</li>
+<li>Строковые темплейты можно делать с помощью <code>$</code>: <pre><code class="language-Kotlin">val s = &quot;abc&quot;
+val str = &quot;$s.length is ${s.length}&quot;.
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Объекты</strong> — это участки памяти виртуальной машины, содержащие своё состояние в виде полей.</p>
+</ul>
+</li>
+<li><p><strong>Операции</strong> - операции в котлине разделяются на следующие группы:</p>
 <ul>
-<li>Шаблон определения поля объекта:<pre><code class="language-Java">[public|protected|private] [static] [final] Type field;
+<li>Арифметические операции: <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code>, <code>%</code>, <code>++</code>, <code>--</code>.</li>
+<li>Сравнительные операции: <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>&lt;</code>.</li>
+<li>Побитовые операции: <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>~</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code>.</li>
+<li>Логические операции: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>.</li>
+<li>Операции присваивания: <code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&lt;&lt;=</code>, <code>&gt;&gt;=</code>, <code>&amp;=</code>, <code>^=</code>, <code>|=</code>.</li>
+<li>Прочие операции: <code>() ? () : ()</code>, <code>instanceof</code></li>
+</ul>
+</li>
+</ol>
+<h3>1. Элементы</h3><p>Обозначение нотаций, которые будут использоваться для определения синтаксиса элементов:</p>
+<ul>
+<li>Имена конечных элементов начинаются с большой буквы. (SimpleName)</li>
+<li>Имена неконечных элементов начинаются с маленькой буквы. (kotlinFile)</li>
+<li>Оператор <code>|</code> обозначает &quot;или&quot;.</li>
+<li>Оператор <code>*</code> обозначает &quot;может содержать несколько&quot;.</li>
+<li>Оператор <code>+</code> обозначает &quot;сожержит несколько&quot;.</li>
+<li>Оператор <code>?</code> обозначает &quot;может содержать один&quot;.</li>
+<li>Оператор <code>X{Y}</code> обозначает непустую последовательность из X-ов, разделенных символом Y.</li>
+<li>Оператор <code>++</code> обозначает, что между операндами недопустимы пробелы или комментарии.  </li>
+<li>Операнд <code>SEMI</code> обозначает новую строку или точку с запятой.  </li>
+</ul>
+<ol>
+<li><p><strong>kotlinFile</strong> - файл состоит из начального поля и может содержать несколько объектов высокого уровня.</p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Метод</strong> — это просто функция, которая неявным параметром принимает объект, на котором она вызывается. Таким образом, отправка сообщения сводится к вызову функции.</p>
+<li><p><strong>script</strong> - скрипт состоит из начального поля и может содержать несколько выражений.</p>
 <ul>
-<li>Шаблон определения поля объекта:<pre><code class="language-Java">[public|protected|private] [static|abstract|final] Type method(Type param) {}
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble expression*
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Абстрактный класс</strong> — это такой класс, часть функционала которого не реализована, но задекларирована.</p>
-</li>
-<li><p><strong>Интерфейс</strong> в Java можно понимать как класс, содержащий только абстрактные методы. Интерфейс предназначен для описания абстракций или контрактов, которые должен предоставлять класс, реализующий этот интерфейс.</p>
-</li>
-<li><p><strong>Функция</strong> — именованный блок кода, возможно, принимающий некоторые данные извне (параметры/аргументы) и, возможно, возвращающий некоторый результат.</p>
-</li>
-<li><p><strong>Виртуальные методы</strong> — такие методы, которые обладают свойством позднего связывания. </p>
+<li><p><strong>preamble</strong> - начальное поле может содержать файловые аннотации, заголовок пакета и несколько импортов. </p>
 <ul>
-<li>В Java все методы виртуальные.</li>
-</ul>
-</li>
-<li><p><strong>Вложенный класс</strong> — используется для более тонкой организации классов, чем с помощью пакетов. </p>
-<ul>
-<li>Существует несколько типов вложенных классов: вложенные статические, внутренние, анонимные, локальные. </li>
-<li>Вложенными могут быть также интерфейсы, перечисления и аннотации.</li>
-<li>Шаблон определения вложенного класса:<pre><code class="language-Java">[public|protected|private] [static] [abstract|final] class NestedClass {}
+<li>Синтаксис:<pre><code class="language-Kotlin">fileAnnotations? packageHeader? import*
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Лямбда-выражение</strong> — часть парадигмы функционального программирования. Предназначены для замены слишком многословного синтаксиса анонимных классов.</p>
+<li><p><strong>fileAnnotations</strong> - файловые аннотации могут содержать несколько файловых аннотаций.</p>
 <ul>
-<li>Шаблон определения лямбда-выражения:<pre><code class="language-Java">(Type param) -&gt; { /* body */ }
+<li>Синтаксис:<pre><code class="language-Kotlin">fileAnnotation*
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Перечисление</strong> — специальный тип данных, предусмотренный для ограничения множества допустимых значений для некоторого типа данных.</p>
+<li><p><strong>fileAnnotation</strong> - файловая аннотация содержит одну или более аннотацию.</p>
 <ul>
-<li>Шаблон определения перечисления:<pre><code class="language-Java">[public] enum EnumName [implements Interface1, Interface2] {}
+<li>Синтаксис:<pre><code class="language-Kotlin">&quot;@&quot; &quot;file&quot; &quot;:&quot; (&quot;[&quot; annotationEntry+ &quot;]&quot; | annotationEntry)
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Конструктор</strong> — это специальный метод, который автоматически вызывается при создании объекта и инициализирует его состояние. </p>
+<li><p><strong>packageHeader</strong> - заголовок пакета содержит модификаторы и последовательность имен.</p>
 <ul>
-<li>Конструктор по умолчанию не создаётся, если в классе объявлен явно другой конструктор.</li>
-<li>Шаблон определения конструктора:<pre><code class="language-Java">[public|protected|private] ClassName(Type param) {}
+<li>Синтаксис:<pre><code class="language-Kotlin">modifiers &quot;package&quot; SimpleName{&quot;.&quot;} SEMI?
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Дженерики</strong> — реализация обобщенного программирования, включающая в себя поддержку обобщенных классов и обобщенных методов. </p>
+<li><p><strong>import</strong> - импорт состоит из последовательности имен и может содержать в конце &#39;*&#39; или еще одно имя.</p>
 <ul>
-<li>В первую очередь дженерики были нужны для создания типобезопасной библиотеки коллекций, т.е. с проверкой типов на этапе компиляции, а не в рантайме.</li>
-<li>Пример определения дженериков:<pre><code class="language-Java">public class SomeClass&lt;T1, T2, ...&gt; {}
-&lt;T1, T2, ..., E [extends|super] ClassName&gt; R method(T1 p1, T2 p2, ...) throws E {}
+<li>Синтаксис:<pre><code class="language-Kotlin">&quot;import&quot; SimpleName{&quot;.&quot;} (&quot;.&quot; &quot;*&quot; | &quot;as&quot; SimpleName)? SEMI?
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Итератор</strong> - объект, предоставляющий доступ к элементам коллекции и навигацию по ним. </p>
+<li><p><strong>toplevelObject</strong> - высокоуровневый объект - это пакет, класс, объект, функция или проперти.</p>
 <ul>
-<li>Каждый класс коллекций наследуется от интерфейса Iterable. </li>
-<li>Существуют 2 типа итераторов: Iterator и ListIterator. Второй наследуется от первого и предоставляет больше методов.</li>
-</ul>
-</li>
-<li><p><strong>Аннотации</strong> - дескрипторы, включаемые в текст программы. Используются для хранения метаданных программного кода, необходимых на разных этапах жизненного цикла программы.</p>
-<ul>
-<li>Пример определения аннотации.<pre><code class="language-Java">import java.lang.annotation.*;
-@Target(value=ElementType.FIELD)
-@Retention(value= RetentionPolicy.RUNTIME)
-public @interface Name {
-  String name();
-  String type() default  “string”;
-}
+<li>Синтаксис:<pre><code class="language-Kotlin">package | class | object | function | property
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Shadowing</strong> - сокрытие объявления может произойти, когда объявляется ещё одна сущность того же рода с тем же именем в более узкой области видимости. В таком случае к исходной сущности нельзя обращаться по простому имени.</p>
-</li>
-<li><p><strong>Obscuring</strong> может произойти, когда существует неоднозначность имени между разными пространствами имён (например, имя переменной совпадает с именем пакета). Такое случается крайне редко.</p>
-</li>
-<li><p><strong>Hiding</strong> - скрытие имен происходит во время наследования, если в родительском и дочернем классе есть одинаковые статические методы.</p>
+<li><p><strong>package</strong> - пакет состоит из последовательности имен, может содержать импорты и высокоуровневые объекты.</p>
 <ul>
-<li>Пример сокрытия:<pre><code class="language-Java">public class Test {
-  public static void testClassMethod() {
-  }
-}
-public class StandartTest extends Test {
-  public static void testClassMethod() {
-  }
-}
+<li>Синтаксис:<pre><code class="language-Kotlin">&quot;package&quot; SimpleName{&quot;.&quot;} &quot;{&quot;
+import*
+toplevelObject*
+&quot;}&quot;
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Overriding</strong> - процесс перегрузки метода, который происходит во время наследования, если в дочернем классе есть одинаковые нестатические методы.</p>
+<li><p><strong>class</strong> - класс состоит из модификаторов, имени, ограничений, тела класса или перечисления, а также может содержать параметры типов, основной контруктор, аннотации с последовательностью делегатов и пустое тело класса.</p>
 <ul>
-<li>Переруженный метод в Java принято помечать аннотацией @Override.</li>
-<li>Пример перегрузки:<pre><code class="language-Java">public class Test {
-  public void testInstanceMethod() {
-  }
-}
-public class StandartTest extends Test {
-  public void testInstanceMethod() {
-  }
-}
+<li>Синтаксис:<pre><code class="language-Kotlin">modifiers (&quot;class&quot; | &quot;interface&quot;) SimpleName
+ typeParameters?
+ primaryConstructor?
+ (&quot;:&quot; annotations delegationSpecifier{&quot;,&quot;})?
+ typeConstraints
+ (classBody? | enumClassBody)
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>Исключение</strong> - ошибка, возникающая во время выполнения программы. Исключения сигнализируют о возникновении ошибочной ситуации, из-за которой программа не может выполняться дальше. Поэтому исключения вызывают раскрутку стека вызовов. Когда какой-либо метод выбрасывает исключение, виртуальная машина начинает выталкивать элементы из стека вызовов (как будто произошёл возврат из каждого метода) до тех пор, пока не найдёт обработчик, который сможет обработать это исключение. Если такой обработчик нашёлся, то управление передаётся в него, и код внутри этого обработчика может либо продолжить выполнение программы, либо выбросить ещё одно исключение.</p>
+<li><p><strong>primaryConstructor</strong> - основной конструктор содержит последовательность параметров функции и может содержать модификаторы.</p>
 <ul>
-<li>Исключения в Java разделяются на checked, unchecked и errors.</li>
-<li>Checked-исключения - наследники класса <code>Exception</code>. Метод обязан либо обработать эти исключения, либо явно объявить (с помощью декларации <code>throws</code>), что он их выбрасывает.</li>
-<li>Uncheked-исключения - наследники класса <code>RuntimeException</code>. Их объявлять и отлавливать необязательно.</li>
-<li>Специальные исключения (errors) - наследники класса <code>Error</code>, выбрасываемые виртуальной машиной в случае серьёзной ошибки (кончилась память, не удалось загрузить класс и т.д.). Обычный код не должен обрабатывать эти исключения.</li>
-<li><code>try-with-resources</code>. В Java 7 была введена специальная конструкция, позволяющая безопасно открывать и закрывать ресурсы (классы, реализующие интерфейс <code>AutoCloseable</code>). </li>
-<li>Пример метода, который выбрасывает исключение:<pre><code class="language-Java">public static void main(String[] args) throws Throwable {}
-</code></pre>
-</li>
-<li>Пример метода, который обрабатывает исключение:<pre><code class="language-Java">public static void main(String[] args) {
-  try {} 
-  catch (Throwable t) {}
-  finally {}
-}
+<li>Синтаксис:<pre><code class="language-Kotlin">(modifiers &quot;constructor&quot;)? (&quot;(&quot; functionParameter{&quot;,&quot;} &quot;)&quot;)
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>JavaBeans</strong> - компоненты (бины), обеспечивающие основу для многократно используемых, встраиваемых и модульных компонентов ПО. Компоненты JavaBeans могут принимать различные формы, но наиболее широко они применяются в элементах графического пользовательского интерфейса. <sup><a href="https://ru.wikipedia.org/wiki/JavaBeans">[source]</a></sup></p>
+<li><p><strong>classBody</strong> - тело класса содержит члены класса.</p>
 <ul>
-<li>Одна из целей создания JavaBeans — взаимодействие с похожими компонентными структурами.</li>
-<li>Чтобы класс мог работать как bean, он должен соответствовать определённым соглашениям:<ul>
-<li>Класс должен иметь конструктор без параметров, с модификатором доступа public. Такой конструктор позволяет инструментам создать объект без дополнительных сложностей с параметрами.</li>
-<li>Свойства класса должны быть доступны через get, set и другие методы (так называемые методы доступа), которые должны подчиняться стандартному соглашению об именах. Это легко позволяет инструментам автоматически определять и обновлять содержание bean’ов. </li>
-<li>Класс должен быть сериализуем. Это даёт возможность надёжно сохранять, хранить и восстанавливать состояние bean независимым от платформы и виртуальной машины способом.</li>
-<li>Класс должен иметь переопределенные методы equals(), hashCode() и toString().</li>
-</ul>
-</li>
-<li><p>Пример бина, как POJO объекта:</p>
-<pre><code class="language-Java">public class PersonBean implements Serializable {
-  private String name;
-
-  public PersonBean() {
-  }
-
-  public String getName() {
-     return (this.name);
-  }
-  public void setName(String name) {
-     this.name = name;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-      ...
-  }
-  @Override
-  public int hashCode() {
-      ...
-  }
-  @Override
-  public String toString() {
-      ...
-  }
-}
+<li>Синтаксис:<pre><code class="language-Kotlin">(&quot;{&quot; members &quot;}&quot;)?
 </code></pre>
 </li>
 </ul>
 </li>
-<li><p><strong>POJO (Plain Old Java Object)</strong> - простой Java-объект, не унаследованный от какого-то специфического объекта и не  реализующий никаких служебных интерфейсов сверх тех, которые нужны для бизнес-модели. <sup><a href="https://ru.wikipedia.org/wiki/POJO">[source]</a></sup></p>
+<li><p><strong>members</strong> - члены класса могут содержать члены определения.</p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">memberDeclaration*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>delegationSpecifier</strong> - делегат состоит из вызова конструктора, пользовательского типа или явного делегирования.</p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">constructorInvocation | userType | explicitDelegation
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>explicitDelegation</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>typeParameters</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>typeParameter</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>typeConstraints</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>typeConstraint</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>kotlinFile</strong> - </p>
+<ul>
+<li>Синтаксис:<pre><code class="language-Kotlin">preamble toplevelObject*
+</code></pre>
+</li>
+</ul>
 </li>
 </ol>
 <hr>

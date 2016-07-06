@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство теории переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75180616-1', 'auto');
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>JUnit 4</h1><h3>1. Общее</h3><ol>
+<li><p><strong>Юнит-тестирование</strong> или <strong>модульное тестирование</strong> - тип тестирования, при котором проверяется корректность отдельных модулей программы. Юнит-тесты пишутся для каждой нетривиальной функциональности.</p>
+<ul>
+<li>Целью юнит-тестирования является изолированное тестирование отдельных частей программы, чтобы показать, что по отдельности эти части являются работоспособными.</li>
+</ul>
+</li>
+<li><p><strong>Интеграционное тестирование</strong> - тип тестирования, при котором отдельные программные модули объединяются и тестируются в группе. Обычно интеграционное тестирования проводится после модульного.</p>
+<ul>
+<li>Целью интеграционного тестирования является проверка связей между компонентами, а также взаимодействия с различными частями системы.</li>
+</ul>
+</li>
+<li><p><strong>Системное тестирование</strong> - тип тестирования, при котором проверяются как функциональные, так и нефункциональные требования к системе в целом, используя окружение, максимально приближенное к тому, в котором она будет развернута.</p>
+<ul>
+<li>Целью системного тестирования является выявление дефектов, связанных с использованием ресурсов системы, результатами ее работы, удобством использования и т.д.</li>
+</ul>
+</li>
+<li><p><strong>JUnit</strong> - фреймворк для юнит-тестирования Java кода. </p>
+<ul>
+<li>Он является одним из семества xUnit фреймворков для различных языков программирования.</li>
+<li>JUnit пропогандирует TDD.</li>
+</ul>
+</li>
+<li><p><strong>TDD (Test-Driven Development)</strong> - техника разработки, которая основывается на идее &quot;сначала тестирование, потом кодинг&quot;. Подразумевается, что в первую очередь нужно написать тест для будущей функциональности, а затем саму функциональность. Такой подход увеличивает стабильность написанного кода и сводит к минимуму время, потраченное на отладку программы.</p>
+</li>
+</ol>
+<h3>2. Аннотации</h3><ol>
+<li><p><strong><code>@Test</code></strong> - любые тесты должны быть помечены этой аннотацией.</p>
+<ul>
+<li>С помощью данной аннотации не нужно наследоваться от TestCase класса.</li>
+<li>Параметры:<ul>
+<li><strong><code>expected</code></strong> - указывает тип исключения, которое должно быть брошено из данного теста. Например <code>@Test(expected = IndexOutOfBoundsException.class)</code>.</li>
+<li><strong><code>timeout</code></strong> - указывает время в миллисекундах, после истечения которого тест помечается как непройденный. Например <code>@Test(timeout = 100)</code>.</li>
+</ul>
+</li>
+<li>Пример:<pre><code class="language-Java">@Test
+public void addition() {
+ assertEquals(12, simpleMath.add(7, 5));
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Before</code></strong> - аннотация позволяет выполнять логику перед выполнением каждого теста.</p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@Before
+public void runBeforeEveryTest() {
+ simpleMath = new SimpleMath();
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@After</code></strong> - аннотация позволяет выполнять логику после выполнения каждого теста.</p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@After
+public void runAfterEveryTest() {
+ simpleMath = null;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@BeforeClass</code></strong> - аннотация позволяет выполнять логику перед выполнением всех тестов в данном классе.</p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@BeforeClass
+public static void runBeforeClass() {
+ // run for one time before all test cases
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@AfterClass</code></strong> - аннотация позволяет выполнять логику после выполнения всех тестов в данном классе.</p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@AfterClass
+public static void runAfterClass() {
+ // run for one time after all test cases
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Ignore</code></strong> - тест, помеченный данной аннотацией, будет пропускаться.</p>
+<ul>
+<li>Параметры:<ul>
+<li>Параметром служит строка - причина пропуска теста.</li>
+</ul>
+</li>
+<li>Пример:<pre><code class="language-Java">@Ignore(“Not Ready to Run”)
+@Test
+public void multiplication() {
+ assertEquals(15, simpleMath.multiply(3, 5));
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@RunWith</code></strong> - если класс содержит данную аннотацию, JUnit будет запускать тесты в классе, который указан в параметрах этой аннотации, вместо стандартного раннера, встроенного в JUnit.</p>
+<ul>
+<li>Стандартный класс раннера - <code>BlockJUnit4ClassRunner</code>, который заменяет старый класс - <code>JUnit4ClassRunner</code>.</li>
+<li>Разновидность раннеров:<ul>
+<li><strong><code>Suite</code></strong> - позволяет вручную составить набор из тестов разных классов.</li>
+<li><strong><code>Parameterized</code></strong> - реализует параметризованные тесты.</li>
+<li><strong><code>Categories</code></strong> - включает подвид тестов, принадлежащих той или иной категории.</li>
+<li><strong>Enclosed</strong> - запуская класс с этой аннотацией, можно будет запускать тесты из внутренних классов.</li>
+</ul>
+</li>
+<li>Пример:<pre><code class="language-Java">@RunWith(Suite.class)
+@SuiteClasses({ATest.class, BTest.class, CTest.class})
+ public class ABCSuite {
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Suite.SuiteClasses</code></strong> - с помощью данной аннотации, тестовый класс совмещает в себе другие тестовые классы, указанные в параметрах.</p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@RunWith(Suite.class)
+@SuiteClasses({ATest.class, BTest.class, CTest.class})
+ public class ABCSuite {
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Parameterized.Parameters</code></strong> - статический метод, содержащий данную аннотацию создает и возвращает коллекцию из массивов элементов, которые являются параметрами для тестового метода. </p>
+<ul>
+<li>Также можно повесить аннотацию <strong><code>@Parameter</code></strong> на public поле, чтобы сразу инжектить значения, вместо того, чтобы передавать их через конструктор. Параметр <strong><code>value</code></strong> - указывает значение по дефолту для поля, на котором висит эта аннотация.</li>
+<li>Параметры:<ul>
+<li><strong><code>name</code></strong> - изменяет имя параметризованного теста. Допускается использование таких плейсхолдоров, как {index}, {0}, {1} и так далее.</li>
+</ul>
+</li>
+<li>Пример:<pre><code class="language-Java">@RunWith(Parameterized.class)
+public class FibonacciTest {
+ @Parameters(name = &quot;{index}: fib({0})={1}&quot;)
+ public static Iterable&lt;Object[]&gt; data() {
+     return Arrays.asList(new Object[][] { 
+             { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
+     });
+ }
+ @Parameter // first data value (0) is default
+ public /* NOT private */ int fInput;
+ @Parameter(value = 1)
+ public /* NOT private */ int fExpected;
+ @Test
+ public void test() {
+     assertEquals(fExpected, Fibonacci.compute(fInput));
+ }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Category</code></strong> - разновидность раннера, который запускает только те тестовые классы и методы, которые аннотированы <code>@IncludeCategory</code> аннотацией или ее расширениями.</p>
+<ul>
+<li>Категориями могут быть как классы, так и интерфейсы.</li>
+<li><code>@IncludeCategory</code> - включает указанную в параметрах категорию.</li>
+<li><code>@ExcludeCategory</code> - исключает указанную в параметрах категорию.</li>
+<li>Пример:<pre><code class="language-Java">public interface FastTests { /* category marker */ }
+public interface SlowTests { /* category marker */ }
+public class A {
+@Test
+public void a() {}
+@Category(SlowTests.class)
+@Test
+public void b() {}
+}
+@Category({SlowTests.class, FastTests.class})
+public class B {
+@Test
+public void c() {}
+}
+@RunWith(Categories.class)
+@IncludeCategory(SlowTests.class)
+@SuiteClasses( { A.class, B.class }) // Note that Categories is a kind of Suite
+public class SlowTestSuite {
+// Will run A.b and B.c, but not A.a
+}
+@RunWith(Categories.class)
+@IncludeCategory(SlowTests.class)
+@ExcludeCategory(FastTests.class)
+@SuiteClasses( { A.class, B.class }) // Note that Categories is a kind of Suite
+public class SlowTestSuite {
+// Will run A.b, but not A.a or B.c
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong><code>@Rule</code></strong> - с помощью этой аннотации можно создавать специальные объекты, которые используются в тестовых методах. Тестеры могут реиспользовать или расширять эти объекты или создавать свои.</p>
+<ul>
+<li>Стандартные правила:<ul>
+<li><strong><code>TemporaryFolder</code></strong> - позволяет создавать файлы или папки, которые удаляются по окончании работы метода. По дефолту не выбрасывается исключений, если ресурс не может быть удален.</li>
+<li><strong><code>ExternalResource</code></strong> - базовый класс, который устанавливает внешние ресурсы перед тестом, такие как: файлы, сокеты, сервера, соединения с базами данных и другие.</li>
+<li><strong><code>ErrorCollector</code></strong> - позволяет выполнять тест до конца, собирая всевозможные ошибки, которые встретятся во время его выполнения.</li>
+<li><strong><code>Verifier</code></strong> - ???.</li>
+<li><strong><code>TestWatcher</code></strong> - данное правило позволяет выполнять логику на определенных событиях теста (succeeded, failed, skipped, starting, finished), не изменяя сам тест. Например, этот класс может вести кастомные логи каждого пройденного или упавшего теста.</li>
+<li><strong><code>TestName</code></strong> - позволяет выводить название текущего тестового метода.</li>
+<li><strong><code>Timeout</code></strong> - устанавливает ограничение по времени выполнения на все методы в тестовом классе.</li>
+<li><strong><code>ExpectedException</code></strong> - позволяет вставлять в тесты ожидания исключений или сообщений.</li>
+<li><strong><code>RuleChain</code></strong> - устанавливает порядок правил.</li>
+<li><strong><code>ExpectedException</code></strong> - позволяет вставлять в тесты ожидания исключений или сообщений.</li>
+</ul>
+</li>
+<li>Пример:<pre><code class="language-Java">public class DigitalAssetManagerTest {
+@Rule
+public TemporaryFolder tempFolder = new TemporaryFolder();
+@Rule
+public ExpectedException exception = ExpectedException.none();
+@Test
+public void countsAssets() throws IOException {
+ File icon = tempFolder.newFile(&quot;icon.png&quot;);
+ File assets = tempFolder.newFolder(&quot;assets&quot;);
+ createAssets(assets, 3);
+ DigitalAssetManager dam = new DigitalAssetManager(icon, assets);
+ assertEquals(3, dam.getAssetCount());
+}
+private void createAssets(File assets, int numberOfAssets) throws IOException {
+ for (int index = 0; index &lt; numberOfAssets; index++) {
+   File asset = new File(assets, String.format(&quot;asset-%d.mpg&quot;, index));
+   Assert.assertTrue(&quot;Asset couldn&#39;t be created.&quot;, asset.createNewFile());
+ }
+}
+@Test
+public void throwsIllegalArgumentExceptionIfIconIsNull() {
+ exception.expect(IllegalArgumentException.class);
+ exception.expectMessage(&quot;Icon is null, not a file, or doesn&#39;t exist.&quot;);
+ new DigitalAssetManager(null, null);
+}
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>@FixMethodOrder</strong> - класс, помеченный данной аннотацией, сможет запускать тесты в некотором установленном порядке, так как изначально их порядок устанавливается через рефлексию.</p>
+<ul>
+<li>Параметры:<ul>
+<li>Параметром является тип сортировки тестовых методов. Возможные типы: DEFAULT, JVM, NAME_ASCENDING.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3>3. Asserts &amp; Assumes</h3><ol>
+<li><p><strong>Assert</strong> — это конструкция, позволяющая проверять предположения о значениях произвольных данных в произвольном месте программы. </p>
+<ul>
+<li>Пример:<pre><code class="language-Java">@Test
+public void testAssertEquals() {
+assertEquals(&quot;failure - strings are not equal&quot;, &quot;text&quot;, &quot;text&quot;);
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Assume</strong> - это конструкция, позволяющая проверять корректность теста перед его выполнением. </p>
+<ul>
+<li>По дефолту JUnit воспринимает тесты, которые не прошли какую-то assume проверку, как проигнорированные.</li>
+<li>Упавший на assume проверке метод, помеченный аннотацией <code>@Before</code> пометит все тестовые методы в данном классе как проигнорированные.</li>
+<li>Пример:<pre><code class="language-Java">@Test public void filenameIncludesUsername() {
+ assumeThat(File.separatorChar, is(&#39;/&#39;));
+ assertThat(new User(&quot;optimus&quot;).configFileName(), is(&quot;configfiles/optimus.cfg&quot;));
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>JUnit Asserts</strong>. JUnit предоставляет перегруженные ассерты для наиболее распространенных действий:</p>
+<ul>
+<li><strong><code>assertArrayEquals</code></strong> - проверяет два массива на равенство.</li>
+<li><strong><code>assertEquals</code></strong> - проверяет два примитива/объекта на равенство.</li>
+<li><strong><code>assertFalse</code></strong> - проверяет условие на ложность.</li>
+<li><strong><code>assertTrue</code></strong> - проверяет условие на истинность.</li>
+<li><strong><code>assertNotNull</code></strong> - проверяет, что объект не null.</li>
+<li><strong><code>assertNull</code></strong> - проверяет, что объект null.</li>
+<li><strong><code>assertNotSame</code></strong> - проверяет, что два объекта не ссылаются на одну область памяти.</li>
+<li><strong><code>assertSame</code></strong> - проверяет, что два объекта ссылаются на одну область памяти.</li>
+<li><strong><code>assertThat</code></strong> - специальный ассерт, исполользующий матчеры.</li>
+</ul>
+</li>
+<li><p><strong><code>assertThat</code></strong> - механизм ассертов, основанный на JMock 1. Преимущество нового метода в том, что он более читаем за счет матчеров, которые можно расширять.</p>
+<ul>
+<li>Список матчеров из Hamcrest фреймворка, которые заменяют стандартные JUnit-овские ассерты:<ul>
+<li>anything - всегда удовлетворяет условию.</li>
+<li>describedAs - пустышка, чтобы добавлять описание ошибки.</li>
+<li>is - пустышка, чтобы улучшить читемость.</li>
+<li>allOf - аналогия оператору &quot;и&quot;.</li>
+<li>anyOf - аналогия оператору &quot;или&quot;.</li>
+<li>not - аналогию оператору отрицания.</li>
+<li>equalTo - проверка на равенство объектов, используя <code>Object.equals</code>.</li>
+<li>hasToString - проверяет на равенство с помощью <code>Object.toString</code>.</li>
+<li>instanceOf, isCompatibleType - проверка совпадения типов.</li>
+<li>notNullValue, nullValue - проверка на null.</li>
+<li>sameInstance - проверка инстансов объектов.</li>
+<li>hasProperty - проверка JavaBeans пропертей.</li>
+<li>array - позволяет устанавливать несколько матчеров.</li>
+<li>hasEntry, hasKey, hasValue - проверка мапы на содержания ключа, значения или кортежа.</li>
+<li>hasItem, hasItems - проверка коллекции на содержание элемента/ов.</li>
+<li>hasItemInArray - проверка массива на содержание элемента.</li>
+<li>closeTo - проверка чисел с плавающей запятой на близость по значению к заданному числу.</li>
+<li>greaterThan, greaterThanOrEqualTo, lessThan, lessThanOrEqualTo - аналогия операторам неравенства.</li>
+<li>equalToIgnoringCase - проверка на равенство строке, игнорируя регистр букв.</li>
+<li>equalToIgnoringWhiteSpace - проверка равенство строке, игнорируя пробелы.</li>
+<li>containsString, endsWith, startsWith - проверка на содержание вхождения строки.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3>4. Mockito</h3><ol>
+<li><p><strong>Mock</strong> - объект-пустышка, предназначенный для проверки ожидаемого поведения тестируемого объекта.</p>
+</li>
+<li><p><strong>Stub</strong> - объект-пустышка, предназначенный для получения нужного состояния тестируемого объекта. Они моделируют внешнее окружение тестового класса.</p>
+</li>
+<li><p><strong>Mockito</strong> - фреймворк для тестирования, который используется в сочитании с JUnit. Он позволяет создавать и настраивать моки.</p>
+</li>
+</ol>
+<h3>Источники</h3><ol>
+<li><a href="https://github.com/junit-team/junit4/wiki">https://github.com/junit-team/junit4/wiki</a></li>
+<li><a href="http://www.vogella.com/tutorials/JUnit/article.html">http://www.vogella.com/tutorials/JUnit/article.html</a></li>
+<li><a href="http://www.vogella.com/tutorials/Mockito/article.html">http://www.vogella.com/tutorials/Mockito/article.html</a></li>
+<li><a href="https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki">https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki</a></li>
+<li><a href="http://www.tutorialspoint.com/junit/index.htm">http://www.tutorialspoint.com/junit/index.htm</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Unit_testing">https://en.wikipedia.org/wiki/Unit_testing</a></li>
+<li><a href="https://habrahabr.ru/post/134836/">https://habrahabr.ru/post/134836/</a></li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>

@@ -3,7 +3,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-75180616-1', 'auto');
-ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Spring</h1><h3>1. Spring Projects</h3><ol>
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Spring</h1><h3>1. Spring Projects</h3><ol>
 <li><p><strong>Spring IO</strong> - платформа для построения приложений, предоставляющая набор зависимостей, при этом давая разработчикам полный контроль над деплоем только тех из них, которые им нужны. <sup><a href="http://platform.spring.io/platform/">[1.1]</a></sup></p>
 <ul>
 <li>Проект является 100% с открытым кодом.</li>
@@ -60,6 +60,8 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <hr>
 <h3>2. Spring Framework</h3><ol>
 <li><p><strong>Spring Framework</strong> — обесепечивает решения многих задач, с которыми сталкиваются java-разработчики и организации, которые хотят создать информационную систему, основанную на платформе Java. Наиболее известен как источник расширений, нужных для эффективной разработки сложных бизнес-приложений вне тяжеловесных программных моделей, которые исторически были доминирующими в промышленности.</p>
+</li>
+<li><p><strong>Beans</strong> - объекты, формирующие фундамент приложения и управляемые Spring IoC контейнером.</p>
 </li>
 <li><p><strong>IoC (Inversion of Control)</strong> — паттерн для передачи контроля за создание объектов контейнеру.</p>
 </li>
@@ -158,7 +160,30 @@ BeanFactory factory = new XmlBeanFactory(resource);
 </li>
 </ol>
 <hr>
-<h3>3. IoC container</h3><hr>
+<h3>3. IoC container</h3><ol>
+<li><p><strong>IoC (Inversion of Control)</strong> — паттерн для передачи контроля за создание объектов контейнеру.</p>
+</li>
+<li><p><strong>DI (Dependency Injection)</strong> - процесс, в котором объекты определяют свои зависимости посредством внедрения.</p>
+<ul>
+<li>Базовые пакеты Spring IoC контейнера: <code>org.springframework.beans</code>, <code>org.springframework.context</code></li>
+<li>Преимущества DI:<ul>
+<li>Разделение обязанностей</li>
+<li>Вся работа по инициализации зависимостей выполняется инъектором</li>
+<li>Конфигурированные компоненты делают приложение лекго-расширяемым</li>
+<li>Возможность создания моков для модульного тестирования</li>
+</ul>
+</li>
+<li>DI использует связывание объектов во время работы программы, а не во время компиляции.</li>
+<li>В спринге DI происходит через рефлексию и аннотации. Так что, все, что нужно сделать - это аннотировать поле, конструктор или сеттер и сконфигурировать их в XML или Java классе.</li>
+</ul>
+</li>
+<li><p><strong><code>ApplicationContext</code></strong> - интерфейс, который представляет собой Spring IoC контейнер и отвечает за инстанциирование, конфигурирование и сборку бинов. Он получает инструкции о том, с какими объектами он работает, через конфигурационные метаданные, которые могут быть представлены в виде XML, Java аннотаций или Java кода.</p>
+<ul>
+<li>Имплементации: <code>ClassPathXmlApplicationContext</code>, <code>FileSystemXmlApplicationContext</code>, <code>GenericApplicationContext</code>, <code>GenericGroovyApplicationContext</code>, <code>GenericWebApplicationContext</code>, <code>GenericXmlApplicationContext</code>, <code>GroovyWebApplicationContext</code>, <code>ResourceAdapterApplicationContext</code>, <code>StaticApplicationContext</code>, <code>StaticPortletApplicationContext</code>, <code>StaticWebApplicationContext</code>, <code>XmlPortletApplicationContext</code>, <code>XmlWebApplicationContext</code></li>
+</ul>
+</li>
+</ol>
+<hr>
 <h3>4. Resources</h3><ol>
 <li><p><strong><code>Resource</code></strong> - интерфейс, предназначенный для абстракции доступа к низкоуровневым ресурсам. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-resource">[4.1]</a></sup></p>
 <pre><code class="language-Java">public interface InputStreamSource {
@@ -184,14 +209,19 @@ public interface Resource extends InputStreamSource {
 </li>
 <li><p><strong><code>UrlResource</code></strong> служит оберткой для <code>java.net.URL</code>, и может быть использован для доступа к любому объекту, который доступен по URL, например файлы, HTTP ссылка, FTP ссылка и т.д. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-urlresource">[4.2]</a></sup></p>
 </li>
-<li><strong><code>ClassPathResource</code></strong> - реализация <code>Resource</code>, которая поддерживает разрешения <code>java.io.File</code>. Ресурс был создан Java кодом явно используя конструктор, но постоянно будет создаваться неявно, когда вы будете вызывать API метод, который принимает путь аргументом в виде строки. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-classpathresource">[4.3]</a></sup></li>
-<li><strong><code>FileSystemResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-filesystemresource">[4.4]</a></sup></li>
-<li><strong><code>ServletContextResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-servletcontextresource">[4.5]</a></sup></li>
-<li><strong><code>InputStreamResource</code></strong> - реализация <code>Resource</code> для заданного <code>InputStream</code>. Она должна быть использована только в случае, если нет подходящей реализации для <code>Resource</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-inputstreamresource">[4.6]</a></sup><ul>
+<li><p><strong><code>ClassPathResource</code></strong> - реализация <code>Resource</code>, которая поддерживает разрешения <code>java.io.File</code>. Ресурс был создан Java кодом явно используя конструктор, но постоянно будет создаваться неявно, когда вы будете вызывать API метод, который принимает путь аргументом в виде строки. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-classpathresource">[4.3]</a></sup></p>
+</li>
+<li><p><strong><code>FileSystemResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-filesystemresource">[4.4]</a></sup></p>
+</li>
+<li><p><strong><code>ServletContextResource</code></strong> - реализация <code>Resource</code> для <code>java.io.File</code> хэндлеров. Поддерживает разрешения из <code>File</code> и из <code>URL</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-servletcontextresource">[4.5]</a></sup></p>
+</li>
+<li><p><strong><code>InputStreamResource</code></strong> - реализация <code>Resource</code> для заданного <code>InputStream</code>. Она должна быть использована только в случае, если нет подходящей реализации для <code>Resource</code>. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-inputstreamresource">[4.6]</a></sup></p>
+<ul>
 <li>В отличии от других реализаций <code>Resource</code>, эта является дескрипторои для уже открытого ресурса, поэтому всегда метод <code>isOpen()</code> этого класса возвращает true.</li>
 </ul>
 </li>
-<li><strong><code>ByteArrayResource</code></strong> - реализация <code>Resource</code> для заданного массива байт. Она создает <code>ByteArrayInputStream</code> для этого массива. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-bytearrayresource">[4.7]</a></sup><ul>
+<li><p><strong><code>ByteArrayResource</code></strong> - реализация <code>Resource</code> для заданного массива байт. Она создает <code>ByteArrayInputStream</code> для этого массива. <sup><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#resources-implementations-bytearrayresource">[4.7]</a></sup></p>
+<ul>
 <li>Эффективна для загрузки содержимого из любого массива байтов, не прибегая к использованию одноразового <code>InputStreamResource</code>.</li>
 </ul>
 </li>
@@ -261,7 +291,56 @@ new FileSystemXmlApplicationContext(&quot;file:///conf/context.xml&quot;);
 <hr>
 <h3>5. Validation, Data Binding, and Type Conversion</h3><hr>
 <h3>6. SpEL</h3><hr>
-<h3>7. AOP</h3><hr>
+<h3>7. AOP</h3><ol>
+<li><p><strong>AOP (Aspect Oriented Programming)</strong> - АОП - парадигма программирования, основанная на идее разделения функциональности для улучшения разбиения программы на модули. В то время, как в ООП главной чертой модульности является класс, в АОП - это аспект.</p>
+<ul>
+<li>АОП фреймворк является одним из ключевых компонентов спринга, хоть IoC контейнер и не зависит от него.</li>
+<li>АОП используется для следующих целей:<ul>
+<li>Предоставить декларативные корпоративные сервисы, в частности заменяя EJB декларативные сервисы. Один из этих сервисов является declarative transaction management.</li>
+<li>Позволяет пользователям реализовывать свои аспекты, дополняя ООП АОП-ом.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Aspect</strong> - Аспект - набор задач, разделенных между множеством классов. Управление транзакциями является хорошим примером разделения задачи в корпоративных Java приложениях. </p>
+<ul>
+<li>В АОП фреймворке аспекты реализуются при помощи регулярных классов или классов, аннотированных @Aspect аннотацией.</li>
+</ul>
+</li>
+<li><p><strong>Join point</strong> - Точка входа - всегда представляет собой выполнение метода.</p>
+</li>
+<li><p><strong>Advice</strong> - Совет - событие, выполненное одним из аспектов в конкретной точке входа.</p>
+<ul>
+<li>Существует несколько типов советов:<ul>
+<li>Before - совет, который выполняется перед точкой входа, но не может остановить дальнейшее выполнение метода, обозначенного этой точкой.</li>
+<li>After returning - совет, который выполняется после return (если не было выкинуто исключение).</li>
+<li>After throwing - совет, который выполняется после выкидывания исключения.</li>
+<li>After (finally) - совет, который выполняется в любом случае после выполнения метода.</li>
+<li>Around - совет, который оборачивает точку входа (как например при вызове метода). Он по сути является самым мощным советом, т.к. контролирует вход и выход в точку входа.</li>
+</ul>
+</li>
+<li>Многие АОП фреймворки, включая спринг, принимают совет как перехватчика, контролирующего цепочку перехватчиков вокруг точки входа.</li>
+</ul>
+</li>
+<li><p><strong>Introduction</strong> - Представление - объявляет дополнительные методы или поля в зависимости от типа.</p>
+<ul>
+<li>АОП спринга позволяет предоставлять новые интерфейсы (и соответствующую реализацию) для любого объекта совета.</li>
+</ul>
+</li>
+<li><p><strong>Target object</strong> - Целевой объект - объект, который является советом для одного или более аспектов.</p>
+</li>
+<li><p><strong>AOP proxy</strong> - АОП прокси - объект, созданный АОП фреймворком для реализации контрактов аспектов (выполнение метода совета и типо того).</p>
+<ul>
+<li>В спринге, АОП прокси является JDK dynamic proxy или CGLIB proxy.</li>
+</ul>
+</li>
+<li><p><strong>Weaving</strong> - Связывание - связывание аспектов с типами или объектами приложения для создания объекта аспекта.</p>
+<ul>
+<li>Это может быть сделано во время компиляции, загрузки или выполнения. АОП спринга, как и другие Java АОП фреймворки производит связывание во время выполнения.</li>
+</ul>
+</li>
+</ol>
+<hr>
 <h3>8. Spring AOP APIs</h3><hr>
 <h3>9. Unit Testing</h3><hr>
 <h3>10. Integration Testing</h3><hr>
@@ -288,4 +367,7 @@ new FileSystemXmlApplicationContext(&quot;file:///conf/context.xml&quot;);
 <h3>31. Classic Spring AOP Usage</h3><hr>
 <h3>32. XML Schema-based configuration</h3><hr>
 <h3>33. Extensible XML authoring</h3><hr>
-<h3>34. Spring REST</h3></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
+<h3>34. Spring REST</h3><hr>
+<h3>Sources</h3><ol>
+<li><a href="http://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial">http://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial</a></li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
