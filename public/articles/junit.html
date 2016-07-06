@@ -135,8 +135,7 @@ public void multiplication() {
 <li><strong><code>name</code></strong> - изменяет имя параметризованного теста. Допускается использование таких плейсхолдоров, как {index}, {0}, {1} и так далее.</li>
 </ul>
 </li>
-<li><p>Пример:</p>
-<pre><code class="language-Java">@RunWith(Parameterized.class)
+<li>Пример:<pre><code class="language-Java">@RunWith(Parameterized.class)
 public class FibonacciTest {
  @Parameters(name = &quot;{index}: fib({0})={1}&quot;)
  public static Iterable&lt;Object[]&gt; data() {
@@ -144,13 +143,10 @@ public class FibonacciTest {
              { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
      });
  }
-
  @Parameter // first data value (0) is default
  public /* NOT private */ int fInput;
-
  @Parameter(value = 1)
  public /* NOT private */ int fExpected;
-
  @Test
  public void test() {
      assertEquals(fExpected, Fibonacci.compute(fInput));
@@ -165,37 +161,36 @@ public class FibonacciTest {
 <li>Категориями могут быть как классы, так и интерфейсы.</li>
 <li><code>@IncludeCategory</code> - включает указанную в параметрах категорию.</li>
 <li><code>@ExcludeCategory</code> - исключает указанную в параметрах категорию.</li>
-<li>Пример:
-```Java
-public interface FastTests { /<em> category marker </em>/ }
-public interface SlowTests { /<em> category marker </em>/ }</li>
-</ul>
-<p>public class A {
- @Test
- public void a() {}</p>
-<p> @Category(SlowTests.class)
- @Test
- public void b() {}
-}</p>
-<p>@Category({SlowTests.class, FastTests.class})
+<li>Пример:<pre><code class="language-Java">public interface FastTests { /* category marker */ }
+public interface SlowTests { /* category marker */ }
+public class A {
+@Test
+public void a() {}
+@Category(SlowTests.class)
+@Test
+public void b() {}
+}
+@Category({SlowTests.class, FastTests.class})
 public class B {
- @Test
- public void c() {}
-}</p>
-<p>@RunWith(Categories.class)
+@Test
+public void c() {}
+}
+@RunWith(Categories.class)
 @IncludeCategory(SlowTests.class)
 @SuiteClasses( { A.class, B.class }) // Note that Categories is a kind of Suite
 public class SlowTestSuite {
- // Will run A.b and B.c, but not A.a
-}</p>
-<p>@RunWith(Categories.class)
+// Will run A.b and B.c, but not A.a
+}
+@RunWith(Categories.class)
 @IncludeCategory(SlowTests.class)
 @ExcludeCategory(FastTests.class)
 @SuiteClasses( { A.class, B.class }) // Note that Categories is a kind of Suite
 public class SlowTestSuite {
- // Will run A.b, but not A.a or B.c
+// Will run A.b, but not A.a or B.c
 }
-```</p>
+</code></pre>
+</li>
+</ul>
 </li>
 <li><p><strong><code>@Rule</code></strong> - с помощью этой аннотации можно создавать специальные объекты, которые используются в тестовых методах. Тестеры могут реиспользовать или расширять эти объекты или создавать свои.</p>
 <ul>
@@ -212,31 +207,25 @@ public class SlowTestSuite {
 <li><strong><code>ExpectedException</code></strong> - позволяет вставлять в тесты ожидания исключений или сообщений.</li>
 </ul>
 </li>
-<li><p>Пример:</p>
-<pre><code class="language-Java">public class DigitalAssetManagerTest {
+<li>Пример:<pre><code class="language-Java">public class DigitalAssetManagerTest {
 @Rule
 public TemporaryFolder tempFolder = new TemporaryFolder();
-
 @Rule
 public ExpectedException exception = ExpectedException.none();
-
 @Test
 public void countsAssets() throws IOException {
  File icon = tempFolder.newFile(&quot;icon.png&quot;);
  File assets = tempFolder.newFolder(&quot;assets&quot;);
  createAssets(assets, 3);
-
  DigitalAssetManager dam = new DigitalAssetManager(icon, assets);
  assertEquals(3, dam.getAssetCount());
 }
-
 private void createAssets(File assets, int numberOfAssets) throws IOException {
  for (int index = 0; index &lt; numberOfAssets; index++) {
    File asset = new File(assets, String.format(&quot;asset-%d.mpg&quot;, index));
    Assert.assertTrue(&quot;Asset couldn&#39;t be created.&quot;, asset.createNewFile());
  }
 }
-
 @Test
 public void throwsIllegalArgumentExceptionIfIconIsNull() {
  exception.expect(IllegalArgumentException.class);

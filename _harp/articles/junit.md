@@ -118,13 +118,10 @@
                   { 0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 5 }, { 6, 8 }
           });
       }
-
       @Parameter // first data value (0) is default
       public /* NOT private */ int fInput;
-
       @Parameter(value = 1)
       public /* NOT private */ int fExpected;
-
       @Test
       public void test() {
           assertEquals(fExpected, Fibonacci.compute(fInput));
@@ -140,29 +137,24 @@
   ```Java
   public interface FastTests { /* category marker */ }
   public interface SlowTests { /* category marker */ }
-  
   public class A {
     @Test
     public void a() {}
-  
     @Category(SlowTests.class)
     @Test
     public void b() {}
   }
-  
   @Category({SlowTests.class, FastTests.class})
   public class B {
     @Test
     public void c() {}
   }
-
   @RunWith(Categories.class)
   @IncludeCategory(SlowTests.class)
   @SuiteClasses( { A.class, B.class }) // Note that Categories is a kind of Suite
   public class SlowTestSuite {
     // Will run A.b and B.c, but not A.a
   }
-  
   @RunWith(Categories.class)
   @IncludeCategory(SlowTests.class)
   @ExcludeCategory(FastTests.class)
@@ -189,27 +181,22 @@
   public class DigitalAssetManagerTest {
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
-  
     @Rule
     public ExpectedException exception = ExpectedException.none();
-  
     @Test
     public void countsAssets() throws IOException {
       File icon = tempFolder.newFile("icon.png");
       File assets = tempFolder.newFolder("assets");
       createAssets(assets, 3);
-  
       DigitalAssetManager dam = new DigitalAssetManager(icon, assets);
       assertEquals(3, dam.getAssetCount());
     }
-  
     private void createAssets(File assets, int numberOfAssets) throws IOException {
       for (int index = 0; index < numberOfAssets; index++) {
         File asset = new File(assets, String.format("asset-%d.mpg", index));
         Assert.assertTrue("Asset couldn't be created.", asset.createNewFile());
       }
     }
-  
     @Test
     public void throwsIllegalArgumentExceptionIfIconIsNull() {
       exception.expect(IllegalArgumentException.class);
