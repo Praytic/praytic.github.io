@@ -289,10 +289,11 @@
 1. **Mockito** - фреймворк для тестирования, который используется в сочитании с JUnit. Он позволяет создавать и настраивать моки.
 
 ### Источники
+
 1. https://github.com/junit-team/junit4/wiki
-2. http://www.vogella.com/tutorials/JUnit/article.html
-4. http://www.vogella.com/tutorials/Mockito/article.html
-3. https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki
-5. http://www.tutorialspoint.com/junit/index.htm
-6. https://en.wikipedia.org/wiki/Unit_testing
-7. https://habrahabr.ru/post/134836/
+1. http://www.vogella.com/tutorials/JUnit/article.html
+1. http://www.vogella.com/tutorials/Mockito/article.html
+1. https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki
+1. http://www.tutorialspoint.com/junit/index.htm
+1. https://en.wikipedia.org/wiki/Unit_testing
+1. https://habrahabr.ru/post/134836/
