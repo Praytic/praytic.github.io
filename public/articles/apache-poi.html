@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство теории переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75180616-1', 'auto');
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Apache POI</h1><h3>1. Общее</h3><ol>
+<li><strong>Apache POI</strong> - опенсорсное API, позволяющее создавать, модифицировать и отображать документы Microsoft Office используя Java код. <sup><a href="http://www.tutorialspoint.com/apache_poi/index.htm">[3.9]</a></sup></li>
+</ol>
+<h3>2. Компоненты</h3><ol>
+<li><p><strong>POIFS (Poor Obfuscation Implementation File System)</strong> - базовый управляющий компонент для всех POI элементов. Он используется для явного чтения различных файлов.</p>
+</li>
+<li><p><strong>HSSF (Horrible Spreadsheet Format)</strong> - компонент, который используется для чтения и записи формата .xls MS-Excel файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>XSSF (XML Spreadsheet Format)</strong> - компонент, который используется для чтения и записи формата .xlsx MS-Excel файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>HPSF (Horrible Property Set Format)</strong> - компонент, который используется для извлечения пропертей из MS-Office файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>HWPF (Horrible Word Processor Format)</strong> - компонент, который используется для чтения и записи формата .doc MS-Word файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>XWPF (XML Word Processor Format)</strong> - компонент, который используется для чтения и записи формата .docx MS-Word файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>HSLF (Horrible Slide Layout Format)</strong> - компонент, который используется для чтения и записи MS-PowerPoint файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>HDGF (Horrible DiaGram Format)</strong> - компонент, который используется для чтения и записи MS-Visio файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+<li><p><strong>HPBF (Horrible PuBlisher Format)</strong> - компонент, который используется для чтения и записи MS-Publisher файлов. <sup><a href="http://www.tutorialspoint.com/apache_poi/apache_poi_overview.htm">[3.9]</a></sup></p>
+</li>
+</ol>
+<h3>3. Классы и интерфейсы</h3><ol>
+<li><p><strong><code>Workbook</code></strong> - базовый интерфейс для всех классов, которые создают или обрабатывают Excel документы.</p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFWorkbook</code></strong> - класс для чтения и записи файлов .xls формата. Поддерживает 1997-2003 версии MS-Office. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFWorkbook</code></strong> - класс для чтения и записи файлов .xlsx формата. Поддерживает 2007+ версии MS-Office. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Sheet</code></strong> - базовый интерфейс для всех классов, которые создают таблицы произвольного типа. Наиболее распространенной таблицей является worksheet, которая представлена сеткой ячеек. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFSheet</code></strong> - класс для создания excel таблиц и редактирования данных и стилей этих таблиц. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFSheet</code></strong> - класс для создания excel таблиц и редактирования данных и стилей этих таблиц. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Row</code></strong> - базовый интерфейс для всех классов, которые представляют строку таблицы. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>XSSFRow</code></strong> - класс для представления строк в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Cell</code></strong> - базовый интерфейс для всех классов, которые представляют ячейки в строках таблицы. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>XSSFCell</code></strong> - класс для представления ячеек в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFCell</code></strong> - класс для представления ячеек в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>CellStyle</code></strong> - базовый интерфейс для всех классов, которые представляют собой стиль ячейки. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFCellStyle</code></strong> - класс для представления ячеек в таблице. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFCellStyle</code></strong> - класс для представления ячеек в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Color</code></strong> - базовый интерфейс для всех классов, которые представляют цвет ячейки. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFColor</code></strong> - класс для регулирования цвета ячеек в таблице. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFColor</code></strong> - класс для регулирования цвета ячеек в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Font</code></strong> - базовый интерфейс для всех классов, которые представляют шрифт текста ячейки. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFColor</code></strong> - класс для регулирования шрифта текста ячеек в таблице. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFColor</code></strong> - класс для регулирования шрифта текста ячеек в таблице. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>Hyperlink</code></strong> - базовый интерфейс для всех классов, которые представляют гиперссылку. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFColor</code></strong> - класс для представления гиперссылки. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFColor</code></strong> - класс для представления гиперссылки. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>CreationHelper</code></strong> - базовый интерфейс для всех классов, которые являются используются при вычислении формулы ячейки и для создания гиперссылок. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFCreationHelper</code></strong> - класс для вычисления формулы ячейки и для создания гиперссылок. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFCreationHelper</code></strong> - класс для вычисления формулы ячейки и для создания гиперссылок. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>PrintSetup</code></strong> - базовый интерфейс для всех классов, которые регулируют размер, область, параметры распечатываемой страницы. <sup><a href="www.tutorialspoint.com/apache_poi/apache_poi_core_classes.htm">[3.9]</a></sup></p>
+<ul>
+<li>Он находится в <code>org.apache.poi.ss.usermodel</code> пакете.</li>
+<li>Его реализуют следующие классы:<ul>
+<li><strong><code>HSSFColor</code></strong> - класс для регулирования размера, области, параметров распечатываемой страницы. Он находится в <code>org.apache.poi.hssf.usermodel</code> пакете.</li>
+<li><strong><code>XSSFColor</code></strong> - класс для регулирования размера, области, параметров распечатываемой страницы. Он находится в <code>org.apache.poi.xssf.usermodel</code> пакете.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>

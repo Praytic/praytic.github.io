@@ -3,7 +3,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-75180616-1', 'auto');
-ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>SQL (Structed Query Language)</h1><h3>1. Общее</h3><ol>
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>SQL (Structed Query Language)</h1><h3>1. Общее</h3><ol>
 <li><p><strong>DB (Database)</strong> — совокупность данных, хранимых в соответствии со схемой данных, манипулирование которыми 
 выполняют в соответствии с правилами средств моделирования данных.</p>
 </li>
@@ -18,18 +18,18 @@ ga('send', 'pageview');</script></head><body class="wrapper"><header><div class=
 <li>Примеры: Oracle Database, IBM DB2, Microsoft SQL Server.</li>
 </ul>
 </li>
-<li><p><strong>Table</strong> - объект DB, коллекция, состоящая из схемы (заголовка) и тела.</p>
+<li><p><strong>Table</strong> (Таблица) - объект DB, коллекция, состоящая из схемы (заголовка) и тела.</p>
 </li>
-<li><p><strong>Scheme</strong> - определяет поля таблицы.</p>
+<li><p><strong>Scheme</strong> (Схема) - определяет поля таблицы.</p>
 </li>
-<li><p><strong>Table Body</strong> - множество записей, хранящих значения, соответствующие каждому столбцу таблицы.</p>
+<li><p><strong>Table Body</strong> (Тело таблицы) - множество записей, хранящих значения, соответствующие каждому столбцу таблицы.</p>
 </li>
-<li><p><strong>Column</strong> - набор однотипных значений в таблице, соответствующий данному полю.</p>
+<li><p><strong>Column</strong> (Столбец) - набор однотипных значений в таблице, соответствующий данному полю.</p>
 </li>
-<li><p><strong>Field</strong> - каждая таблица разделена на подразделы, называемые полями. Поле описывает один столбец, т.е. задает 
+<li><p><strong>Field</strong> (Поле) - каждая таблица разделена на подразделы, называемые полями. Поле описывает один столбец, т.е. задает 
 тип значения, которое будет в нем храниться, название столбца, ограничения, накладываемые на столбец.</p>
 </li>
-<li><p><strong>Row</strong> - элемент таблицы, который может состоять из нескольких значений (в зависимости от полей таблицы).</p>
+<li><p><strong>Row</strong> (Строка) - элемент таблицы, который может состоять из нескольких значений (в зависимости от полей таблицы).</p>
 </li>
 </ol>
 <hr>
@@ -131,7 +131,13 @@ COMMIT WORK;
 </ol>
 <hr>
 <h3>7. Объекты</h3><ol>
-<li><p><strong>Курсор</strong> - это объект базы данных, который позволяет приложениям работать с записями &quot;по-одной&quot;, а не сразу с множеством, как это делается в обычных SQL командах.</p>
+<li><p><strong>Отношение</strong> - фундаментальное понятие реляционной модели данных. Отношение обычно имеет простую графическую интерпретацию в виде таблицы, столбцы которой соответствуют атрибутам, а строки — кортежам, а в «ячейках» находятся значения атрибутов в кортежах.</p>
+<ul>
+<li>Тем не менее, в строгой реляционной модели отношение не является таблицей, кортеж — это не строка, а атрибут — это не столбец.</li>
+<li>Операции над отношениями: объединение, пересечение, вычитани, проекция, декартово произведение, выборка, соединение, деление.</li>
+</ul>
+</li>
+<li><p><strong>Курсор</strong> - это средство языка SQL, позволяющее с помощью набора специальных операторов получить построчный доступ к результату запроса к БД.</p>
 </li>
 <li><p><strong>Индекс</strong> — объект базы данных, создаваемый с целью повышения производительности поиска данных. Индекс формируется из значений одного или нескольких столбцов таблицы и указателей на соответствующие строки таблицы и, таким образом, позволяет искать строки, удовлетворяющие критерию поиска.</p>
 </li>
@@ -150,6 +156,51 @@ COMMIT WORK;
 <li><p><strong>Ограничения</strong> - правила, накладываемые на таблицу или поле в таблице, призванные ограничить набор возможных записей в таблицу / столбец.</p>
 </li>
 <li><p><strong>Представление</strong> - виртуальная таблица, представляющая данные одной или более таблиц альтернативным образом. Результат выполнения оператора <code>SELECT</code>.</p>
+</li>
+<li><p><strong>Первичный ключ</strong> - столбец или множество столбцов в таблице, который функционально определяет все остальные столбцы.</p>
+<ul>
+<li>Пример использования первичного ключа <code>id</code>.<pre><code class="language-sql">CREATE TABLE City
+(
+id   INTEGER NOT NULL PRIMARY KEY,
+name CHAR(40)
+)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Внешний ключ</strong> - столбец или множество столбцов в таблице, которое применяется для принудительного установления связи между данными в двух таблицах.</p>
+<ul>
+<li>Внешний ключ можно создать, определив ограничение <code>FOREIGN KEY</code> при создании или изменении таблицы.</li>
+<li>Пример использования внешнего ключа для связи &quot;один-ко-многим&quot;, где таблица <code>Street</code> имеет поле <code>id_city</code>, которое является внешним ключом и ссылается на таблицу <code>City</code>.
+```sql
+CREATE TABLE City
+(
+id   INTEGER NOT NULL PRIMARY KEY,
+name CHAR(40)
+)</li>
+</ul>
+<p>CREATE TABLE Street
+(
+ id      INTEGER NOT NULL PRIMARY KEY,
+ name    CHAR(40),
+ id_city INTEGER NOT NULL FOREIGN KEY REFERENCES City(id)
+)
+```</p>
+</li>
+<li><p><strong>Суррогатный ключ</strong> - это дополнительное служебное поле, добавленное к уже имеющимся информационным полям таблицы, единственное предназначение которого — служить первичным ключом.</p>
+<ul>
+<li>Чаще всего суррогатным ключем является <code>id</code>.</li>
+<li>Все не-суррогатные ключи являются <strong>естественными ключами</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Потенциальный ключ</strong> - столбец или множество столбцов в таблице, удовлетворяющих условиям уникальности и несократимости:</p>
+<ul>
+<li>Уникальность означает, что в таблице нет двух разных строк с одиноковыми значениями. </li>
+<li>Несократимость означает, что нельзя убрать один из столбцов из ключа, так, чтобы он не потерял уникльности. </li>
+<li>Теоретически, все потенциальные ключи равно пригодны в качестве первичного ключа.</li>
+<li>Потенциальные ключи обозначаются с помощью <code>UNIQUE</code>.</li>
+<li>В отношении может быть одновременно несколько потенциальных ключей. Один из них может быть выбран в качестве первичного ключа отношения, тогда другие потенциальные ключи называют <strong>альтернативными ключами</strong>.</li>
+</ul>
 </li>
 </ol>
 <hr>
