@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>Java Dev Lib</title><meta name="description" content="Солянка из теорий различных технологий, так или иначе связанных с разработкой или с Java. Большинство материала переведено с англоязычных ресурсов."/><meta name="author" content="Chernogorov Vladislav"/><meta name="handheldfriendly" content="true"/><meta name="mobileoptimized" content="320"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta http-equiv="cleartype" content="on"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><link rel="stylesheet" href="/css/style.css"/><link rel="stylesheet" href="/css/github-markdown.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css"/><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject'] = r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75180616-1', 'auto');
+ga('send', 'pageview');</script></head><body class="wrapper"><header><div class="container"><h2 class="lone-header">Java Dev Lib</h2></div></header><section><div class="container"><ul class="docs-nav"><li><strong><a href="/">Оглавление</a></strong></li><li><a href="/articles/web-service">Web Service</a></li><li><a href="/articles/java-se">Java SE</a></li><li><a href="/articles/java-ee">Java EE</a></li><li><a href="/articles/concurrency">Java Concurrency</a></li><li><a href="/articles/spring">Spring</a></li><li><a href="/articles/git">Git</a></li><li><a href="/articles/sql">SQL</a></li><li><a href="/articles/design-patterns">Design Patterns</a></li><li><a href="/articles/junit">JUnit</a></li><li><a href="/articles/design-patterns">Apache POI</a></li><hr/><li><a href="/articles/example">Example</a></li></ul><div class="docs-content markdown-body"><h1>Concurrency</h1><h3>1. Общее</h3><ol>
+<li><p><strong>Monitor</strong> - высокоуровневый механизм взаимодействия и синхронизации процессов, обеспечивающий доступ к неразделяемым ресурсам.</p>
+<ul>
+<li>При многозадачности, основанной на мониторах, компилятор или интерпретатор прозрачно для программиста вставляет код блокировки-разблокировки в оформленные соответствующим образом процедуры, избавляя программиста от явного обращения к примитивам синхронизации.</li>
+</ul>
+</li>
+<li><p><strong>Semaphore</strong> - семафор, самый простой тип блокировки, ограничивает количество потоков, которые могут войти в заданный участок кода.</p>
+<ul>
+<li>Семафоры используются для синхронизации и защиты передачи данных через разделяемую память, а также для синхронизации работы процессов и потоков.</li>
+</ul>
+</li>
+<li><p><strong>Mutex</strong> - двоичный простейший семафор, который может находиться в одном из двух состояний: отмеченном или неотмеченном. Он отличается от семафора тем, что только владеющий им поток может его освободить, т.е. перевести в отмеченное состояние.</p>
+<ul>
+<li>Задача мьютекса — защита объекта от доступа к нему других потоков, отличных от того, который завладел мьютексом.</li>
+<li>В каждый конкретный момент только один поток может владеть объектом, защищённым мьютексом.</li>
+<li>Если другому потоку будет нужен доступ к переменной, защищённой мьютексом, то этот поток блокируется до тех пор, пока мьютекс не будет освобождён.</li>
+</ul>
+</li>
+<li><p><strong>Reentrant mutex</strong> - мьютекс, который может быть залочен несколько раз одиним и тем же процессом/потоком без создания взаимной блокировки.</p>
+</li>
+<li><p><strong>Lock</strong> - блокировка, механизм синхронизации, позволяющий обеспечить исключительный достп к разделяемому ресурсу между несколькими потоками.</p>
+<ul>
+<li><strong>Мягкая блокировка</strong> - каждый поток пытается получить блокировку перед доступом к соответствующему разделямому ресурсу.</li>
+<li><strong>Обязательная блокировка</strong> - попытка несанкционированного доступа к заблокированному ресурсу будет прервана, через создание исключения в потоке, который пытался получить доступ.</li>
+</ul>
+</li>
+<li><p><strong>Spinlock</strong> - тип блокировки, который заставляет поток в бесконечном цикле пытаться получить доступ к блокировке.</p>
+<ul>
+<li>Так как поток остается активным но не выполянет полезной работы, то использование данной блокировки не эффективно.</li>
+</ul>
+</li>
+<li><p><strong>Deadlock</strong> - взаимное исключение, блокировка, при которой несколько процессов находятся в состоянии бесконечного ожидания ресурсов, занятых самими этими процессами.</p>
+</li>
+<li><p><strong>Livelock</strong> - взаимное исключение, блокировка, при которой несколько процессов находятся в состоянии бесконечного зацикливания и не производят полезной работы. </p>
+</li>
+<li><p><strong>Process</strong> - процесс обладает автономной средой выполнения. </p>
+<ul>
+<li>Каждый процесс, в частности, имеет собственную область памяти.</li>
+<li>Процесс обычно воспринимается, как синоним выполнению программы или приложения. Однако бывает, что одна приложения занимает несколько процессов.</li>
+<li>Большинство реализаций JVM запускаются в едином процессе.</li>
+<li>Java приложение может создать дополнительный процесс с помощью ProcessBuilder объекта.</li>
+</ul>
+</li>
+<li><p><strong>Thread</strong> - потоки иногда называют легковесными процессами (lightweight processes). Потоки существуют внутри процесса - каждый процесс обладает хотя бы одним потоком.</p>
+<ul>
+<li>Потоки делят ресурсы процесса, включая память и открытые файлы.</li>
+<li>Приложение может быть как однопоточным, так и многопоточным, но всегда существует единственный &quot;главный&quot; поток, с которого запускается приложение.</li>
+</ul>
+</li>
+<li><p><strong>Interrupt</strong> - прерывание является указанием потоку остановить выпонение.</p>
+</li>
+<li><p><strong>Join</strong> - позволяет одному потоку ждать окончание выполнения другого потока.</p>
+</li>
+<li><p><strong>Thread safe</strong> - участок кода, который работает корректно как в однопоточной, так и в многопоточной среде.</p>
+<ul>
+<li><strong>Not thread safe</strong> - участок кода, который работает корректо только в однопоточной среде.</li>
+</ul>
+</li>
+<li><p><strong>Thread affinity</strong> - при старте потока, можно указать в рантайм среде, чтобы поток был привязан к определенному ядру.</p>
+</li>
+<li><p><strong>EDT (Event Dispatching Thread)</strong> - специальный поток, используемый для обработки событий из очереди событий. Такой подход является концептом событийно-ориентированного программирования.</p>
+<ul>
+<li>Такие GUI фреймворки, как, например, AWT или Swing, используют EDT.</li>
+</ul>
+</li>
+<li><p><strong>Race condition</strong> - ошибка проектирования многопоточной системы или приложения, при которой работа системы или приложения зависит от того, в каком порядке выполняются части кода.</p>
+</li>
+<li><p><strong>Context switches</strong> - когда планировщик временно приостанавливает работу потока, чтобы активировать другой поток.</p>
+<ul>
+<li>Частое явление в приложениях с кучей потоков, что очень дорого им обходится из-за:<ul>
+<li>Сохранение и восстановление выполняемого контекста</li>
+<li>Непостоянное местоположение в памяти</li>
+<li>Затрачивание CPU на планирование потоков, которое нужно тратить на их использование.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Atomic action (Атомарная операция)</strong> - операция, выполняющаяся как единое целое, либо не выполняющаяся вовсе.</p>
+<ul>
+<li>Атомарная операция не может быть прервана: она либо выполняется полностьбю, либо не выполняется вовсе.</li>
+<li>Атомарная операция не производит изменений внешней среды во время выполнения, только по окончании.</li>
+<li>Атомарная операция открыта влиянию только одного потока.</li>
+</ul>
+</li>
+<li><p><strong>Happened-before relationship</strong> - отношение &quot;выполняется прежде&quot; двух событий, которое гарантирует, что память, записанная событием A будет видна для события B, т.е. событие А завершает свою запись перед тем, как B начнет чтение.</p>
+<ul>
+<li>Данное отношение транзитивно, иррефлексивно, антисимметрично.<ul>
+<li>Транзитивно - для любых 3-х событий a, b, c, если событие a происходит перед b, и b происходит перед c, тогда a должно происходить перед c.</li>
+<li>Иррефлексивно - ни одно событие не должно происходить перед собой.</li>
+<li>Антисимметрично - если событие a должно произойти перед событием b, то обратное невозможно.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Critical section</strong> - участок кода, в котором производится доступ к общему ресурсу, который не должен быть одновременно использован более чем одним потоком.</p>
+<ul>
+<li>Мьютекс является процедурой входа/выхода из критической секции.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>2. Java-specific</h3><ol>
+<li><p><strong>JMM (Java Memory Model)</strong> - описывает поведение потоков в среде исполнения Java.</p>
+<ul>
+<li>Однопоточные программы выолняются псевдопоследовательно, то есть в реальности процессор может выполнять несколько операций за такт, заодно изменив их порядок, однако все зависимости по данным остаются, так что поведение не отличается от последовательного.</li>
+</ul>
+</li>
+<li><p><strong><code>java.lang.Thread</code></strong> - каждый поток ассоциируется с объектом этого класса.</p>
+<ul>
+<li><code>Thread.sleep()</code> отдает команду текущему потоку приостановить выполнение на указанное время.</li>
+<li><code>Thread.interrupted()</code> возвращает <code>true</code>, если выполнение потока было прервано.</li>
+<li><code>thread.join()</code> позволяет одному потоку ждать окончания выполнения другого (т.е. текущий ждет выполнения потока <code>thread</code>).</li>
+</ul>
+</li>
+<li><p><strong><code>java.lang.Runnable</code></strong> - интерфейс определяет единственный метод <code>run</code>, который должен содержать код, который будет выполняться в потоке.</p>
+</li>
+<li><p><strong><code>volatile</code></strong> - данный модификатор указывает компилятору, что чтение перемнной будет производиться прямо из памяти, что позволяет нескольким потокам видеть последнее значение переменной.</p>
+</li>
+<li><p><strong><code>java.util.concurrent.locks.Lock</code></strong> - интерфейс, реализации которого предполагают более обширные операции блокировки, чем предоставляемые <code>synchronized</code> методами и блоками.</p>
+</li>
+</ol>
+<h3>3. Thread</h3><ol>
+<li><p><strong><code>sleep()</code></strong> - заставляет поток остановить свое выполнение на указанное время. При этом поток не теряет контроль над монитором.</p>
+</li>
+<li><p><strong><code>start()</code></strong> - запускает данный поток из текущего потока.</p>
+<ul>
+<li>Этот метод вызывает <code>run()</code> метод этого же потока.</li>
+</ul>
+</li>
+<li><p><strong><code>run()</code></strong> - наследники <code>Thread</code> должны перегружать данный метод. Он вызывается при старте потока.</p>
+</li>
+<li><p><strong><code>interrupt()</code></strong> - прерывает выпонение потока.</p>
+<ul>
+<li><code>InterruptedException</code> - данный поток получит это исключение, если произошло успешное прерывание потока.</li>
+<li><code>ClosedByInterruptException</code> - если данный поток был заблокирован I/O операцией, то поток получит это исключение по окончанию прерывания.</li>
+</ul>
+</li>
+<li><p><strong><code>setPriority()</code></strong> - изменяет приоритет данного потока.</p>
+<ul>
+<li>Минимальный приоритет - 1, максимальный - 10.</li>
+</ul>
+</li>
+<li><p><strong><code>join()</code></strong> - заставляет поток ждать не более чем указанное время, чтобы завершиться.</p>
+<ul>
+<li>Реализация данного метода использует цикл с вызовом <code>wait()</code>, который вызывается пока <code>isAlive</code>. После завершения потока вызывается <code>notifyAll()</code> метод.</li>
+<li>Он создан для того, чтобы приложения не использовали методы <code>wait()</code>,<code>notify</code>,<code>notifyAll</code> методы из <code>Thread</code> сущностей, так как это не рекомендованно.</li>
+<li>Если не указывать время или указать 0, то поток будет ждать вечно чтобы умереть... пичаль.</li>
+</ul>
+</li>
+<li><p><strong><code>setDaemon()</code></strong> - отмечает данный поток как поток-демон или пользовательский поток.</p>
+<ul>
+<li>JVM отрубается если все запущенный потоки являются демонами.</li>
+<li>Этот метод должен выполняться перед стартом потока.</li>
+</ul>
+</li>
+<li><p><strong><code>yield()</code></strong> - указывает планировщику, что текущий поток закончил свое выполнение и готов перейти в пользование процессора. Планировщик однаком может игнорировать это указание.</p>
+<ul>
+<li>Использование данного метода редко является уместным. Он может использоваться для дебага или тестирования.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3>Источники</h3><ol>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html#yield(">https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html#yield(</a>)</li>
+<li><a href="https://ru.wikipedia.org/wiki/%D0%9C%D1%8C%D1%8E%D1%82%D0%B5%D0%BA%D1%81">https://ru.wikipedia.org/wiki/%D0%9C%D1%8C%D1%8E%D1%82%D0%B5%D0%BA%D1%81</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80_(%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80_(%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F</a>)</li>
+<li><a href="https://en.wikipedia.org/wiki/Happened-before">https://en.wikipedia.org/wiki/Happened-before</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html">https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html</a></li>
+<li><a href="https://www.amazon.com/Java-Concurrency-Practice-Brian-Goetz/dp/0321349601/192-1511873-1398145?ie=UTF8&amp;*Version*=1&amp;*entries*=0">https://www.amazon.com/Java-Concurrency-Practice-Brian-Goetz/dp/0321349601/192-1511873-1398145?ie=UTF8&amp;*Version*=1&amp;*entries*=0</a></li>
+<li><a href="https://habrahabr.ru/company/golovachcourses/blog/256883/">https://habrahabr.ru/company/golovachcourses/blog/256883/</a></li>
+<li><a href="http://ru.stackoverflow.com/questions/1271/%D0%9A%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D0%BE%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%BE-volatile-%D0%B2-java">http://ru.stackoverflow.com/questions/1271/%D0%9A%D0%BB%D1%8E%D1%87%D0%B5%D0%B2%D0%BE%D0%B5-%D1%81%D0%BB%D0%BE%D0%B2%D0%BE-volatile-%D0%B2-java</a></li>
+<li><a href="https://ru.wikipedia.org/wiki/%D0%90%D1%82%D0%BE%D0%BC%D0%B0%D1%80%D0%BD%D0%B0%D1%8F_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F">https://ru.wikipedia.org/wiki/%D0%90%D1%82%D0%BE%D0%BC%D0%B0%D1%80%D0%BD%D0%B0%D1%8F_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F</a></li>
+</ol></div></div></section><section class="vibrant centered"><div><h4>© Copyright 2016 <a href="https://github.com/Praytic">Chernogorov Vladislav</a></h4></div></section></body><script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script><script src="/js/layout.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></html>
