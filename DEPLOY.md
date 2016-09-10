@@ -1,14 +1,14 @@
 ### Deployment Steps
-<sub>Edit 06.07.2016</sub>
+<sup>Edit 11.09.2016</sup>
 
 ---
 
-1. Compile the whole `_harp` directory into `public` one with harp compiler.
+Compile contents of `_harp` directory into `public` directory with harp compiler.
 ```
 cd _harp
 harp compile --output ../public
 ```
-2. Commit changes in `dev` branch as release changes and push separate public directory into `master` branch.
+Commit changes in `dev` branch and push `public` directory into `master` branch.
 ```
 git add -A
 git commit -m "Release ..."
